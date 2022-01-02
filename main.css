@@ -1,0 +1,93 @@
+* {
+    padding: 0%;
+    margin: 0%;
+    overflow-x: hidden;
+    overflow-y: visible;
+    box-sizing: border-box;
+}
+
+a:visited {
+    color: black;
+}
+
+
+/*body & main container*/
+
+body {
+    background-color: #264653;
+}
+
+.main {
+    height: 95vh;
+    margin: 2.5vh 2.5rem 2.5vh 2.5rem;
+    border-radius: 10px;
+    overflow-y: hidden;
+    background-color: bisque;
+}
+
+
+/* Nav Bar */
+
+.navbar {
+    height: 92vh;
+    width: 5rem;
+    margin: 1.5vh 1rem 1.5vh 1rem;
+    background-color: #fff;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar img {
+    width: 3rem;
+    height: 3rem;
+    margin-top: 1rem;
+}
+
+nav ul {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+nav ul li {
+    height: 3rem;
+    width: 3rem;
+    position: relative;
+    margin-top: 2rem;
+    background-color: none;
+    border-radius: 10px;
+    transition: all 0.25s ease;
+}
+
+nav ul li i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    color: #000;
+}
+
+nav ul li::after {
+    content: "ASIDBOAISBDO";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    /* To the right of the tooltip */
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent black;
+}
+
+nav ul li:hover {
+    background-color: #000;
+}
+
+nav ul li:hover i {
+    color: #fff;
+}
+
+nav ul li:hover .tooltip {
+    visibility: visible;
+}
