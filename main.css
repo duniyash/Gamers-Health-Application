@@ -14,24 +14,16 @@ a:visited {
 /*body & main container*/
 
 body {
-    background-color: #264653;
-}
-
-.main {
-    height: 95vh;
-    margin: 2.5vh 2.5rem 2.5vh 2.5rem;
-    border-radius: 10px;
-    overflow-y: hidden;
-    background-color: bisque;
+    background-color: #1b1d24;
 }
 
 
 /* Nav Bar */
 
 .navbar {
-    height: 92vh;
+    height: 95vh;
     width: 5rem;
-    margin: 1.5vh 1rem 1.5vh 1rem;
+    margin: 2.5vh 1rem 2.5vh 1rem;
     background-color: #fff;
     border-radius: 10px;
     display: flex;
