@@ -1,0 +1,23 @@
+{
+  "name": "physico",
+  "version": "1.0.0",
+  "description": "gamers-health-application",
+  "main": "main.js",
+  "dependencies": {
+    "chart.js": "^3.7.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/duniyash/Gamers-Health-Application.git"
+  },
+  "author": "Team 1THIRTY8",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/duniyash/Gamers-Health-Application/issues"
+  },
+  "homepage": "https://github.com/duniyash/Gamers-Health-Application#readme"
+}
