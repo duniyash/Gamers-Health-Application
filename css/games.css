@@ -1,0 +1,58 @@
+/*General Settings For Games Page*/
+
+.cardContainer {
+    width: 95%;
+    padding: 2rem;
+}
+
+.cardContainerGrid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(4, 1fr);
+    padding-block: 2rem;
+}
+
+.gameCard {
+    height: 8rem;
+    width: auto;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    font-family: 'Poppins', sans-serif;
+    background-color: #5D9D0B;
+}
+
+.sectionHeader {
+    font-family: 'Poppins', sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: #fff;
+    margin: 1rem 0 0 0;
+}
+
+
+/*favourite games*/
+
+.cardContent {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.cardContent .cardTitle {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 69%;
+    transform: translate(-50%, -50%);
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.2rem;
+    text-align: right;
+}
+
+
+/*All games*/
+
+.allGames {
+    margin-bottom: 4rem;
+}
