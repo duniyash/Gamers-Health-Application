@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Player</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/player.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <div class="navbar">
+        <nav>
+            <img src="img/logo2.png" alt="logo">
+            <ul>
+                <li><a href="dashboard.html"><i class='bx bxs-home'></i></a></li>
+                <li><a href="player.html"><i class='bx bxs-heart'></i></a></li>
+                <li><a href="games.html"><i class='bx bxs-game'></i></a></li>
+                <li><a href="settings.html"><i class='bx bxs-cog'></i></a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="main">
+        <h1 class="pageHead">Player</h1>
+        <section class="mainContent">
+            <div class="overview card">
+                <ul>
+                    <li>
+                        <div class="contentBlock">
+                            <h3 class="blockHead">4</h3>
+                            <p class="blockDet">Total Hours Played</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="contentBlock">
+                            <h3 class="blockHead">1</h3>
+                            <p class="blockDet">Today</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="contentBlock">
+                            <h3 class="blockHead">5</h3>
+                            <p class="blockDet">Exercises Completed</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="graph card">
+                <h3 class="cardTitle">Player Graph</h3>
+                <script src="path/to/chartjs/dist/chart.js"></script>
+                <!--<script>
+                    const myChart = new Chart(ctx, {...
+                    });
+                </script>-->
+
+            </div>
+
+            <div class="exercises card">
+                <h3 class="cardTitle">Exercises Chart</h3>
+            </div>
+            <div class="games card">
+                <h3 class="cardTitle">Games Chart</h3>
+            </div>
+        </section>
+    </div>
+
+</body>
+
+<script src="main.js"></script>
+
+</html>

@@ -18,9 +18,6 @@ app.on('ready', function() {
     Menu.setApplicationMenu(null);
 
     //load html
-
-
-
     mainWindow.loadURL(url.format({
         pathname: path.join(__dirname, 'dashboard.html'),
         protocol: 'file',

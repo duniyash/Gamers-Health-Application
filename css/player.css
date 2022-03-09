@@ -1,0 +1,59 @@
+.mainContent .card {
+    height: 10rem;
+    width: 95%;
+    margin: 2rem;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+}
+
+.mainContent .overview {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    height: max-content;
+}
+
+.mainContent .overview ul {
+    height: min-content;
+}
+
+.mainContent .overview ul li {
+    display: inline-block;
+    margin: 1rem 4rem;
+}
+
+.mainContent .overview .contentBlock {
+    text-align: center;
+}
+
+.mainContent .overview .blockHead {
+    font-size: 32px;
+    font-weight: 700;
+    color: #5D9D0B;
+}
+
+.mainContent .overview .blockDet {
+    font-size: 16px;
+    font-weight: 300;
+    color: #fff;
+}
+
+.mainContent .cardTitle {
+    font-family: 'Poppins', sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: #fff;
+    margin: 1rem 0 0 1.25rem;
+}
+
+.mainContent .games {
+    width: 45%;
+    background-color: #5D9D0B;
+}
+
+.mainContent .exercises {
+    width: 45%;
+    background-color: #5D9D0B;
+}
