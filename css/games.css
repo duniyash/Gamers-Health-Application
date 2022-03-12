@@ -2,7 +2,7 @@
 
 .cardContainer {
     width: 95%;
-    padding: 2rem;
+    padding: 0 2rem;
 }
 
 .cardContainerGrid {
@@ -54,5 +54,5 @@
 /*All games*/
 
 .allGames {
-    margin-bottom: 4rem;
+    padding-bottom: 4rem;
 }

@@ -28,6 +28,7 @@ body {
     background-color: #24252b;
     display: flex;
     overflow-y: hidden;
+    height: max-content;
 }
 
 

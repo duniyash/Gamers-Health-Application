@@ -11,8 +11,9 @@ let mainWindow;
 app.on('ready', function() {
     mainWindow = new BrowserWindow({
         width: 1450,
-        height: 900,
-        resizable: false
+        height: 950,
+        resizable: false,
+        useContentSize: true
     });
 
     Menu.setApplicationMenu(null);
