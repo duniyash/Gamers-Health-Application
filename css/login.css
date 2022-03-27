@@ -1,0 +1,91 @@
+body{
+  display: block;
+}
+
+.header{
+  width: 100%;
+  height: 20vh;
+}
+
+.logo {
+  width: 4rem;
+  height: auto;
+  margin: 2rem 0 0 2rem; 
+}
+
+.signupBtn {
+  width: 7rem;
+  height: 3rem;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  margin: 1rem;
+  border: none;
+  border-radius: 10px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  transition: all ease-in-out 150ms;
+  background-color: #5d9d0b;
+  text-align: center;
+  justify-content: center;
+}
+
+.signupBtn a {
+  height: max-content;
+  width: max-content;
+}
+
+.main {
+  height: 80vh;
+  position: relative;
+  display: block;
+}
+
+.loginContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  gap: 1rem;
+  justify-content: center;
+  align-content: center;
+}
+
+.headerCont {
+  position: relative;
+  grid-row: 1;
+  height: max-content;
+}
+
+.sectionHeader {
+  font-family: "Poppins", sans-serif;
+  font-size: 35px;
+  font-weight: 500;
+  color: #fff;
+  margin: 1rem 0 0 1.25rem;
+  text-align: center;
+  letter-spacing: 0.3rem;
+}
+
+.loginContainer input {
+  width: 20rem;
+  height: 3rem;
+  padding: 1rem;
+  margin: 0 0.2rem;
+  border: none;
+  border-radius: 10px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  transition: all ease-in-out 150ms;
+}
+
+.loginContainer input[type="text"],
+input[type="password"] {
+  font-weight: 400;
+}
+
+.loginContainer input[type="button"]:hover {
+  color: #fff;
+  background-color: #5d9d0b;
+}
