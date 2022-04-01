@@ -1,35 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <title>Games | Valorant</title>
-    <link rel="stylesheet" href="css\main.css">
-    <link rel="stylesheet" href="css\games.css">
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-</head>
+    <link rel="stylesheet" href="css\main.css" />
+    <link rel="stylesheet" href="css\games.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
 
-<body>
+  <body>
     <div class="navbar">
-        <nav>
-            <img src="img/logo2.png" alt="logo">
-            <ul>
-                <li><a href="dashboard.html"><i class='bx bxs-home'></i></a></li>
-                <li><a href="player.html"><i class='bx bxs-heart'></i></a></li>
-                <li><a href="games.html"><i class='bx bxs-game'></i></a></li>
-                <li><a href="settings.html"><i class='bx bxs-cog'></i></a></li>
-            </ul>
-        </nav>
+      <nav>
+        <img src="img/logo2.png" alt="logo" />
+        <ul>
+          <li>
+            <a href="dashboard.html"><i class="bx bxs-home"></i></a>
+          </li>
+          <li>
+            <a href="player.html"><i class="bx bxs-heart"></i></a>
+          </li>
+          <li>
+            <a href="games.html"><i class="bx bxs-game"></i></a>
+          </li>
+          <li>
+            <a href="settings.html"><i class="bx bxs-cog"></i></a>
+          </li>
+        </ul>
+      </nav>
     </div>
 
     <div class="main">
-        <h1 class="pageHead">Valorant</h1>
-        <section class="mainContent">
-            <div class="timer">
-                
-            </div>
+      <h1 class="pageHead">Valorant</h1>
+      <section class="mainContent">
+        <div class="timerContainer">
+          <div class="timer">
+            <span class="timerText" id="minutes">00</span>
+            <span class="timerText">:</span>
+            <span class="timerText" id="seconds">00</span><br />
+            <button type="button" class="defaultBtn" id="startButton">
+              START TIMER
+            </button>
+          </div>
+        </div>
 
-        </section>
+        <dialog class="modal" id="modal">
+          <video id="video" width="320" height="240" autoplay></video><canvas id="canvas" width="320" height="240"></canvas><br>
+          <button class="defaultBtn"  id="start-camera">Start Camera</button> <br>
+          <button class="defaultBtn"  id="click-photo">Click Photo</button><br>
+        </dialog>
+      </section>
     </div>
 
-</body>
+    <script src="js/modal.js"></script>
+  </body>
 </html>
