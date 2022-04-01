@@ -1,14 +1,21 @@
 const startTimerBtn = document.querySelector('#startButton');
+const closeModal = document.querySelector('#close-modal')
 const modal = document.querySelector('#modal');
 
 startTimerBtn.addEventListener('click', () => {
     modal.showModal();
 })
 
+closeModal.addEventListener('click', () => {
+    stream.getTracks().forEach(track => track.stop())
+    modal.closeModal();
+})
+
 let camera_button = document.querySelector("#start-camera");
 let video = document.querySelector("#video");
 let click_button = document.querySelector("#click-photo");
 let canvas = document.querySelector("#canvas");
+
 
 camera_button.addEventListener('click', async function() {
    	let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
