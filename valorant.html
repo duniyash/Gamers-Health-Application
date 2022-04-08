@@ -3,6 +3,7 @@
   <head>
     <title>Games | Valorant</title>
     <link rel="stylesheet" href="css\main.css" />
+    <link rel="stylesheet" href="css\player.css" />
     <link rel="stylesheet" href="css\games.css" />
     <link
       href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
@@ -34,6 +35,30 @@
     <div class="main">
       <h1 class="pageHead">Valorant</h1>
       <section class="mainContent">
+
+        <div class="overview card">
+          <ul>
+              <li>
+                  <div class="contentBlock">
+                      <h3 class="blockHead">4</h3>
+                      <p class="blockDet">Total Hours Played</p>
+                  </div>
+              </li>
+              <li>
+                  <div class="contentBlock">
+                      <h3 class="blockHead">1</h3>
+                      <p class="blockDet">Today</p>
+                  </div>
+              </li>
+              <li>
+                  <div class="contentBlock">
+                      <h3 class="blockHead">5</h3>
+                      <p class="blockDet">Exercises Completed</p>
+                  </div>
+              </li>
+          </ul>
+      </div>
+
         <div class="timerContainer">
           <div class="timer">
             <span class="timerText" id="minutes">00</span>
@@ -46,14 +71,15 @@
         </div>
 
         <dialog class="modal" id="modal">
-          <video id="video" width="320" height="240" autoplay></video><canvas id="canvas" width="320" height="240"></canvas><br>
-          <button class="defaultBtn"  id="start-camera">Start Camera</button> <br>
-          <button class="defaultBtn"  id="click-photo">Click Photo</button><br>
-          <button class="defaultBtn"  id="close-modal">Click Photo</button>
+            <video id="video" width="320" height="240" autoplay></video>
+            <canvas id="canvas" width="320" height="240"></canvas><br>
+            <button class="defaultBtn"  id="start-camera">Start Camera</button> <br>
+            <button class="defaultBtn"  id="click-photo">Click Photo</button><br>
+            <button class="defaultBtn"  id="close-modal">Close modal</button>
         </dialog>
       </section>
     </div>
 
-    <script src="js/modal.js"></script>
+    <script src="js/gamePage.js"></script>
   </body>
 </html>

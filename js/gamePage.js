@@ -1,14 +1,17 @@
 const startTimerBtn = document.querySelector('#startButton');
-const closeModal = document.querySelector('#close-modal')
+const closeModalBtn = document.querySelector('#close-modal')
 const modal = document.querySelector('#modal');
+
+var stream;
+
 
 startTimerBtn.addEventListener('click', () => {
     modal.showModal();
 })
 
-closeModal.addEventListener('click', () => {
+closeModalBtn.addEventListener('click', () => {
     stream.getTracks().forEach(track => track.stop())
-    modal.closeModal();
+    modal.close();
 })
 
 let camera_button = document.querySelector("#start-camera");
@@ -18,7 +21,7 @@ let canvas = document.querySelector("#canvas");
 
 
 camera_button.addEventListener('click', async function() {
-   	let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+   	stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
 	video.srcObject = stream;
 });
 
@@ -29,3 +32,4 @@ click_button.addEventListener('click', function() {
    	// data url of the image
    	console.log(image_data_url);
 });
+
