@@ -31,6 +31,7 @@ body{
 }
 
 .signupBtn a {
+  justify-content: center;
   height: max-content;
   width: max-content;
 }
@@ -68,7 +69,7 @@ body{
   letter-spacing: 0.3rem;
 }
 
-.loginContainer input {
+.loginContainer .form-control, button {
   width: 20rem;
   height: 3rem;
   padding: 1rem;
@@ -77,15 +78,29 @@ body{
   border-radius: 10px;
   font-family: "Poppins", sans-serif;
   font-weight: 700;
+  font-size: 0.85rem;
   transition: all ease-in-out 150ms;
 }
 
-.loginContainer input[type="text"],
-input[type="password"] {
+.loginContainer button {
+  border: 2px solid #5d9d0b;
+  height: max-content;
+}
+
+.loginContainer .form-control {
   font-weight: 400;
 }
 
-.loginContainer input[type="button"]:hover {
+.loginContainer button:hover {
   color: #fff;
   background-color: #5d9d0b;
+  cursor: pointer;
+}
+
+.loginContainer a{
+  color: #5d9d0b;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  text-align: center;
+  font-weight: 800;
 }
