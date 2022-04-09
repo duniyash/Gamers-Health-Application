@@ -1,5 +1,24 @@
 {
-  "dependencies": {
-    "electron.js": "^0.0.1"
-  }
+    "name": "physico",
+    "version": "1.0.0",
+    "description": "gamers-health-application",
+    "main": "main.js",
+    "dependencies": {
+        "chart.js": "^3.7.0",
+        "electron": "^17.1.1",
+        "electron.js": "^0.0.1"
+    },
+    "scripts": {
+        "start": "electron ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/duniyash/Gamers-Health-Application.git"
+    },
+    "author": "Team 1THIRTY8",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/duniyash/Gamers-Health-Application/issues"
+    },
+    "homepage": "https://github.com/duniyash/Gamers-Health-Application#readme"
 }
