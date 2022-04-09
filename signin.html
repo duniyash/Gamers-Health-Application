@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN</title>
+
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+   
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    <!-- MATERIAL DESIGN ICONIC FONT -->
+    <link rel="stylesheet" href="design_files/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+                
+    <!-- STYLE CSS -->
+    <link rel="stylesheet" href="design_files/css/style.css">
+
+</head>
+<body>
+    <div class="wrapper" style="background-image: url('design_files/images/loginback.jpg');">
+        <div class="inner">
+            <div class="image-holder">
+                <img src="design_files/images/login.jpg" alt="backgroundImg">
+            </div>
+            <form action="">
+                <h3>Login</h3>
+                
+                <div class="form-wrapper">
+                    <input type="email" id="email" placeholder="Email" class="form-control">
+                    <i class="zmdi zmdi-email"></i>
+                </div>
+        
+                <div class="form-wrapper">
+                    <input type="password" id="password" placeholder="Password" class="form-control">
+                    <i class="zmdi zmdi-lock"></i>
+                </div>
+
+                <div class="form-group container-login100-form-btn">
+                    <button type="button" id="btnlogin">
+                        Login
+                        <i class="zmdi zmdi-arrow-right"></i>
+                    </button>
+                </div>
+
+                <div class="w-full text-center p-t-27 p-b-239">
+                    <span class="text-muted">
+                        Forgot
+                    </span>
+                    <a href="forgetPassword.html" class="text-dark">
+                        Username / password?
+                    </a>
+                </div>
+        
+                <div class="w-full text-center" style="margin-top: 66%; font-size: 15px;">
+                    <a href="signup.html" class="text-dark">
+                        Not have an account? Sign Up
+                    </a>
+                </div>
+            </form>    
+        </div>
+    </div>
+</body>
+<script type="module" src="js/index.js"></script>
+
+<!-- <script>
+    function writeUserData(userId, name, email, imageUrl) {
+        const database = getDatabase();
+        set(ref(database, 'users/' + userId), {
+            username: name,
+            email: email
+        });
+    }
+</script> -->
+
+</html>
