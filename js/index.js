@@ -16,14 +16,23 @@ const firebaseConfig = {
     measurementId: "G-P2KKMSZWSK"
   };
 
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const database = getDatabase(app);
 const storage = getStorage();
 
-const signupBtn = document.getElementById('#btnsignup');
+// onAuthStateChanged(auth, (user) => {
+//     if (!user) {
+//         // No user is signed in.
+//         // User is signed in, see docs for a list of available properties
+//         // https://firebase.google.com/docs/reference/js/firebase.User
+//         window.location.replace("login.html");
+//     } else {
+//         // User is signed in.
+//         console.log("stay");
+//     }
+// });  
 
 // Create a New User
 $("#btnsignup").click(function()
@@ -139,7 +148,7 @@ $("#btn-logout").click(function()
             if (!user) {
                 // User is signed in, see docs for a list of available properties
                 // https://firebase.google.com/docs/reference/js/firebase.User
-                window.location.href = "login.html";
+                window.location.replace("login.html");
                 // ...
             }
         });  
