@@ -14,13 +14,14 @@ const firebaseConfig = {
     messagingSenderId: "919838418395",
     appId: "1:919838418395:web:4c3d8f7a3af1b0219ff3fe",
     measurementId: "G-P2KKMSZWSK"
-  };
+};
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const database = getDatabase(app);
 const storage = getStorage();
+
 
 // onAuthStateChanged(auth, (user) => {
 //     if (!user) {
@@ -33,6 +34,24 @@ const storage = getStorage();
 //         console.log("stay");
 //     }
 // });  
+
+
+// KeepLoggedIn function
+function login(user){
+    let KeepLoggedIn = document.getElementById('customSwitch1').checked;
+
+    if(!KeepLoggedIn){
+        sessionStorage.setItem('user', JSON.stringify(user));
+        window.location="dashboard.html";
+    }
+    else
+    {
+        localStorage.setItem('keepLoggedIn', 'yes');
+        localStorage.setItem('user', JSON.stringify(user));
+        window.location="dashboard.html";
+    }
+}
+
 
 // Create a New User
 $("#btnsignup").click(function()
@@ -68,6 +87,8 @@ $("#btnsignup").click(function()
                 .then(() => {
                     // Data saved successfully!
                     console.log('New User Data Saved Successfully!');
+                    // call login function
+                    // login(user);
                     window.location.href = "dashboard.html";
                 })
                 .catch((error) => {
@@ -115,7 +136,9 @@ $("#btnlogin").click(function()
             // ...
             console.log('User login successfully!');
             alert('User login successfully!');
-            window.location.href = "dashboard.html";
+            // call login function
+            login(user);
+            // window.location.href = "dashboard.html";
 
         })
         .catch(function(error)
@@ -148,6 +171,9 @@ $("#btn-logout").click(function()
             if (!user) {
                 // User is signed in, see docs for a list of available properties
                 // https://firebase.google.com/docs/reference/js/firebase.User
+                sessionStorage.removeItem('user');
+                localStorage.removeItem('user');
+                localStorage.removeItem('keepLoggedIn');
                 window.location.replace("login.html");
                 // ...
             }
