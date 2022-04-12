@@ -65,4 +65,35 @@
     </div>
   </body>
   <script type="module" src="js/index.js"></script>
+
+    <!-- Testing -->
+<script>
+  // Functions
+  function getUsername(){
+          let keepLoggedIn = localStorage.getItem("keepLoggedIn");
+
+          if(keepLoggedIn == "yes"){
+              currentUser = JSON.parse(localStorage.getItem('user'));
+          }
+          else
+          {
+              currentUser = JSON.parse(sessionStorage.getItem('user'));
+          }
+  }
+
+  var currentUser = null;
+
+  // Window loads
+  window.onload = function(){
+          getUsername();
+          if(currentUser == null){
+              // window.location.href = "login.html";
+          }
+          else
+          {
+              window.location.href = "dashboard.html";
+          }
+      }
+</script>
+
 </html>
