@@ -139,3 +139,12 @@ nav ul li:hover .tooltip {
     color: #fff;
     margin: 1rem 0 0 1.25rem;
 }
+
+.labels label{
+    display: inline-block;
+    width: 80px;
+}
+
+.labels input, select{
+    width: 120px;
+}
