@@ -133,7 +133,7 @@ $("#btnlogin").click(function()
         .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
-            // ... user.uid
+            // ... user.uid  
             SelectData(user);
             console.log('User login successfully!');
             alert('User login successfully!');
@@ -293,5 +293,6 @@ function DeleteData(){
     });
 }
 
-updbtn.addEventListener('click', UpdateData);
-delbtn.addEventListener('click', DeleteData);
+// selbtn.addEventListener('click', SelectData);
+// updbtn.addEventListener('click', UpdateData);
+// delbtn.addEventListener('click', DeleteData);
