@@ -44,6 +44,7 @@ body{
 
 .loginContainer {
   position: absolute;
+  padding: 2rem;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -51,6 +52,9 @@ body{
   gap: 1rem;
   justify-content: center;
   align-content: center;
+  place-items: center;
+  background-color: #fff;
+  border-radius: 15px;
 }
 
 .headerCont {
@@ -63,18 +67,17 @@ body{
   font-family: "Poppins", sans-serif;
   font-size: 35px;
   font-weight: 500;
-  color: #fff;
+  color: #5d9d0b;
   margin: 1rem 0 0 1.25rem;
   text-align: center;
   letter-spacing: 0.3rem;
 }
 
-.loginContainer .form-control, button {
+.form-control, button {
   width: 20rem;
   height: 3rem;
-  padding: 1rem;
   margin: 0 0.2rem;
-  border: none;
+  border: 1px solid #24252b;
   border-radius: 10px;
   font-family: "Poppins", sans-serif;
   font-weight: 700;
@@ -85,10 +88,24 @@ body{
 .loginContainer button {
   border: 2px solid #5d9d0b;
   height: max-content;
+  height: 2.7rem;
+  padding: none;
+  background-color: #fff;
+}
+
+.loginContainer .custom-control {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginContainer .custom-control input {
+  margin: 0.5rem;
 }
 
 .loginContainer .form-control {
   font-weight: 400;
+  padding: 1rem;
 }
 
 .loginContainer button:hover {
@@ -97,10 +114,54 @@ body{
   cursor: pointer;
 }
 
-.loginContainer a{
+.loginContainer a, label{
   color: #5d9d0b;
   font-family: "Poppins", sans-serif;
   font-size: 0.9rem;
   text-align: center;
   font-weight: 800;
+  text-align: center;
+} 
+
+.errorMessageShow {
+  background: #fc7e83;
+  text-align: center;
+  display: none;
+  transition: all 0.5s ease;
+  text-transform: capitalize;
+  font-weight: 200;
+  border: none;
+  padding: 1rem;
+}
+
+p {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-align: center;
+  color: #6c6c6d;
+}
+
+.loginContainer hr {
+  width: 20rem;
+}
+
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  height: max-content;
+  width: fit-content;
+  margin: 2rem;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  background-color: #2e3239;
+
+  border: none;
 }

@@ -23,6 +23,9 @@ const database = getDatabase(app);
 const storage = getStorage();
 const dref = ref(database);
 
+//error 
+//const errorMessage = document.getElementById("errorMessage");
+
 // onAuthStateChanged(auth, (user) => {
 //     if (!user) {
 //         // No user is signed in.
@@ -50,6 +53,16 @@ function login(user){
         localStorage.setItem('user', JSON.stringify(user));
         window.location="dashboard.html";
     }
+}
+
+//error code function 
+var errorMessageSpan = document.getElementById('errorMessageShow');
+const modal = document.querySelector('#modal');
+function showErrorMessage(p) {
+    modal.showModal();
+    errorMessageSpan.style.display = "none";
+    errorMessageSpan.innerHTML = p;
+    errorMessageSpan.style.display = "block";
 }
 
 
@@ -105,17 +118,19 @@ $("#btnsignup").click(function()
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 console.log(errorCode);
-                window.alert(errorCode);
+                showErrorMessage(errorMessage)
             });
         }
         else
         {
-            window.alert("Password does not match the confirme password.");
+            var errorMessage = "Passwords do not match.";
+            showErrorMessage(errorMessage)
         }
     }
     else
     {
-        window.alert("Please fill out all fields.");
+        var errorMessage = "fill all blanks.";
+        showErrorMessage(errorMessage)
     }
 
 });
@@ -147,12 +162,13 @@ $("#btnlogin").click(function()
             var errorCode = error.code;
             var errorMessage = error.message;
             console.log(errorCode);
-            window.alert(errorCode);
+            showErrorMessage(errorMessage);
         });
     }
     else
     {
-        window.alert("Please fill out all fields.");
+        var errorMessage = "fill all blanks";
+        showErrorMessage(errorMessage);
     }
 
 });
@@ -186,7 +202,7 @@ $("#btn-logout").click(function()
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode);
-        alert(errorCode);
+        showErrorMessage(errorMessage)
     });
 
 });
@@ -209,12 +225,13 @@ $("#btnresetPassword").click(function()
             const errorCode = error.code;
             const errorMessage = error.message;
             console.log(errorCode);
-            alert(errorCode);
+            
         });
     }
     else
     {
-        window.alert("Please enter your email first!");
+        var errorMessage = ("Please enter your email first!");
+        showErrorMessage(errorMessage)
     }
 
 });
