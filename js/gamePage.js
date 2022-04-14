@@ -49,7 +49,7 @@ closeModalBtn.addEventListener('click', () => {
 			pushNotif();
 		}
 
-		}, 1000);
+	}, 1000);
 
 })
 
