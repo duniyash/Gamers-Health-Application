@@ -45,18 +45,15 @@
                     </li>
                 </ul>
             </div>
-            <div class="graph card">
-                <h3 class="cardTitle">Player Graph</h3>
-                <script src="path/to/chartjs/dist/chart.js"></script>
-                <!--<script>
-                    const myChart = new Chart(ctx, {...
-                    });
-                </script>-->
-
+            <div class="graph">
+               <h3 class="cardTitle">Player Graph</h3>
+               <canvas id = "lineChart"></canvas>
+                
             </div>
 
-            <div class="exercises alt-card">
+            <div class="exercises">
                 <h3 class="cardTitle">Exercises Chart</h3>
+                <canvas id="doughnut"></canvas>
             </div>
             <div class="games alt-card">
                 <h3 class="cardTitle">Games Chart</h3>
@@ -65,7 +62,10 @@
     </div>
 
 </body>
-
-<script src="player.js"></script>
+//added by me
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+    <script src="chart1.js"></script>
+    <script src="chart2.js"></script>
+    <script src="player.js"></script>
 
 </html>
