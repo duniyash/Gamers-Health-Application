@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
+
 body{
   display: block;
 }
@@ -68,7 +70,7 @@ body{
   font-size: 35px;
   font-weight: 500;
   color: #5d9d0b;
-  margin: 1rem 0 0 1.25rem;
+  margin:0 0 0 1.25rem; 
   text-align: center;
   letter-spacing: 0.3rem;
 }
@@ -124,14 +126,16 @@ body{
 } 
 
 .errorMessageShow {
-  background: #fc7e83;
+  color: #ff3333;
   text-align: center;
   display: none;
   transition: all 0.5s ease;
   text-transform: capitalize;
-  font-weight: 200;
+  font-family: 'Open Sans ', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
   border: none;
-  padding: 1rem;
+  padding: none;
 }
 
 p {
@@ -144,6 +148,10 @@ p {
 
 .loginContainer hr {
   width: 20rem;
+}
+
+.loginContainer .sectionHeader{
+  margin: none;
 }
 
 

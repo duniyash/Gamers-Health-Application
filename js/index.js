@@ -57,12 +57,12 @@ function login(user){
 
 //error code function 
 var errorMessageSpan = document.getElementById('errorMessageShow');
-const modal = document.querySelector('#modal');
+var loginCont = document.getElementById('loginContainer');
 function showErrorMessage(p) {
-    modal.showModal();
     errorMessageSpan.style.display = "none";
-    errorMessageSpan.innerHTML = p;
+    errorMessageSpan.innerHTML ="*" + p;
     errorMessageSpan.style.display = "block";
+    loginCont.style.padding = "24px";
 }
 
 
