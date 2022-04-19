@@ -55,15 +55,7 @@ function login(user){
     }
 }
 
-//error code function 
-var errorMessageSpan = document.getElementById('errorMessageShow');
-var loginCont = document.getElementById('loginContainer');
-function showErrorMessage(p) {
-    errorMessageSpan.style.display = "none";
-    errorMessageSpan.innerHTML ="*" + p;
-    errorMessageSpan.style.display = "block";
-    loginCont.style.padding = "24px";
-}
+
 
 
 // Create a New User
@@ -207,6 +199,8 @@ $("#btn-logout").click(function()
 
 });
 
+//modal for forgor password confirmation email
+var FPconfirmation = document.getElementById('FPconfirmation');
 
 // Reset password
 $("#btnresetPassword").click(function()
@@ -219,7 +213,10 @@ $("#btnresetPassword").click(function()
         .then(() => {
             // Password reset email sent!
             // ..
-            window.alert("Password reset email sent!");
+            //window.alert("Password reset email sent!");
+            errorMessageSpan.style.display = "none";
+            FPconfirmation.style.display = "block";
+            
 
         }).catch((error) => {
             const errorCode = error.code;
@@ -310,5 +307,21 @@ function DeleteData(){
     });
 }
 
+
+//error code function 
+var errorMessageSpan = document.getElementById('errorMessageShow');
+var loginCont = document.getElementById('loginContainer');
+function showErrorMessage(p) {
+    errorMessageSpan.style.display = "none";
+    errorMessageSpan.innerHTML ="*" + p;
+    errorMessageSpan.style.display = "block";
+    loginCont.style.padding = "24px";
+}
+
 updbtn.addEventListener('click', UpdateData);
 delbtn.addEventListener('click', DeleteData);
+
+
+
+
+
