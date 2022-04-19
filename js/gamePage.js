@@ -7,7 +7,7 @@ var timer;
 var timerSeconds;
 
 const minute = document.querySelector('#minute');
-const second = document.querySelector('#second')
+const second = document.querySelector('#second');
 
 
 startTimerBtn.addEventListener('click', () => {
@@ -57,8 +57,6 @@ let camera_button = document.querySelector("#start-camera");
 let video = document.querySelector("#video");
 let click_button = document.querySelector("#click-photo");
 let canvas = document.querySelector("#canvas");
-
-
 
 camera_button.addEventListener('click', async function() {
    	stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
