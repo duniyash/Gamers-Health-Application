@@ -56,3 +56,42 @@
 .allGames {
     padding-bottom: 4rem;
 }
+
+.cards {
+    width: 100%;
+    padding: 35px 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+
+    transition: 0.5 ease;
+    cursor: pointer;
+    
+}
+
+.cards .card {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+}
+
+.number {
+    font-size: 35px;
+    font-weight: 500;
+    color: #03ac3b;
+}
+
+.card-name {
+    color: #888;
+    font-weight: 600;
+}
+
+
+.card:hover{
+    transform: scale(1.1);
+    box-shadow: 5px 5px 15px rgb(0,0,0,0.6);
+}
