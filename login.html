@@ -18,16 +18,25 @@
       <img class="logo" src="img/logo.png" alt="logo" />
     </header>
     <div class="main">
+      <dialog class="modal" id="modal">
+        
+        <br>  
+        <p>Press Esc to Close.</p>
+      </dialog>
       <div class="loginContainer">
-        <h3 class="sectionHeader">LOGIN</h3>
+        <h3 class="sectionHeader">LOGIN</h3>       
         <input type="email" name="email" id="email" placeholder="Email" class="form-control">
         <input type="password" name="password" id="password" placeholder="Password" class="form-control"/>
-        <div class="custom-control custom-switch mb-3">
-          <input type="checkbox" class="custom-control-input" id="customSwitch1">
-          <label class="custom-control-label" for="customSwitch1">Keep me Logged In</label>
-        </div>
+        <span class="errorMessageShow " id="errorMessageShow"></span>
         <button type="button" id="btnlogin"> Login </button> 
-        <a href="forgetPassword.html" class="text-dark">Forgot password?</a>
+        <div class="custom-control custom-switch mb-3">
+          <div>
+            <input type="checkbox" class="custom-control-input" id="customSwitch1">
+            <label class="custom-control-label" for="customSwitch1">Keep me Logged In</label>
+          </div>
+        </div>
+        <hr>
+        <a href="forgetPassword.html" class="text-dark-1">Forgot password?</a>
         <a href="signup.html" class="text-dark">Don't Have An Account? SIGNUP</a>
       </div>
     </div>
