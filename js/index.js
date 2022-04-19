@@ -23,6 +23,9 @@ const database = getDatabase(app);
 const storage = getStorage();
 const dref = ref(database);
 
+//error 
+//const errorMessage = document.getElementById("errorMessage");
+
 // onAuthStateChanged(auth, (user) => {
 //     if (!user) {
 //         // No user is signed in.
@@ -51,6 +54,8 @@ function login(user){
         window.location="dashboard.html";
     }
 }
+
+
 
 
 // Create a New User
@@ -105,17 +110,19 @@ $("#btnsignup").click(function()
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 console.log(errorCode);
-                window.alert(errorCode);
+                showErrorMessage(errorMessage)
             });
         }
         else
         {
-            window.alert("Password does not match the confirme password.");
+            var errorMessage = "Passwords do not match.";
+            showErrorMessage(errorMessage)
         }
     }
     else
     {
-        window.alert("Please fill out all fields.");
+        var errorMessage = "fill all blanks.";
+        showErrorMessage(errorMessage)
     }
 
 });
@@ -133,7 +140,7 @@ $("#btnlogin").click(function()
         .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
-            // ... user.uid  
+            // ... user.uid
             SelectData(user);
             console.log('User login successfully!');
             alert('User login successfully!');
@@ -147,12 +154,13 @@ $("#btnlogin").click(function()
             var errorCode = error.code;
             var errorMessage = error.message;
             console.log(errorCode);
-            window.alert(errorCode);
+            showErrorMessage(errorMessage);
         });
     }
     else
     {
-        window.alert("Please fill out all fields.");
+        var errorMessage = "fill all blanks";
+        showErrorMessage(errorMessage);
     }
 
 });
@@ -186,11 +194,13 @@ $("#btn-logout").click(function()
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode);
-        alert(errorCode);
+        showErrorMessage(errorMessage)
     });
 
 });
 
+//modal for forgor password confirmation email
+var FPconfirmation = document.getElementById('FPconfirmation');
 
 // Reset password
 $("#btnresetPassword").click(function()
@@ -203,18 +213,22 @@ $("#btnresetPassword").click(function()
         .then(() => {
             // Password reset email sent!
             // ..
-            window.alert("Password reset email sent!");
+            //window.alert("Password reset email sent!");
+            errorMessageSpan.style.display = "none";
+            FPconfirmation.style.display = "block";
+            
 
         }).catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
             console.log(errorCode);
-            alert(errorCode);
+            
         });
     }
     else
     {
-        window.alert("Please enter your email first!");
+        var errorMessage = ("Please enter your email first!");
+        showErrorMessage(errorMessage)
     }
 
 });
@@ -293,6 +307,21 @@ function DeleteData(){
     });
 }
 
-// selbtn.addEventListener('click', SelectData);
-// updbtn.addEventListener('click', UpdateData);
-// delbtn.addEventListener('click', DeleteData);
+
+//error code function 
+var errorMessageSpan = document.getElementById('errorMessageShow');
+var loginCont = document.getElementById('loginContainer');
+function showErrorMessage(p) {
+    errorMessageSpan.style.display = "none";
+    errorMessageSpan.innerHTML ="*" + p;
+    errorMessageSpan.style.display = "block";
+    loginCont.style.padding = "24px";
+}
+
+updbtn.addEventListener('click', UpdateData);
+delbtn.addEventListener('click', DeleteData);
+
+
+
+
+
