@@ -22,6 +22,34 @@ const auth = getAuth();
 const database = getDatabase(app);
 const storage = getStorage();
 const dref = ref(database);
+const user = auth.currentUser;
+
+
+    // if (user !== null) 
+    // {
+    //     // The user object has basic properties such as display name, email, etc.
+    //     // The user's ID, unique to the Firebase project. Do NOT use
+    //     // this value to authenticate with your backend server, if
+    //     // you have one. Use User.getToken() instead.
+    //     const uid = user.uid;
+    //     alert(user);
+    //     alert(uid);
+
+    //     // delbtn.addEventListener('click', DeleteData(user));
+
+    //     // const displayName = user.displayName;
+    //     // const email = user.email;
+    //     // const photoURL = user.photoURL;
+    //     // const emailVerified = user.emailVerified;
+
+    // }else
+    // {
+
+    // }
+	
+
+//error 
+//const errorMessage = document.getElementById("errorMessage");
 
 //error 
 //const errorMessage = document.getElementById("errorMessage");
@@ -80,7 +108,8 @@ $("#btnsignup").click(function()
                 const user = userCredential.user;
                 // ... user.uid
                 
-                set(ref(database, 'users/' + user.uid), {
+               // Store User details to db user branch
+               set(ref(database, 'users/' + user.uid), {
                     username: name,
                     email: email,
                     password: password,
@@ -88,6 +117,29 @@ $("#btnsignup").click(function()
                     keyboardRotation: keyboardRotation,
                     distanceMonitor: distanceMonitor,
                     backPain: backPain
+                })
+                .then(() => {
+                    // Data saved successfully!
+                    console.log('New User Data Saved Successfully!');
+                    // call login function
+                    // login(user);
+                    // window.location.href = "dashboard.html";
+                })
+                .catch((error) => {
+                    // The write failed...
+                    console.log(error);
+                });
+
+                // Store User games to db games branch
+                set(ref(database, 'games/' + user.uid), {
+                    armtendencies: "null",
+                    backtendencies: "null",
+                    eyetendencies: "null",
+                    othertendencies: "null",
+                    playinghourstotal: "null",
+                    playinghourstoday: "null",
+                    noexercises: "null",
+                    favgames: "null"
                 })
                 .then(() => {
                     // Data saved successfully!
@@ -102,7 +154,7 @@ $("#btnsignup").click(function()
                 });
 
                 console.log('User Signup Successfully!');
-                alert('User Signup Successfully!');
+                // alert('User Signup Successfully!');
                                             
             })
             .catch(function(error)
@@ -115,13 +167,13 @@ $("#btnsignup").click(function()
         }
         else
         {
-            var errorMessage = "Passwords do not match.";
+            var errorMessage = "Passwords do not match";
             showErrorMessage(errorMessage)
         }
     }
     else
     {
-        var errorMessage = "fill all blanks.";
+        var errorMessage = "fill all blanks";
         showErrorMessage(errorMessage)
     }
 
@@ -140,12 +192,91 @@ $("#btnlogin").click(function()
         .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
-            // ... user.uid
-            SelectData(user);
+            // ... user.uid  
+
+            // Show user profile
+            if (user !== null) {
+                // The user object has basic properties such as display name, email, etc.
+                // The user's ID, unique to the Firebase project. Do NOT use
+                // this value to authenticate with your backend server, if
+                // you have one. Use User.getToken() instead.
+                const uid = user.uid;   
+
+                // console.log(user);
+                // console.log(uid);
+                // window.alert(user);
+                // window.alert(uid);
+                // SelectData(uid);
+
+                get(child(dref, 'users/' + uid))
+                .then((snapshot)=>{
+                    if(snapshot.exists()){
+                        
+                        // References
+                        var usernameboxlabel = document.getElementById("usernameboxlabel");
+                        var emailboxlabel = document.getElementById("emailboxlabel");
+                        var passwordboxlabel = document.getElementById("passwordboxlabel");
+                        var genderboxlabel = document.getElementById("genderboxlabel");
+                        var distboxlabel = document.getElementById("distboxlabel");
+                        var rotaboxlabel = document.getElementById("rotaboxlabel");
+                        var painboxlabel = document.getElementById("painboxlabel");
+
+                        // // var instbtn = document.getElementById("instbtn");
+                        // // var selbtn = document.getElementById("selbtn");
+                        // // var updbtn = document.getElementById("updbtn");
+                        // // var delbtn = document.getElementById("delbtn");
+                        
+                        // alert(snapshot.val());
+
+                        usernameboxlabel = snapshot.val().username;
+                        emailboxlabel = snapshot.val().email;
+                        passwordboxlabel = snapshot.val().password;
+                        genderboxlabel = snapshot.val().gender;
+                        distboxlabel = snapshot.val().keyboardRotation;
+                        rotaboxlabel = snapshot.val().distanceMonitor;
+                        painboxlabel = snapshot.val().backPain;
+                        
+                        // alert(usernameboxlabel); 
+                        // alert(emailboxlabel); 
+                        // alert(passwordboxlabel); 
+                        // alert(genderboxlabel); 
+                        // alert(distboxlabel);
+                        // alert(rotaboxlabel); 
+                        // alert(painboxlabel);
+
+                        // // usernamebox.value = snapshot.val().username;
+                        // // emailbox.value = snapshot.val().email;
+                        // // passwordbox.value = snapshot.val().password;
+                        // // genderbox.value = snapshot.val().gender;
+                        // // distbox.value = snapshot.val().keyboardRotation;
+                        // // rotabox.value = snapshot.val().distanceMonitor;
+                        // // painbox.value = snapshot.val().backPain;
+
+                    }
+                    else
+                    {
+                        alert("No data found!");
+                    }
+                })
+                .catch((error) => {
+                        const errorCode = error.code;
+                        const errorMessage = error.message;
+                        console.log(errorCode);
+                        console.log(errorMessage);
+                        window.alert(errorCode);
+                        window.alert(errorMessage);
+                });
+
+
+            }else{
+                alert("No user!");
+            }
+
             console.log('User login successfully!');
-            alert('User login successfully!');
+            // alert('User login successfully!');
             // call login function
             login(user);
+           
             // window.location.href = "dashboard.html";
 
         })
@@ -174,7 +305,7 @@ $("#btn-logout").click(function()
         // Sign-out successful.
         // ...
         console.log('User logged out successfully!');
-        alert('User logged out successfully!');
+        // alert('User logged out successfully!');
 
         onAuthStateChanged(auth, (user) => {
             if (!user) {
@@ -216,22 +347,58 @@ $("#btnresetPassword").click(function()
             //window.alert("Password reset email sent!");
             errorMessageSpan.style.display = "none";
             FPconfirmation.style.display = "block";
+
+            setTimeout(main_page, 5000);
+			      function main_page() 
+			      {
+				        location.replace("login.html")
+                // window.location.href = "login.html";
+			      }
+
             
 
         }).catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
             console.log(errorCode);
+            showErrorMessage(errorCode)
+
             
         });
     }
     else
     {
-        var errorMessage = ("Please enter your email first!");
+        var errorMessage = ("Please enter your email first");
         showErrorMessage(errorMessage)
     }
 
 });
+
+// Delete user account
+function DeleteData(user){
+    window.alert("Deleting!!!!!!!!!");
+
+    deleteUser(user).then(() => {
+        // User deleted.
+
+        // // Delete user in settings
+        // function DeleteData(){
+        //     remove(ref(database, 'users/' + user.uid))
+        //     .then(()=>{
+        //         alert("Data removed successfully.");
+        //     })
+        //     .catch((error)=>{
+        //         alert(error);
+        //     });
+        // }
+
+        window.alert("User deleted.");
+    }).catch((error) => {
+        // An error ocurred
+        // ...
+    });
+
+}
 
 
 // References
@@ -249,31 +416,38 @@ var updbtn = document.getElementById("updbtn");
 var delbtn = document.getElementById("delbtn");
 
 // Userdetails in settings
-function SelectData(user){
+// function SelectData(uid){
+//     console.log(uid);
+//     alert("SelectData uid 312");
+//     alert(uid);
 
-    get(child(dref, 'users/' + user.uid))
-    .then((snapshot)=>{
-        if(snapshot.exists()){
-            usernamebox.value = snapshot.val().username;
-            emailbox.value = snapshot.val().email;
-            passwordbox.value = snapshot.val().password;
-            genderbox.value = snapshot.val().gender;
-            distbox.value = snapshot.val().keyboardRotation;
-            rotabox.value = snapshot.val().distanceMonitor;
-            painbox.value = snapshot.val().backPain;
-        }
-        else
-        {
-            alert("No data found!");
-        }
-    })
-    .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode);
-            alert(errorCode);
-    });
-}
+//     // get(child(dref, 'users/' + uid))
+//     // .then((snapshot)=>{
+//     //     alert("wada na utto 286");
+//     //     if(snapshot.exists()){
+//     //         alert("wada na utto 287");
+//     //         usernamebox.value = snapshot.val().username;
+//     //         emailbox.value = snapshot.val().email;
+//     //         passwordbox.value = snapshot.val().password;
+//     //         genderbox.value = snapshot.val().gender;
+//     //         distbox.value = snapshot.val().keyboardRotation;
+//     //         rotabox.value = snapshot.val().distanceMonitor;
+//     //         painbox.value = snapshot.val().backPain;
+//     //     }
+//     //     else
+//     //     {
+//     //         alert("No data found!");
+//     //     }
+//     // })
+//     // .catch((error) => {
+//     //         const errorCode = error.code;
+//     //         const errorMessage = error.message;
+//     //         console.log(errorCode);
+//     //         console.log(errorMessage);
+//     //         window.alert(errorCode);
+//     //         window.alert(errorMessage);
+//     // });
+// }
 
 
 // Update data in settings
@@ -297,15 +471,15 @@ function UpdateData(){
 
 
 // Delete user in settings
-function DeleteData(){
-    remove(ref(database, 'users/' + "1m3HoXd0tNMhCBDg0GyYIfS61zs1"))
-    .then(()=>{
-        alert("Data removed successfully.");
-    })
-    .catch((error)=>{
-        alert(error);
-    });
-}
+// function DeleteData(){
+//     remove(ref(database, 'users/' + "1m3HoXd0tNMhCBDg0GyYIfS61zs1"))
+//     .then(()=>{
+//         alert("Data removed successfully.");
+//     })
+//     .catch((error)=>{
+//         alert(error);
+//     });
+// }
 
 
 //error code function 
@@ -315,13 +489,10 @@ function showErrorMessage(p) {
     errorMessageSpan.style.display = "none";
     errorMessageSpan.innerHTML ="*" + p;
     errorMessageSpan.style.display = "block";
-    loginCont.style.padding = "24px";
+    // loginCont.style.padding = "24px";
 }
 
-updbtn.addEventListener('click', UpdateData);
-delbtn.addEventListener('click', DeleteData);
 
-
-
-
+// updbtn.addEventListener('click', UpdateData);
+// delbtn.addEventListener('click', DeleteData);
 
