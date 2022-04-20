@@ -51,6 +51,9 @@ const user = auth.currentUser;
 //error 
 //const errorMessage = document.getElementById("errorMessage");
 
+//error 
+//const errorMessage = document.getElementById("errorMessage");
+
 // onAuthStateChanged(auth, (user) => {
 //     if (!user) {
 //         // No user is signed in.
@@ -344,13 +347,14 @@ $("#btnresetPassword").click(function()
             //window.alert("Password reset email sent!");
             errorMessageSpan.style.display = "none";
             FPconfirmation.style.display = "block";
+
             setTimeout(main_page, 5000);
-			function main_page() 
-			{
-				location.replace("login.html")
+			      function main_page() 
+			      {
+				        location.replace("login.html")
                 // window.location.href = "login.html";
-			}
-            
+			      }
+
             
 
         }).catch((error) => {
@@ -358,6 +362,7 @@ $("#btnresetPassword").click(function()
             const errorMessage = error.message;
             console.log(errorCode);
             showErrorMessage(errorCode)
+
             
         });
     }
@@ -487,5 +492,7 @@ function showErrorMessage(p) {
     // loginCont.style.padding = "24px";
 }
 
+
 // updbtn.addEventListener('click', UpdateData);
 // delbtn.addEventListener('click', DeleteData);
+
