@@ -170,21 +170,21 @@ nav ul li:hover .tooltip {
 .cards .card-container.two .img-holder {
     max-width: 100%;
     height: 10rem;
-    background: url(../img/blog2.jpg) no-repeat center center / cover;
+    background: url(../img/blog1.jpg) no-repeat center center / cover;
     position: relative;
 }
 
 .cards .card-container.three .img-holder {
     max-width: 100%;
     height: 10rem;
-    background: url(../img/blog3.jpg) no-repeat center center / cover;
+    background: url(../img/blog1.jpg) no-repeat center center / cover;
     position: relative;
 }
 
 .cards .card-container.four .img-holder {
     max-width: 100%;
     height: 10rem;
-    background: url(../img/blog3.jpg) no-repeat center center / cover;
+    background: url(../img/blog1.jpg) no-repeat center center / cover;
     position: relative;
 }
 
