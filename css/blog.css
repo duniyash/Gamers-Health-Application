@@ -35,6 +35,7 @@ body {
 /* Nav Bar */
 
 .navbar {
+
     height: 95vh;
     width: 5rem;
     margin: 2.5vh 1rem 2.5vh 1rem;
@@ -91,6 +92,7 @@ nav ul li:hover .tooltip {
 
 .main {
     width: 100%;
+    height: max-content;
     overflow-y: visible;
 }
 
@@ -113,7 +115,6 @@ nav ul li:hover .tooltip {
 }
 
 .mainContent .card {
-    height: 34rem;
     width: 100%;
     margin: 2rem;
     border-radius: 10px;
@@ -127,11 +128,10 @@ nav ul li:hover .tooltip {
 
 .articles {
     width: 100%;
-    padding: 15px 40px 15px 40px;
-    /* display: flex; */
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
     height: 100%;
-    justify-content: space-between;
-    padding-top: 25px;
     gap: 2rem;
 }
 
