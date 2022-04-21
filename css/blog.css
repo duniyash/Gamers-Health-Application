@@ -35,6 +35,7 @@ body {
 /* Nav Bar */
 
 .navbar {
+
     height: 95vh;
     width: 5rem;
     margin: 2.5vh 1rem 2.5vh 1rem;
@@ -91,6 +92,7 @@ nav ul li:hover .tooltip {
 
 .main {
     width: 100%;
+    height: max-content;
     overflow-y: visible;
 }
 
@@ -109,11 +111,9 @@ nav ul li:hover .tooltip {
     align-content: flex-start;
     width: 100%;
     height: 100%;
-    margin-top: 2.5vh;
 }
 
 .mainContent .card {
-    height: 34rem;
     width: 100%;
     margin: 2rem;
     border-radius: 10px;
@@ -127,11 +127,10 @@ nav ul li:hover .tooltip {
 
 .articles {
     width: 100%;
-    padding: 15px 40px 15px 40px;
-    /* display: flex; */
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
     height: 100%;
-    justify-content: space-between;
-    padding-top: 25px;
     gap: 2rem;
 }
 
@@ -151,36 +150,37 @@ nav ul li:hover .tooltip {
 }
 
 .articles .card-container {
-    /* cursor: pointer; */
+    cursor: default;
     transition: all 0.8s ease;
     border-radius: 15px;
+    width: 300px;
 }
 
 .articles .card-container .img-holder {
     max-width: 100%;
-    height: 10rem;
+    height: 8rem;
     background: url(../img/blog1.jpg) no-repeat center center / cover;
     position: relative;
 }
 
 .articles .card-container.two .img-holder {
     max-width: 100%;
-    height: 10rem;
-    background: url(../img/blog1.jpg) no-repeat center center / cover;
+    height: 8rem;
+    background: url(../img/blog2.jpg) no-repeat center center / cover;
     position: relative;
 }
 
 .articles .card-container.three .img-holder {
     max-width: 100%;
-    height: 10rem;
-    background: url(../img/blog1.jpg) no-repeat center center / cover;
+    height: 8rem;
+    background: url(../img/blog3.jpg) no-repeat center center / cover;
     position: relative;
 }
 
 .articles .card-container.four .img-holder {
     max-width: 100%;
-    height: 10rem;
-    background: url(../img/blog1.jpg) no-repeat center center / cover;
+    height: 8rem;
+    background: url(../img/blog4.jpg) no-repeat center center / cover;
     position: relative;
 }
 
