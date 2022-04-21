@@ -188,20 +188,6 @@ nav ul li:hover .tooltip {
     position: relative;
 }
 
-/* .cards .card-container a {
-    text-transform: capitalize;
-    font-size: 1.2rem;
-    padding: 0.3rem 1.5rem;
-    display: inline-block;
-    color: rgb(0, 0, 0);
-    background-color: rgb(255, 255, 255);
-    font-weight: 400;
-    position: absolute;
-    bottom: 5%;
-    right: 5%;
-    transition: all 0.9s ease;
-} */
-
 .cards .card-container a {
     margin-top: 10px;
     color: blue;
@@ -234,65 +220,3 @@ nav ul li:hover .tooltip {
     padding-top: 5px;
     text-align: justify;
 }
-
-
-
-
-/* .articles .button {
-    margin: 0 auto;
-    text-align: center;
-} */
-
-/* .articles .btn {
-    font-size: 1.4rem;
-    letter-spacing: 1px;
-    font-weight: 200;
-    border-radius: none;
-    padding: 0.5rem 3rem;
-} */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* .mainContent .alt-card {
-    height: 10rem;
-    width: 45%;
-    margin: 2rem;
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-    font-family: 'Poppins', sans-serif;
-    background-color: #5D9D0B;
-}
-
-.mainContent .cardTitle {
-    font-family: 'Poppins', sans-serif;
-    font-size: 22px;
-    font-weight: 500;
-    color: #fff;
-    margin: 1rem 0 0 1.25rem;
-}
-
-.labels label{
-    display: inline-block;
-    width: 80px;
-}
-
-.labels input, select{
-    width: 120px;
-} */
