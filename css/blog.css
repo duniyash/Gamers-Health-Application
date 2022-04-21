@@ -128,6 +128,11 @@ nav ul li:hover .tooltip {
 .articles {
     width: 100%;
     padding: 15px 40px 15px 40px;
+    /* display: flex; */
+    height: 100%;
+    justify-content: space-between;
+    padding-top: 25px;
+    gap: 2rem;
 }
 
 .articles .article-heading {
@@ -145,77 +150,68 @@ nav ul li:hover .tooltip {
     color: rgba(223, 223, 223, 0.308);
 }
 
-.cards {
-    display: flex;
-    height: 100%;
-    justify-content: space-between;
-    margin-top: 15px;
-    padding-top: 15px;
-    gap: 2rem;
-}
-
-.cards .card-container {
+.articles .card-container {
     /* cursor: pointer; */
     transition: all 0.8s ease;
     border-radius: 15px;
 }
 
-.cards .card-container .img-holder {
+.articles .card-container .img-holder {
     max-width: 100%;
     height: 10rem;
     background: url(../img/blog1.jpg) no-repeat center center / cover;
     position: relative;
 }
 
-.cards .card-container.two .img-holder {
+.articles .card-container.two .img-holder {
     max-width: 100%;
     height: 10rem;
     background: url(../img/blog1.jpg) no-repeat center center / cover;
     position: relative;
 }
 
-.cards .card-container.three .img-holder {
+.articles .card-container.three .img-holder {
     max-width: 100%;
     height: 10rem;
     background: url(../img/blog1.jpg) no-repeat center center / cover;
     position: relative;
 }
 
-.cards .card-container.four .img-holder {
+.articles .card-container.four .img-holder {
     max-width: 100%;
     height: 10rem;
     background: url(../img/blog1.jpg) no-repeat center center / cover;
     position: relative;
 }
 
-.cards .card-container a {
+.articles .card-container a {
     margin-top: 10px;
     color: blue;
     display: inline-block;
 }
 
-.cards .card-container:hover {
+.articles .card-container:hover {
     transform: translateY(-0.9rem);
 }
 
-.cards .card-container .card-text {
+.articles .card-container .card-text {
     background-color: white;
     padding: 10px 15px 10px 15px;
     box-shadow: 0 0 0 0.1rem gray;
 }
 
-.cards .card-container .card-text h4{
+.articles .card-container .card-text h4{
     font-size: 1.3rem;
     font-weight: 900;
     text-transform: uppercase;
 }
 
-.cards .card-container .card-text h6{
+.articles .card-container .card-text h6{
     font-size: 11px;
     color: red;
 }
 
-.cards .card-container .card-text p{
+.articles .card-container .card-text p{
     font-size: 15px;
     padding-top: 5px;
     text-align: justify;
