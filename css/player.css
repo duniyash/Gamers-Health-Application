@@ -1,3 +1,7 @@
+.main .mainContent{
+    height: 125%;
+}
+
 .mainContent .overview {
     display: flex;
     align-content: center;
@@ -28,4 +32,24 @@
     font-size: 16px;
     font-weight: 300;
     color: #fff;
+}
+
+.graph {
+    display: grid;
+    grid-gap: 20px;
+    width: 50%;
+    background-color: rgb(41, 41, 41);
+    padding: 2rem;
+}
+
+.graph .lineChartCont {
+    height: 500px;
+}
+
+.exercises{
+    display: absolute;
+    grid-gap: 10px;
+    width: 30%;
+    background-color: #5D9D0B;
+    
 }
