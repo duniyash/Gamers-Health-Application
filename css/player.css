@@ -29,18 +29,3 @@
     font-weight: 300;
     color: #fff;
 }
-.graph {
-    display: grid;
-    grid-gap: 20px;
-    width: 50%;
-    background-color: rgb(41, 41, 41);
-    
-}
-
-.exercises{
-    display: absolute;
-    grid-gap: 10px;
-    width: 30%;
-    background-color: #5D9D0B;
-    
-}

@@ -20,7 +20,7 @@ app.on('ready', function() {
 
     //load html
     mainWindow.loadURL(url.format({
-        pathname: path.join(__dirname, 'dashboard.html'),
+        pathname: path.join(__dirname, 'login.html'),
         protocol: 'file',
         slashes: true,
     }));

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLOGS</title>
+    <link rel="stylesheet" href="css/blog.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </head>
+
+<body>
+    <div class="navbar">
+        <nav>
+            <img src="img/logo2.png" alt="logo">
+            <ul>
+                <li><a href="dashboard.html"><i class='bx bxs-home'></i></a></li>
+                <li><a href="games.html"><i class='bx bxs-game'></i></a></li>
+                <li><a href="blog.html"><i class='bx bxl-blogger'></i></a></li>
+                <li><a href="settings.html"><i class='bx bxs-cog'></i></a></li>
+                <li><a href="#" id="btn-logout"><i class='bx bxs-log-out'></i></a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="main">
+        <h1 class="pageHead">Blogs</h1>
+        <section class="mainContent">
+                <div class="container card"> 
+                    <div class="articles">
+                        <div class="card-container one">
+                            <div class="img-holder"></div>
+                            <div class="card-text">
+                                <h6>HARVARD HEALTH BLOG</h6>
+                                <h4>The health effects of too much gaming</h4>
+                                <h6>December 22, 2020</h6>
+                                <h6>By Peter Grinspoon, MD, Contributor</h6>
+                                <p>
+                                    While gaming can be a fun distraction 
+                                    or hobby (and is even becoming a competitive 
+                                    sport in many societies), there are health risks 
+                                    that come from too much gaming. What are these 
+                                    injuries, aches, pains? what can be done about it?
+                                </p>
+
+                                <div class="read">
+                                    <a href="https://www.health.harvard.edu/blog/the-health-effects-of-too-much-gaming-2020122221645" target="_blank">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-container two">
+                            <div class="img-holder"></div>
+                            <div class="card-text">
+                                <h6>GSCIENCE  2020-2025</h6>
+                                <h4>How to avoid esports related injuries</h4>
+                                <h6>June 10, 2021</h6>
+                                <h6>By Jamie Kiff</h6>
+                                <p>
+                                    In the gaming scene, there have been a number 
+                                    of instances where individuals have had to pull 
+                                    out of tournaments due to injury and in some cases 
+                                    even retire! The number of players experiencing some 
+                                    sort of injury throughout their careers is likely 
+                                    to increase.
+                                </p>
+
+                                <div class="read">
+                                    <a href="https://www.gscience.io/resources/how-to-avoid-esports-related-injuries" target="_blank">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-container three">
+                            <div class="img-holder"></div>
+                            <div class="card-text">
+                                <h6>GSCIENCE  2020-2025</h6>
+                                <h4>How to sit correctly whilst gaming</h4>
+                                <h6>April 16, 2020</h6>
+                                <h6>By Jamie Kiff</h6>
+                                <p>
+                                    With this increase in the number of hours spent 
+                                    gaming comes a rise in extended periods of time 
+                                    spent sitting down. Sedentary behavior coupled 
+                                    with poor sitting positions puts gamers face a 
+                                    higher risk of injuries. A high number is commonly 
+                                    reported within the community.   
+                                </p>
+
+                                <div class="read">
+                                    <a href="https://www.gscience.io/resources/ergonomics-and-gaming" target="_blank">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <div class="card-container four">
+                            <div class="img-holder"></div>
+                            <div class="card-text">
+                                <h6>TEMPLE HEALTH</h6>
+                                <h4>How to Prevent Gaming Injuries</h4>
+                                <h6>April 01, 2020</h6>
+                                <h6>By Eric J.Krof, MD</h6>
+                                <p>
+                                    Unlike traditional sports, gaming allows players to 
+                                    participate in the comfort of their homes. While gaming 
+                                    is relatively safe, injuries, aches, and pains can occur. Here, I will share 
+                                    some of the more common ones and how to prevent them from occurring.
+                                </p>
+
+                                <div class="read">
+                                    <a href="https://www.templehealth.org/about/blog/how-to-prevent-gaming-injuries" target="_blank">Read More</a>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>                 
+        </section>
+    </div>
+
+</body>
+
+<script type="module" src="js/index.js"></script>
+
+<!-- Testing -->
+<script>
+    // Functions
+    function getUsername(){
+            let keepLoggedIn = localStorage.getItem("keepLoggedIn");
+
+            if(keepLoggedIn == "yes"){
+                currentUser = JSON.parse(localStorage.getItem('user'));
+            }
+            else
+            {
+                currentUser = JSON.parse(sessionStorage.getItem('user'));
+            }
+    }
+
+    var currentUser = null;
+
+    // Window loads
+    window.onload = function(){
+            getUsername();
+            if(currentUser == null){
+                window.location.href = "login.html";
+            }
+            else
+            {
+                // window.location.href = "blog.html";
+            }
+        }
+</script>
+
+</html>

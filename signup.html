@@ -1,27 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <title>HOME</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGNUP</title>
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/login.css" />
     <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
-
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
-   
     <!-- JavaScript Bundle with Popper -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </head>
-
   <body>
     <header>
       <img class="logo" src="img/logo.png" alt="logo" />
-      
-        <a href="signup.html" class="signupBtn">SIGNUP</a>
     </header>
     <div class="main">
       <div class="loginContainer">
         <h3 class="sectionHeader">SIGNUP</h3>
+        
         <input type="text" id="name" placeholder="Full Name" class="form-control">
         <input type="email" id="email" placeholder="Email" class="form-control">
         <input type="password" id="password" placeholder="Password" class="form-control">
@@ -62,11 +60,42 @@
             <option value="rarely">rarely</option>
             <option value="never">never</option>
         </select>
+        <span class="errorMessageShow " id="errorMessageShow"></span>
         <button type="button" id="btnsignup"> Register </button> 
         <a href="login.html"> Already have an account? </a>
       </div>
     </div>
-
   </body>
   <script type="module" src="js/index.js"></script>
+
+    <!-- Testing -->
+<script>
+  // Functions
+  function getUsername(){
+          let keepLoggedIn = localStorage.getItem("keepLoggedIn");
+
+          if(keepLoggedIn == "yes"){
+              currentUser = JSON.parse(localStorage.getItem('user'));
+          }
+          else
+          {
+              currentUser = JSON.parse(sessionStorage.getItem('user'));
+          }
+  }
+
+  var currentUser = null;
+
+  // Window loads
+  window.onload = function(){
+          getUsername();
+          if(currentUser == null){
+              // window.location.href = "login.html";
+          }
+          else
+          {
+              window.location.href = "dashboard.html";
+          }
+      }
+</script>
+
 </html>

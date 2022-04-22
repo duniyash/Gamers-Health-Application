@@ -35,6 +35,7 @@ body {
 /* Nav Bar */
 
 .navbar {
+
     height: 95vh;
     width: 5rem;
     margin: 2.5vh 1rem 2.5vh 1rem;
@@ -91,6 +92,7 @@ nav ul li:hover .tooltip {
 
 .main {
     width: 100%;
+    height: max-content;
     overflow-y: visible;
 }
 
@@ -109,42 +111,109 @@ nav ul li:hover .tooltip {
     align-content: flex-start;
     width: 100%;
     height: 100%;
-    margin-top: 2.5vh;
 }
 
 .mainContent .card {
-    height: 10rem;
-    width: 95%;
+    width: 100%;
     margin: 2rem;
+    margin-top: 50px;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
     font-family: 'Poppins', sans-serif;
     background-color: #2e3239;
 }
 
-.mainContent .alt-card {
-    height: 10rem;
-    width: 45%;
-    margin: 2rem;
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-    font-family: 'Poppins', sans-serif;
-    background-color: #5D9D0B;
+
+/* Blogs */
+
+.articles {
+    width: 100%;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    height: 100%;
+    gap: 2rem;
 }
 
-.mainContent .cardTitle {
-    font-family: 'Poppins', sans-serif;
-    font-size: 22px;
-    font-weight: 500;
-    color: #fff;
-    margin: 1rem 0 0 1.25rem;
+.articles .article-heading {
+    text-align: center;
+    width: 100%;
+    position: relative;
 }
 
-.labels label{
+.article-heading h5 {
+    font-size: 50px;
+    font-family: 'Sora', sans-serif;
+    font-weight: 600;
+    letter-spacing: 1px;
+    position: relative;
+    color: rgba(223, 223, 223, 0.308);
+}
+
+.articles .card-container {
+    cursor: default;
+    transition: all 0.8s ease;
+    border-radius: 15px;
+    width: 385px;
+}
+
+.articles .card-container .img-holder {
+    max-width: 100%;
+    height: 8rem;
+    background: url(../img/blog1.jpg) no-repeat center center / cover;
+    position: relative;
+}
+
+.articles .card-container.two .img-holder {
+    max-width: 100%;
+    height: 8rem;
+    background: url(../img/blog2.jpg) no-repeat center center / cover;
+    position: relative;
+}
+
+.articles .card-container.three .img-holder {
+    max-width: 100%;
+    height: 8rem;
+    background: url(../img/blog3.jpg) no-repeat center center / cover;
+    position: relative;
+}
+
+.articles .card-container.four .img-holder {
+    max-width: 100%;
+    height: 8rem;
+    background: url(../img/blog4.jpg) no-repeat center center / cover;
+    position: relative;
+}
+
+.articles .card-container a {
+    margin-top: 10px;
+    color: blue;
     display: inline-block;
-    width: 80px;
 }
 
-.labels input, select{
-    width: 120px;
+.articles .card-container:hover {
+    transform: translateY(-0.9rem);
+}
+
+.articles .card-container .card-text {
+    background-color: white;
+    padding: 10px 15px 10px 15px;
+    box-shadow: 0 0 0 0.1rem gray;
+}
+
+.articles .card-container .card-text h4{
+    font-size: 1.3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.articles .card-container .card-text h6{
+    font-size: 11px;
+    color: red;
+}
+
+.articles .card-container .card-text p{
+    font-size: 15px;
+    padding-top: 5px;
+    text-align: justify;
 }
