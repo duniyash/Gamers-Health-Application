@@ -91,8 +91,7 @@ nav ul li:hover .tooltip {
 
 .main {
     width: 100%;
-    height: 2800px;
-    overflow-y :auto;
+    overflow-y: visible;
 }
 
 .main .pageHead {
@@ -114,7 +113,7 @@ nav ul li:hover .tooltip {
 }
 
 .mainContent .card {
-    height: max-content;
+    height: 10rem;
     width: 95%;
     margin: 2rem;
     border-radius: 10px;
@@ -124,7 +123,7 @@ nav ul li:hover .tooltip {
 }
 
 .mainContent .alt-card {
-    height: max-content;
+    height: 10rem;
     width: 45%;
     margin: 2rem;
     border-radius: 10px;

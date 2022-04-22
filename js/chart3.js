@@ -2,11 +2,11 @@ var ctx = document.getElementById('doughnut').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
-        labels: ['Eye Strains', 'Carpel Tunnel', 'Back Posture', 'Neck Strains'],
+        labels: ['Valorant', 'Apex', 'Fortnite', 'GTA v'],
 
         datasets: [{
-            label: 'Excercises',
-            data: [42, 12, 8, 6],
+            label: 'games',
+            data: [42, 25, 8, 16],
             backgroundColor: [
                 'rgba(133, 43, 16)',
                 'rgba(54, 162, 235, 1)',

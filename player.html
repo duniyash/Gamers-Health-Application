@@ -3,11 +3,9 @@
 
 <head>
     <title>Player</title>
-    <link rel="stylesheet" href="css/player.css">
     <link rel="stylesheet" href="css/main.css">
-   
+    <link rel="stylesheet" href="css/player.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-
 </head>
 
 <body>
@@ -47,26 +45,24 @@
                     </li>
                 </ul>
             </div>
-            <div class="graph card">
-                <h3 class="cardTitle">Player Graph</h3>
-                <div class="lineChartCont">
-                    <canvas id = "lineChart"></canvas>
-                </div>                
+            <div class="graph">
+               <h3 class="cardTitle">Player Graph</h3>
+               <canvas id = "lineChart"></canvas>
+                
+            </div>
+
+            <div class="exercises">
+                <h3 class="cardTitle">Exercises Chart</h3>
+                <canvas id="doughnut"></canvas>
             </div>
             <div class="games alt-card">
                 <h3 class="cardTitle">Games Chart</h3>
             </div>
-            <div class="exercises alt-card">
-                <h3 class="cardTitle">Exercises Chart</h3>
-                <div class="doughnutChartCont">
-                    <canvas id="doughnut"></canvas>
-                </div>
-            </div>
-            
         </section>
     </div>
 
 </body>
+//added by me
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
     <script src="chart1.js"></script>
     <script src="chart2.js"></script>
