@@ -22,16 +22,14 @@ const auth = getAuth();
 const database = getDatabase(app);
 const storage = getStorage();
 const dref = ref(database);
-const user = auth.currentUser;
 
 
 
 
 //modal for forgor password confirmation email
 var FPconfirmation = document.getElementById('FPconfirmation');
+var userUid = null;
 
-
-	
 
 //error 
 //const errorMessage = document.getElementById("errorMessage");
@@ -88,7 +86,10 @@ $("#btnsignup").click(function()
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
-                // ... user.uid
+                
+                // ... user.uid  
+                userUid = user.uid; 
+                alert(userUid);
                 
                // Store User details to db user branch
                set(ref(database, 'users/' + user.uid), {
@@ -183,28 +184,28 @@ $("#btnlogin").click(function()
         .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
+            
             // ... user.uid  
+            userUid = user.uid; 
+            alert(userUid);
 
             // Show user profile
-            if (user !== null) {
-                // The user object has basic properties such as display name, email, etc.
-                // The user's ID, unique to the Firebase project. Do NOT use
-                // this value to authenticate with your backend server, if
-                // you have one. Use User.getToken() instead.
-                const uid = user.uid;   
+            // if (user !== null) {
+            //     // The user object has basic properties such as display name, email, etc.
+            //     // The user's ID, unique to the Firebase project. Do NOT use
+            //     // this value to authenticate with your backend server, if
+            //     // you have one. Use User.getToken() instead.
+                  
                 
-                // console.log(user);
-                // console.log(uid);
-                // window.alert(user);
-                // window.alert(uid);
-                // window.alert("wada na");
+            //     // console.log(user);
+            //     // console.log(uid);
+            //     // window.alert(user);
+            //     // window.alert(uid);
+            //     // window.alert("wada na");
 
-                
-
-
-            }else{
-                alert("No user!");
-            }
+            // }else{
+            //     alert("No user!");
+            // }
 
             console.log('User login successfully!');
             // alert('User login successfully!');
@@ -348,13 +349,12 @@ function showErrorMessage(p) {
 }
 
 
-$("#selbtn").click(function(uid)
+$("#selbtn").click(function(userUid)
 {
 
-    window.alert(user);
-    window.alert(uid);
+    window.alert("userUid");
 
-    get(child(dref, 'users/' + uid))
+    get(child(dref, 'users/' + userUid))
     .then((snapshot)=>{
         if(snapshot.exists()){
             
