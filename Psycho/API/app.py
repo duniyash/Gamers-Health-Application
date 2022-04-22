@@ -12,7 +12,7 @@ from sqlalchemy import true
 
 app = Flask(__name__)
 
-model = load_model('psycho_model')
+model = load_model('/psycho_model')
 
 im_w = 256
 im_h = 256
