@@ -152,7 +152,7 @@ nav ul li:hover .tooltip {
 
 .articles .card-container {
     cursor: default;
-    transition: all 0.8s ease;
+    transition: all 0.9s ease;
     border-radius: 15px;
     width: 385px;
 }
