@@ -148,6 +148,8 @@ $("#btnsignup").click(function()
                     errorMessage = "Password Should Be At Least 6 Characters";
                 } else if (errorCode == "auth/email-already-in-use") {
                     errorMessage = "This email is already in use";
+                } else if (errorCode == "auth/invalid-email") {
+                    errorMessage = "The entered emali incorrect";
                 } else if (errorCode == "auth/network-request-failed") {
                     errorMessage = "No Internet. Check Your Connection";
                 }
@@ -193,9 +195,9 @@ $("#btnlogin").click(function()
                 
                 // console.log(user);
                 // console.log(uid);
-                window.alert(user);
-                window.alert(uid);
-                window.alert("wada na");
+                // window.alert(user);
+                // window.alert(uid);
+                // window.alert("wada na");
 
                 
 
@@ -221,6 +223,8 @@ $("#btnlogin").click(function()
                 errorMessage = "This user is not found";
             } else if (errorCode == "auth/wrong-password") {
                 errorMessage = "The entered password incorrect";
+            }else if (errorCode == "auth/invalid-email") {
+                errorMessage = "The entered emali incorrect";
             } else if (errorCode == "auth/network-request-failed") {
                 errorMessage = "No Internet. Check Your Connection";
             }
@@ -298,6 +302,8 @@ $("#btnresetPassword").click(function()
             console.log(errorCode);
             if (errorCode == "auth/user-not-found") {
                 errorMessage = "This user is not found";
+            } else if (errorCode == "auth/invalid-email") {
+                errorMessage = "The entered emali incorrect";
             } else if (errorCode == "auth/network-request-failed") {
                 errorMessage = "No Internet. Check Your Connection";
             }
