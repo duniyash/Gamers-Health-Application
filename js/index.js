@@ -25,27 +25,12 @@ const dref = ref(database);
 const user = auth.currentUser;
 
 
-    // if (user !== null) 
-    // {
-    //     // The user object has basic properties such as display name, email, etc.
-    //     // The user's ID, unique to the Firebase project. Do NOT use
-    //     // this value to authenticate with your backend server, if
-    //     // you have one. Use User.getToken() instead.
-    //     const uid = user.uid;
-    //     alert(user);
-    //     alert(uid);
 
-    //     // delbtn.addEventListener('click', DeleteData(user));
 
-    //     // const displayName = user.displayName;
-    //     // const email = user.email;
-    //     // const photoURL = user.photoURL;
-    //     // const emailVerified = user.emailVerified;
+//modal for forgor password confirmation email
+var FPconfirmation = document.getElementById('FPconfirmation');
 
-    // }else
-    // {
 
-    // }
 	
 
 //error 
@@ -159,6 +144,15 @@ $("#btnsignup").click(function()
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 console.log(errorCode);
+                if (errorCode == "auth/weak-password") {
+                    errorMessage = "Password Should Be At Least 6 Characters";
+                } else if (errorCode == "auth/email-already-in-use") {
+                    errorMessage = "This email is already in use";
+                } else if (errorCode == "auth/invalid-email") {
+                    errorMessage = "The entered emali incorrect";
+                } else if (errorCode == "auth/network-request-failed") {
+                    errorMessage = "No Internet. Check Your Connection";
+                }
                 showErrorMessage(errorMessage)
             });
         }
@@ -198,71 +192,14 @@ $("#btnlogin").click(function()
                 // this value to authenticate with your backend server, if
                 // you have one. Use User.getToken() instead.
                 const uid = user.uid;   
-
+                
                 // console.log(user);
                 // console.log(uid);
                 // window.alert(user);
                 // window.alert(uid);
-                // SelectData(uid);
+                // window.alert("wada na");
 
-                get(child(dref, 'users/' + uid))
-                .then((snapshot)=>{
-                    if(snapshot.exists()){
-                        
-                        // References
-                        var usernameboxlabel = document.getElementById("usernameboxlabel");
-                        var emailboxlabel = document.getElementById("emailboxlabel");
-                        var passwordboxlabel = document.getElementById("passwordboxlabel");
-                        var genderboxlabel = document.getElementById("genderboxlabel");
-                        var distboxlabel = document.getElementById("distboxlabel");
-                        var rotaboxlabel = document.getElementById("rotaboxlabel");
-                        var painboxlabel = document.getElementById("painboxlabel");
-
-                        // // var instbtn = document.getElementById("instbtn");
-                        // // var selbtn = document.getElementById("selbtn");
-                        // // var updbtn = document.getElementById("updbtn");
-                        // // var delbtn = document.getElementById("delbtn");
-                        
-                        // alert(snapshot.val());
-
-                        usernameboxlabel = snapshot.val().username;
-                        emailboxlabel = snapshot.val().email;
-                        passwordboxlabel = snapshot.val().password;
-                        genderboxlabel = snapshot.val().gender;
-                        distboxlabel = snapshot.val().keyboardRotation;
-                        rotaboxlabel = snapshot.val().distanceMonitor;
-                        painboxlabel = snapshot.val().backPain;
-                        
-                        // alert(usernameboxlabel); 
-                        // alert(emailboxlabel); 
-                        // alert(passwordboxlabel); 
-                        // alert(genderboxlabel); 
-                        // alert(distboxlabel);
-                        // alert(rotaboxlabel); 
-                        // alert(painboxlabel);
-
-                        // // usernamebox.value = snapshot.val().username;
-                        // // emailbox.value = snapshot.val().email;
-                        // // passwordbox.value = snapshot.val().password;
-                        // // genderbox.value = snapshot.val().gender;
-                        // // distbox.value = snapshot.val().keyboardRotation;
-                        // // rotabox.value = snapshot.val().distanceMonitor;
-                        // // painbox.value = snapshot.val().backPain;
-
-                    }
-                    else
-                    {
-                        alert("No data found!");
-                    }
-                })
-                .catch((error) => {
-                        const errorCode = error.code;
-                        const errorMessage = error.message;
-                        console.log(errorCode);
-                        console.log(errorMessage);
-                        window.alert(errorCode);
-                        window.alert(errorMessage);
-                });
+                
 
 
             }else{
@@ -282,6 +219,15 @@ $("#btnlogin").click(function()
             var errorCode = error.code;
             var errorMessage = error.message;
             console.log(errorCode);
+            if (errorCode == "auth/user-not-found") {
+                errorMessage = "This user is not found";
+            } else if (errorCode == "auth/wrong-password") {
+                errorMessage = "The entered password incorrect";
+            }else if (errorCode == "auth/invalid-email") {
+                errorMessage = "The entered emali incorrect";
+            } else if (errorCode == "auth/network-request-failed") {
+                errorMessage = "No Internet. Check Your Connection";
+            }
             showErrorMessage(errorMessage);
         });
     }
@@ -322,13 +268,11 @@ $("#btn-logout").click(function()
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode);
-        showErrorMessage(errorMessage)
+        // showErrorMessage(errorMessage)
     });
 
 });
 
-//modal for forgor password confirmation email
-var FPconfirmation = document.getElementById('FPconfirmation');
 
 // Reset password
 $("#btnresetPassword").click(function()
@@ -352,12 +296,18 @@ $("#btnresetPassword").click(function()
 			}
             
             
-
         }).catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
+            var errorCode = error.code;
+            var errorMessage = error.message;
             console.log(errorCode);
-            showErrorMessage(errorCode)
+            if (errorCode == "auth/user-not-found") {
+                errorMessage = "This user is not found";
+            } else if (errorCode == "auth/invalid-email") {
+                errorMessage = "The entered emali incorrect";
+            } else if (errorCode == "auth/network-request-failed") {
+                errorMessage = "No Internet. Check Your Connection";
+            }
+            showErrorMessage(errorMessage)
             
         });
     }
@@ -369,31 +319,7 @@ $("#btnresetPassword").click(function()
 
 });
 
-// Delete user account
-function DeleteData(user){
-    window.alert("Deleting!!!!!!!!!");
 
-    deleteUser(user).then(() => {
-        // User deleted.
-
-        // // Delete user in settings
-        // function DeleteData(){
-        //     remove(ref(database, 'users/' + user.uid))
-        //     .then(()=>{
-        //         alert("Data removed successfully.");
-        //     })
-        //     .catch((error)=>{
-        //         alert(error);
-        //     });
-        // }
-
-        window.alert("User deleted.");
-    }).catch((error) => {
-        // An error ocurred
-        // ...
-    });
-
-}
 
 
 // References
@@ -410,59 +336,112 @@ var selbtn = document.getElementById("selbtn");
 var updbtn = document.getElementById("updbtn");
 var delbtn = document.getElementById("delbtn");
 
-// Userdetails in settings
-// function SelectData(uid){
-//     console.log(uid);
-//     alert("SelectData uid 312");
-//     alert(uid);
 
-//     // get(child(dref, 'users/' + uid))
-//     // .then((snapshot)=>{
-//     //     alert("wada na utto 286");
-//     //     if(snapshot.exists()){
-//     //         alert("wada na utto 287");
-//     //         usernamebox.value = snapshot.val().username;
-//     //         emailbox.value = snapshot.val().email;
-//     //         passwordbox.value = snapshot.val().password;
-//     //         genderbox.value = snapshot.val().gender;
-//     //         distbox.value = snapshot.val().keyboardRotation;
-//     //         rotabox.value = snapshot.val().distanceMonitor;
-//     //         painbox.value = snapshot.val().backPain;
-//     //     }
-//     //     else
-//     //     {
-//     //         alert("No data found!");
-//     //     }
-//     // })
-//     // .catch((error) => {
-//     //         const errorCode = error.code;
-//     //         const errorMessage = error.message;
-//     //         console.log(errorCode);
-//     //         console.log(errorMessage);
-//     //         window.alert(errorCode);
-//     //         window.alert(errorMessage);
-//     // });
-// }
+//error code function 
+var errorMessageSpan = document.getElementById('errorMessageShow');
+var loginCont = document.getElementById('loginContainer');
+function showErrorMessage(p) {
+    errorMessageSpan.style.display = "none";
+    errorMessageSpan.innerHTML ="*" + p;
+    errorMessageSpan.style.display = "block";
+    // loginCont.style.padding = "24px";
+}
+
+
+$("#selbtn").click(function(uid)
+{
+
+    window.alert(user);
+    window.alert(uid);
+
+    get(child(dref, 'users/' + uid))
+    .then((snapshot)=>{
+        if(snapshot.exists()){
+            
+            // References
+            // var usernamebox = document.getElementById("usernamebox");
+            // var emailboxlabel = document.getElementById("emailboxlabel");
+            // var passwordboxlabel = document.getElementById("passwordboxlabel");
+            // var genderboxlabel = document.getElementById("genderboxlabel");
+            // var distboxlabel = document.getElementById("distboxlabel");
+            // var rotaboxlabel = document.getElementById("rotaboxlabel");
+            // var painboxlabel = document.getElementById("painboxlabel");
+
+            // var instbtn = document.getElementById("instbtn");
+            // var selbtn = document.getElementById("selbtn");
+            // var updbtn = document.getElementById("updbtn");
+            // var delbtn = document.getElementById("delbtn");
+
+            alert("wada na line 454");
+            
+            // alert(snapshot.val());
+
+            var usernameDB = snapshot.val().username;
+            var emailDB = snapshot.val().email;
+            var passwordDB = snapshot.val().password;
+            var genderDB = snapshot.val().gender;
+            var distDB = snapshot.val().keyboardRotation;
+            var rotaDB = snapshot.val().distanceMonitor;
+            var painDB = snapshot.val().backPain;
+            
+            // usernamebox.innerHTML="Name: "+usernameboxlabel;
+
+            alert(usernameDB); 
+            alert(emailDB); 
+            alert(passwordDB); 
+            alert(genderDB); 
+            alert(distDB);
+            alert(rotaDB); 
+            alert(painDB);
+
+            // usernamebox.value = snapshot.val().username;
+            // emailbox.value = snapshot.val().email;
+            // passwordbox.value = snapshot.val().password;
+            // genderbox.value = snapshot.val().gender;
+            // distbox.value = snapshot.val().keyboardRotation;
+            // rotabox.value = snapshot.val().distanceMonitor;
+            // painbox.value = snapshot.val().backPain;
+
+        }
+        else
+        {
+            alert("No data found!");
+        }
+    })
+    .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode);
+            console.log(errorMessage);
+            window.alert(errorCode);
+            window.alert(errorMessage);
+    });
+});
+
+
+
+
+
 
 
 // Update data in settings
-function UpdateData(){
-    update(ref(database, 'users/' + "1m3HoXd0tNMhCBDg0GyYIfS61zs1"),{
-        username: usernamebox.value,
-        // email: emailbox.value,
-        // password: passwordbox.value,
-        // gender: genderbox.value,
-        // keyboardRotation: distbox.value,
-        // distanceMonitor: rotabox.value,
-        // backPain: painbox.value
-    })
-    .then(()=>{
-        alert("Data updated successfully.");
-    })
-    .catch((error)=>{
-        alert(error);
-    });
-}
+// function UpdateData(){
+//     update(ref(database, 'users/' + "1m3HoXd0tNMhCBDg0GyYIfS61zs1"),{
+//         username: usernamebox.value,
+//         // email: emailbox.value,
+//         // password: passwordbox.value,
+//         // gender: genderbox.value,
+//         // keyboardRotation: distbox.value,
+//         // distanceMonitor: rotabox.value,
+//         // backPain: painbox.value
+//     })
+//     .then(()=>{
+//         alert("Data updated successfully.");
+//     })
+//     .catch((error)=>{
+//         alert(error);
+//     });
+// }
 
 
 // Delete user in settings
@@ -476,16 +455,43 @@ function UpdateData(){
 //     });
 // }
 
+// Delete user account
+// function DeleteData(user){
+//     window.alert("Deleting!!!!!!!!!");
 
-//error code function 
-var errorMessageSpan = document.getElementById('errorMessageShow');
-var loginCont = document.getElementById('loginContainer');
-function showErrorMessage(p) {
-    errorMessageSpan.style.display = "none";
-    errorMessageSpan.innerHTML ="*" + p;
-    errorMessageSpan.style.display = "block";
-    // loginCont.style.padding = "24px";
-}
+//     deleteUser(user).then(() => {
+//         // User deleted.
+
+//         // // Delete user in settings
+//         // function DeleteData(){
+//         //     remove(ref(database, 'users/' + user.uid))
+//         //     .then(()=>{
+//         //         alert("Data removed successfully.");
+//         //     })
+//         //     .catch((error)=>{
+//         //         alert(error);
+//         //     });
+//         // }
+
+//         window.alert("User deleted.");
+//     }).catch((error) => {
+//         // An error ocurred
+//         // ...
+//     });
+
+// }
+
+
+
+
+
+
+
+
+
+
+
+
 
 // updbtn.addEventListener('click', UpdateData);
 // delbtn.addEventListener('click', DeleteData);

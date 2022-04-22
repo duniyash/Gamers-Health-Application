@@ -116,6 +116,7 @@ nav ul li:hover .tooltip {
 .mainContent .card {
     width: 100%;
     margin: 2rem;
+    margin-top: 50px;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
     font-family: 'Poppins', sans-serif;
@@ -153,7 +154,7 @@ nav ul li:hover .tooltip {
     cursor: default;
     transition: all 0.8s ease;
     border-radius: 15px;
-    width: 300px;
+    width: 385px;
 }
 
 .articles .card-container .img-holder {
