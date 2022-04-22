@@ -162,12 +162,11 @@ p.confirmation {
   text-align: center;
 }
 
-.eye {
-  position: absolute;
+.fa-square-check {
+  color: rgb(37, 143, 235);
 }
 
 #hide1 {
-  display: none;
   cursor: pointer;
   color: #5d9d0b;
   font-family: "Poppins", sans-serif;
@@ -178,6 +177,7 @@ p.confirmation {
 }
 
 #hide2 {
+  display: none;
   cursor: pointer;
   color: #5d9d0b;
   font-family: "Poppins", sans-serif;
