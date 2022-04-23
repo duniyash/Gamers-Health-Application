@@ -27,31 +27,17 @@ function getChart2Data(){
 
     // console.log("userUid", getAuth().currentUser);
     var userUid = (getAuth().currentUser).uid;
-    alert(userUid);
+    // alert(userUid);
 
 
     get(child(dref, 'users/' + userUid))
     .then((snapshot)=>{
         if(snapshot.exists()){
             
-            // References
-            // var usernamebox = document.getElementById("usernamebox");
-            // var emailboxlabel = document.getElementById("emailboxlabel");
-            // var passwordboxlabel = document.getElementById("passwordboxlabel");
-            // var genderboxlabel = document.getElementById("genderboxlabel");
-            // var distboxlabel = document.getElementById("distboxlabel");
-            // var rotaboxlabel = document.getElementById("rotaboxlabel");
-            // var painboxlabel = document.getElementById("painboxlabel");
-
-            // var instbtn = document.getElementById("instbtn");
-            // var selbtn = document.getElementById("selbtn");
-            // var updbtn = document.getElementById("updbtn");
-            // var delbtn = document.getElementById("delbtn");
-
-            alert("wada na line 454");
-            
+            // alert("wada na line 454");
             // alert(snapshot.val());
 
+            // References
             var usernameDB = snapshot.val().username;
             var emailDB = snapshot.val().email;
             var passwordDB = snapshot.val().password;
@@ -60,23 +46,9 @@ function getChart2Data(){
             var rotaDB = snapshot.val().distanceMonitor;
             var painDB = snapshot.val().backPain;
             
-            // usernamebox.innerHTML="Name: "+usernameboxlabel;
-
-            alert(usernameDB); 
-            alert(emailDB); 
-            alert(passwordDB); 
-            alert(genderDB); 
-            alert(distDB);
-            alert(rotaDB); 
-            alert(painDB);
-
-            // usernamebox.value = snapshot.val().username;
-            // emailbox.value = snapshot.val().email;
-            // passwordbox.value = snapshot.val().password;
-            // genderbox.value = snapshot.val().gender;
-            // distbox.value = snapshot.val().keyboardRotation;
-            // rotabox.value = snapshot.val().distanceMonitor;
-            // painbox.value = snapshot.val().backPain;
+            document.getElementById("blockHeadOne").innerHTML = genderDB;
+            document.getElementById("blockHeadTwo").innerHTML = distDB;
+            document.getElementById("blockHeadThree").innerHTML = rotaDB;
 
         }
         else
@@ -94,7 +66,7 @@ function getChart2Data(){
     });
 }
 
-// setInterval(getChart2Data, 20000);
+setInterval(getChart2Data, 1000);
 
 // Chart 01
 
