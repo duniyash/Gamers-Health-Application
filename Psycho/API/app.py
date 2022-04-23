@@ -1,4 +1,6 @@
 
+from email.generator import DecodedGenerator
+
 
 from flask import Flask, request, jsonify
 import numpy as np
@@ -12,7 +14,7 @@ from sqlalchemy import true
 
 app = Flask(__name__)
 
-model = load_model('/psycho_model')
+model = load_model('psycho_model')
 
 im_w = 256
 im_h = 256
