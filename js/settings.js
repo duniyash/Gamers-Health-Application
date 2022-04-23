@@ -23,7 +23,7 @@ const database = getDatabase(app);
 const storage = getStorage();
 const dref = ref(database);
 
-$("#selbtn").click(function()
+function getProfileData()
 {
 
     // console.log("userUid", getAuth().currentUser);
@@ -93,7 +93,9 @@ $("#selbtn").click(function()
             window.alert(errorCode);
             window.alert(errorMessage);
     });
-});
+}
+
+setTimeout(getProfileData, 1000);
 
 
 // Update data in settings
