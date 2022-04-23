@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/main.css"/>
     <link rel="stylesheet" href="css/login.css"/>
     <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" integrity="sha384-/frq1SRXYH/bSyou/HUp/hib7RVN1TawQYja658FEOodR/FQBKVqT9Ol+Oz3Olq5" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
     <!-- JavaScript Bundle with Popper -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -18,22 +19,62 @@
       <img class="logo" src="img/logo.png" alt="logo" />
     </header>
     <div class="main">
+      <dialog class="modal" id="modal">
+        <br>  
+        <p>Press Esc to Close.</p>
+      </dialog>
       <div class="loginContainer">
-        <h3 class="sectionHeader">LOGIN</h3>
+        <h3 class="sectionHeader">LOGIN</h3>       
         <input type="email" name="email" id="email" placeholder="Email" class="form-control">
         <input type="password" name="password" id="password" placeholder="Password" class="form-control"/>
-        <div class="custom-control custom-switch mb-3">
-          <input type="checkbox" class="custom-control-input" id="customSwitch1">
-          <label class="custom-control-label" for="customSwitch1">Keep me Logged In</label>
+        <div>
+          <span class="custom-control-input" onclick="myFunction()">
+            <p id="hide1">
+              <i class="fa-regular fa-square"></i> Show Password
+            </p>
+            <p id="hide2">
+              <i class="fa fa-square-check"></i> Show Password
+            </p>
+          </span>
         </div>
+        <span class="errorMessageShow " id="errorMessageShow"></span>
         <button type="button" id="btnlogin"> Login </button> 
-        <a href="forgetPassword.html" class="text-dark">Forgot password?</a>
+        <div class="custom-control custom-switch mb-3">
+          <div>
+            <input type="checkbox" class="custom-control-input" id="customSwitch1">
+            <label class="custom-control-label" for="customSwitch1">Keep me Logged In</label>
+          </div>
+        </div>
+        <hr>
+        <a href="forgetPassword.html" class="text-dark-1">Forgot password?</a>
         <a href="signup.html" class="text-dark">Don't Have An Account? SIGNUP</a>
       </div>
     </div>
 
   </body>
-  <script type="module" src="js/index.js"></script>
+<script type="module" src="js/index.js"></script>
+
+<!-- Show/Hide Password -->
+<script>
+  function myFunction(){
+      var x = document.getElementById("password");
+      var y = document.getElementById("hide1");
+      var z = document.getElementById("hide2");
+
+      if(x.type === 'password')
+      {
+          x.type = "text";
+          y.style.display = "none";
+          z.style.display = "block";
+      }
+      else
+      {
+          x.type = "password";
+          y.style.display = "block";
+          z.style.display = "none";
+      }
+  }
+</script>
 
   <!-- Testing -->
 <script>
