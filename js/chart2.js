@@ -23,8 +23,7 @@ const database = getDatabase(app);
 const storage = getStorage();
 const dref = ref(database);
 
-$("#selbtn").click(function()
-{
+function getChart2Data(){
 
     // console.log("userUid", getAuth().currentUser);
     var userUid = (getAuth().currentUser).uid;
@@ -93,9 +92,9 @@ $("#selbtn").click(function()
             window.alert(errorCode);
             window.alert(errorMessage);
     });
-});
+}
 
-
+// setInterval(getChart2Data, 20000);
 
 var ctx = document.getElementById('doughnut').getContext('2d');
 var myChart = new Chart(ctx, {
