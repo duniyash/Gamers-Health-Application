@@ -1,194 +1,99 @@
-/*Font Imports*/
-
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
-
-/*General Rules*/
-
-* {
-    padding: 0%;
-    margin: 0%;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    box-sizing: border-box;
-}
-
-a {
-    text-decoration: none;
-}
-
-a:visited {
-    color: black;
-}
-
-
-/*body & main container*/
-
-body {
-    background-color: #24252b;
-    display: flex;
-    overflow-y: hidden;
-    height: max-content;
-}
-
-
-/* Nav Bar */
-
-.navbar {
-
-    height: 95vh;
-    width: 5rem;
-    margin: 2.5vh 1rem 2.5vh 1rem;
-    background-color: #fff;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-}
-
-.navbar img {
-    width: 3rem;
-    height: 3rem;
-    margin-top: 1rem;
-}
-
-nav ul {
-    text-align: center;
-    margin-top: 3rem;
-}
-
-nav ul li {
-    height: 3rem;
-    width: 3rem;
-    position: relative;
-    margin-top: 2rem;
-    background-color: none;
-    border-radius: 10px;
-    transition: all 0.25s ease;
-}
-
-nav ul li i {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 1.5rem;
-    color: #000;
-}
-
-nav ul li:hover {
-    background-color: #5D9D0B;
-}
-
-nav ul li:hover i {
-    color: #fff;
-}
-
-nav ul li:hover .tooltip {
-    visibility: visible;
-}
-
-
-/*Main Page*/
-
-.main {
-    width: 100%;
-    height: max-content;
-    overflow-y: visible;
-}
-
-.main .pageHead {
-    margin: 7vh 0 0 2rem;
-    font-family: 'Sora', sans-serif;
-    font-size: 36px;
-    letter-spacing: 0;
-    font-weight: 500;
-    color: #fff;
-}
-
-.main .mainContent {
-    display: flex;
-    height: 580px;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    width: 100%;
-}
-
-.mainContent .card {
-    width: 100%;
-    margin: 2rem;
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-    font-family: 'Poppins', sans-serif;
-    background-color: #2e3239;
-}
-
-
 /*General Settings For Games Page*/
 
-.games {
-    width: 100%;
-    height: 530px;
-    padding: 2rem;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 2rem;
+.cardContainer {
+  width: 95%;
+  padding: 0 2rem;
+}
+
+.cardContainerGrid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(4, 1fr);
+  padding-block: 2rem;
 }
 
 .gameCard {
-  height: 13rem;
+  height: 8rem;
   width: auto;
   border-radius: 10px;
-  transition: all 0.9s ease;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
   font-family: "Poppins", sans-serif;
+  background-color: #5d9d0b;
 }
+
+.sectionHeader {
+  font-family: "Poppins", sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: #fff;
+  margin: 1rem 0 0 0rem;
+}
+
+/*favourite games*/
 
 .cardContent {
   height: 100%;
   width: 100%;
   position: relative;
-  background: url(../img/blog2.jpg) no-repeat center center / cover;
-}
-
-.cardContent.one {
-  background: url(../img/valorant.jpg) no-repeat center center / cover;
-}
-
-.cardContent.two {
-  background: url(../img/apex.jpg) no-repeat center center / cover;
-}
-
-.cardContent.three {
-  background: url(../img/genshin.jpg) no-repeat center center / cover;
-}
-
-.cardContent.four {
-  background: url(../img/elden.jpg) no-repeat center center / cover;
-}
-
-.cardContent.five {
-  background: url(../img/fortnite.jpg) no-repeat center center / cover;
-}
-
-.cardContent.six {
-  background: url(../img/league.jpg) no-repeat center center / cover;
-}
-
-.gameCard:hover {
-  transform: translateY(-0.9rem);
 }
 
 .cardContent .cardTitle {
-  padding-top: 85px;
-  text-align: center;
-  font-size: 30px;
-  color: white;
-  font-weight: 1000;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 69%;
+  transform: translate(-50%, -50%);
+  font-size: 17px;
+  font-weight: 700;
   letter-spacing: 0.2rem;
+  text-align: right;
+}
+
+/*All games*/
+
+.allGames {
+  padding-bottom: 4rem;
+}
+
+.cards {
+  width: 100%;
+  padding: 35px 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+
+  transition: 0.5 ease;
+  cursor: pointer;
+  
+}
+
+.cards .card {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+}
+
+.number {
+  font-size: 35px;
+  font-weight: 500;
+  color: #03ac3b;
+}
+
+.card-name {
+  color: #888;
+  font-weight: 600;
 }
 
 
+.card:hover{
+  transform: scale(1.1);
+  box-shadow: 5px 5px 15px rgb(0,0,0,0.6);
+}
 
 /*Timer styling*/
 
@@ -196,11 +101,13 @@ nav ul li:hover .tooltip {
   height: max-content;
   width: 95%;
   margin:2rem;
+
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
   font-family: "Poppins", sans-serif;
   background-color: #2e3239;
+
   /* centering timer*/
   display: flex;
   align-content: center;
@@ -252,6 +159,7 @@ nav ul li:hover .tooltip {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
     height: max-content;
     width: 50%;
     margin: 2rem;
@@ -261,5 +169,7 @@ nav ul li:hover .tooltip {
     color: #fff;
     font-family: 'Poppins', sans-serif;
     background-color: #2e3239;
+
     border: none;
+
 }
