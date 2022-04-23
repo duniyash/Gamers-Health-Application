@@ -8,7 +8,7 @@ function editNameBtn() {
   
   inputName.innerHTML='<input type="text"> ';
   inputGender.innerHTML='<input type="text">';
-  savebtn.innerHTML='<button class="btn" >Save</button>';
+  savebtn.innerHTML='<button class="btn" onClick="onSave()" >Save</button>';
 
   
 
@@ -54,7 +54,3 @@ function onSave(id1,id2){
   e1.innerHTML='<span name="name" id="nameField">Tharuka Hirushan</span>';
 }
 
-function load(){
-  document.getElementById('basicSaveBtn').style.display = "none";
-  document.getElementById('editDiv').style.display = "none";
-}
