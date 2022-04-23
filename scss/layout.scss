@@ -1,0 +1,49 @@
+
+@import url("https://fonts.googleapis.com/css?family=Poppins&display=swap");
+:root{
+  $poppins-font : "Poppins"
+}
+
+
+.detailsContainer{
+  background-color: rgba(46, 50, 57, 1); 
+  border-radius: 10px;
+    width: 90%;
+  height: fit-content;
+}
+
+
+
+.settingsNavbar{
+  margin: auto;
+  background-color: white;
+  overflow: hidden;
+  width:fit-content;
+  height: fit-content;
+  border-radius: 10px;
+  
+  
+}
+
+.nav__item{
+  float :left;
+  margin-top: 0px
+  ;
+}
+
+.a{
+  margin: 10px auto;
+  height: fit-content;
+  width: fit-content;
+  background-color: aliceblue;
+}
+
+.profilePic{
+  
+  vertical-align: middle;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+
