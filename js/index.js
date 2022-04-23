@@ -23,6 +23,17 @@ const database = getDatabase(app);
 const storage = getStorage();
 const dref = ref(database);
 
+
+
+
+//modal for forgor password confirmation email
+var FPconfirmation = document.getElementById('FPconfirmation');
+var userUid = null;
+
+
+//error 
+//const errorMessage = document.getElementById("errorMessage");
+
 // onAuthStateChanged(auth, (user) => {
 //     if (!user) {
 //         // No user is signed in.
@@ -53,6 +64,8 @@ function login(user){
 }
 
 
+
+
 // Create a New User
 $("#btnsignup").click(function()
 {
@@ -73,9 +86,13 @@ $("#btnsignup").click(function()
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
-                // ... user.uid
                 
-                set(ref(database, 'users/' + user.uid), {
+                // ... user.uid  
+                userUid = user.uid; 
+                alert(userUid);
+                
+               // Store User details to db user branch
+               set(ref(database, 'users/' + user.uid), {
                     username: name,
                     email: email,
                     password: password,
@@ -83,6 +100,29 @@ $("#btnsignup").click(function()
                     keyboardRotation: keyboardRotation,
                     distanceMonitor: distanceMonitor,
                     backPain: backPain
+                })
+                .then(() => {
+                    // Data saved successfully!
+                    console.log('New User Data Saved Successfully!');
+                    // call login function
+                    // login(user);
+                    // window.location.href = "dashboard.html";
+                })
+                .catch((error) => {
+                    // The write failed...
+                    console.log(error);
+                });
+
+                // Store User games to db games branch
+                set(ref(database, 'games/' + user.uid), {
+                    armtendencies: "null",
+                    backtendencies: "null",
+                    eyetendencies: "null",
+                    othertendencies: "null",
+                    playinghourstotal: "null",
+                    playinghourstoday: "null",
+                    noexercises: "null",
+                    favgames: "null"
                 })
                 .then(() => {
                     // Data saved successfully!
@@ -97,7 +137,7 @@ $("#btnsignup").click(function()
                 });
 
                 console.log('User Signup Successfully!');
-                alert('User Signup Successfully!');
+                // alert('User Signup Successfully!');
                                             
             })
             .catch(function(error)
@@ -105,17 +145,28 @@ $("#btnsignup").click(function()
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 console.log(errorCode);
-                window.alert(errorCode);
+                if (errorCode == "auth/weak-password") {
+                    errorMessage = "Password Should Be At Least 6 Characters";
+                } else if (errorCode == "auth/email-already-in-use") {
+                    errorMessage = "This email is already in use";
+                } else if (errorCode == "auth/invalid-email") {
+                    errorMessage = "The entered emali incorrect";
+                } else if (errorCode == "auth/network-request-failed") {
+                    errorMessage = "No Internet. Check Your Connection";
+                }
+                showErrorMessage(errorMessage)
             });
         }
         else
         {
-            window.alert("Password does not match the confirme password.");
+            var errorMessage = "Passwords do not match";
+            showErrorMessage(errorMessage)
         }
     }
     else
     {
-        window.alert("Please fill out all fields.");
+        var errorMessage = "fill all blanks";
+        showErrorMessage(errorMessage)
     }
 
 });
@@ -133,12 +184,34 @@ $("#btnlogin").click(function()
         .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
-            // ... user.uid
-            SelectData(user);
+            
+            // ... user.uid  
+            userUid = user.uid; 
+            alert(userUid);
+
+            // Show user profile
+            // if (user !== null) {
+            //     // The user object has basic properties such as display name, email, etc.
+            //     // The user's ID, unique to the Firebase project. Do NOT use
+            //     // this value to authenticate with your backend server, if
+            //     // you have one. Use User.getToken() instead.
+                  
+                
+            //     // console.log(user);
+            //     // console.log(uid);
+            //     // window.alert(user);
+            //     // window.alert(uid);
+            //     // window.alert("wada na");
+
+            // }else{
+            //     alert("No user!");
+            // }
+
             console.log('User login successfully!');
-            alert('User login successfully!');
+            // alert('User login successfully!');
             // call login function
             login(user);
+           
             // window.location.href = "dashboard.html";
 
         })
@@ -147,12 +220,22 @@ $("#btnlogin").click(function()
             var errorCode = error.code;
             var errorMessage = error.message;
             console.log(errorCode);
-            window.alert(errorCode);
+            if (errorCode == "auth/user-not-found") {
+                errorMessage = "This user is not found";
+            } else if (errorCode == "auth/wrong-password") {
+                errorMessage = "The entered password incorrect";
+            }else if (errorCode == "auth/invalid-email") {
+                errorMessage = "The entered emali incorrect";
+            } else if (errorCode == "auth/network-request-failed") {
+                errorMessage = "No Internet. Check Your Connection";
+            }
+            showErrorMessage(errorMessage);
         });
     }
     else
     {
-        window.alert("Please fill out all fields.");
+        var errorMessage = "fill all blanks";
+        showErrorMessage(errorMessage);
     }
 
 });
@@ -166,7 +249,7 @@ $("#btn-logout").click(function()
         // Sign-out successful.
         // ...
         console.log('User logged out successfully!');
-        alert('User logged out successfully!');
+        // alert('User logged out successfully!');
 
         onAuthStateChanged(auth, (user) => {
             if (!user) {
@@ -186,7 +269,7 @@ $("#btn-logout").click(function()
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode);
-        alert(errorCode);
+        // showErrorMessage(errorMessage)
     });
 
 });
@@ -203,21 +286,41 @@ $("#btnresetPassword").click(function()
         .then(() => {
             // Password reset email sent!
             // ..
-            window.alert("Password reset email sent!");
-
+            //window.alert("Password reset email sent!");
+            errorMessageSpan.style.display = "none";
+            FPconfirmation.style.display = "block";
+            setTimeout(main_page, 5000);
+			function main_page() 
+			{
+				location.replace("login.html")
+                // window.location.href = "login.html";
+			}
+            
+            
         }).catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
+            var errorCode = error.code;
+            var errorMessage = error.message;
             console.log(errorCode);
-            alert(errorCode);
+            if (errorCode == "auth/user-not-found") {
+                errorMessage = "This user is not found";
+            } else if (errorCode == "auth/invalid-email") {
+                errorMessage = "The entered emali incorrect";
+            } else if (errorCode == "auth/network-request-failed") {
+                errorMessage = "No Internet. Check Your Connection";
+            }
+            showErrorMessage(errorMessage)
+            
         });
     }
     else
     {
-        window.alert("Please enter your email first!");
+        var errorMessage = ("Please enter your email first");
+        showErrorMessage(errorMessage)
     }
 
 });
+
+
 
 
 // References
@@ -234,19 +337,71 @@ var selbtn = document.getElementById("selbtn");
 var updbtn = document.getElementById("updbtn");
 var delbtn = document.getElementById("delbtn");
 
-// Userdetails in settings
-function SelectData(user){
 
-    get(child(dref, 'users/' + user.uid))
+//error code function 
+var errorMessageSpan = document.getElementById('errorMessageShow');
+var loginCont = document.getElementById('loginContainer');
+function showErrorMessage(p) {
+    errorMessageSpan.style.display = "none";
+    errorMessageSpan.innerHTML ="*" + p;
+    errorMessageSpan.style.display = "block";
+    // loginCont.style.padding = "24px";
+}
+
+
+$("#selbtn").click(function(userUid)
+{
+
+    window.alert("userUid");
+
+    get(child(dref, 'users/' + userUid))
     .then((snapshot)=>{
         if(snapshot.exists()){
-            usernamebox.value = snapshot.val().username;
-            emailbox.value = snapshot.val().email;
-            passwordbox.value = snapshot.val().password;
-            genderbox.value = snapshot.val().gender;
-            distbox.value = snapshot.val().keyboardRotation;
-            rotabox.value = snapshot.val().distanceMonitor;
-            painbox.value = snapshot.val().backPain;
+            
+            // References
+            // var usernamebox = document.getElementById("usernamebox");
+            // var emailboxlabel = document.getElementById("emailboxlabel");
+            // var passwordboxlabel = document.getElementById("passwordboxlabel");
+            // var genderboxlabel = document.getElementById("genderboxlabel");
+            // var distboxlabel = document.getElementById("distboxlabel");
+            // var rotaboxlabel = document.getElementById("rotaboxlabel");
+            // var painboxlabel = document.getElementById("painboxlabel");
+
+            // var instbtn = document.getElementById("instbtn");
+            // var selbtn = document.getElementById("selbtn");
+            // var updbtn = document.getElementById("updbtn");
+            // var delbtn = document.getElementById("delbtn");
+
+            alert("wada na line 454");
+            
+            // alert(snapshot.val());
+
+            var usernameDB = snapshot.val().username;
+            var emailDB = snapshot.val().email;
+            var passwordDB = snapshot.val().password;
+            var genderDB = snapshot.val().gender;
+            var distDB = snapshot.val().keyboardRotation;
+            var rotaDB = snapshot.val().distanceMonitor;
+            var painDB = snapshot.val().backPain;
+            
+            // usernamebox.innerHTML="Name: "+usernameboxlabel;
+
+            alert(usernameDB); 
+            alert(emailDB); 
+            alert(passwordDB); 
+            alert(genderDB); 
+            alert(distDB);
+            alert(rotaDB); 
+            alert(painDB);
+
+            // usernamebox.value = snapshot.val().username;
+            // emailbox.value = snapshot.val().email;
+            // passwordbox.value = snapshot.val().password;
+            // genderbox.value = snapshot.val().gender;
+            // distbox.value = snapshot.val().keyboardRotation;
+            // rotabox.value = snapshot.val().distanceMonitor;
+            // painbox.value = snapshot.val().backPain;
+
         }
         else
         {
@@ -257,41 +412,86 @@ function SelectData(user){
             const errorCode = error.code;
             const errorMessage = error.message;
             console.log(errorCode);
-            alert(errorCode);
+            console.log(errorMessage);
+            window.alert(errorCode);
+            window.alert(errorMessage);
     });
-}
+});
+
+
+
+
+
 
 
 // Update data in settings
-function UpdateData(){
-    update(ref(database, 'users/' + "1m3HoXd0tNMhCBDg0GyYIfS61zs1"),{
-        username: usernamebox.value,
-        // email: emailbox.value,
-        // password: passwordbox.value,
-        // gender: genderbox.value,
-        // keyboardRotation: distbox.value,
-        // distanceMonitor: rotabox.value,
-        // backPain: painbox.value
-    })
-    .then(()=>{
-        alert("Data updated successfully.");
-    })
-    .catch((error)=>{
-        alert(error);
-    });
-}
+// function UpdateData(){
+//     update(ref(database, 'users/' + "1m3HoXd0tNMhCBDg0GyYIfS61zs1"),{
+//         username: usernamebox.value,
+//         // email: emailbox.value,
+//         // password: passwordbox.value,
+//         // gender: genderbox.value,
+//         // keyboardRotation: distbox.value,
+//         // distanceMonitor: rotabox.value,
+//         // backPain: painbox.value
+//     })
+//     .then(()=>{
+//         alert("Data updated successfully.");
+//     })
+//     .catch((error)=>{
+//         alert(error);
+//     });
+// }
 
 
 // Delete user in settings
-function DeleteData(){
-    remove(ref(database, 'users/' + "1m3HoXd0tNMhCBDg0GyYIfS61zs1"))
-    .then(()=>{
-        alert("Data removed successfully.");
-    })
-    .catch((error)=>{
-        alert(error);
-    });
-}
+// function DeleteData(){
+//     remove(ref(database, 'users/' + "1m3HoXd0tNMhCBDg0GyYIfS61zs1"))
+//     .then(()=>{
+//         alert("Data removed successfully.");
+//     })
+//     .catch((error)=>{
+//         alert(error);
+//     });
+// }
 
-updbtn.addEventListener('click', UpdateData);
-delbtn.addEventListener('click', DeleteData);
+// Delete user account
+// function DeleteData(user){
+//     window.alert("Deleting!!!!!!!!!");
+
+//     deleteUser(user).then(() => {
+//         // User deleted.
+
+//         // // Delete user in settings
+//         // function DeleteData(){
+//         //     remove(ref(database, 'users/' + user.uid))
+//         //     .then(()=>{
+//         //         alert("Data removed successfully.");
+//         //     })
+//         //     .catch((error)=>{
+//         //         alert(error);
+//         //     });
+//         // }
+
+//         window.alert("User deleted.");
+//     }).catch((error) => {
+//         // An error ocurred
+//         // ...
+//     });
+
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+// updbtn.addEventListener('click', UpdateData);
+// delbtn.addEventListener('click', DeleteData);
