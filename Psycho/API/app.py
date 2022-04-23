@@ -50,4 +50,4 @@ def process_json():
         return jsonify(Response = "False", Error = "Internal Error")
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
