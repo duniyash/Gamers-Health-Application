@@ -12,7 +12,7 @@ from os import environ
 
 from sqlalchemy import true
 
-app = Flask(__name__)
+app = (__name__)
 
 model = load_model('psycho_model')
 
