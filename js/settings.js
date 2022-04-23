@@ -28,7 +28,7 @@ function getProfileData()
 
     // console.log("userUid", getAuth().currentUser);
     var userUid = (getAuth().currentUser).uid;
-    alert(userUid);
+    // alert(userUid);
 
 
     get(child(dref, 'users/' + userUid))
@@ -49,7 +49,7 @@ function getProfileData()
             // var updbtn = document.getElementById("updbtn");
             // var delbtn = document.getElementById("delbtn");
 
-            alert("wada na line 454");
+            // alert("wada na line 454");
             
             // alert(snapshot.val());
 
@@ -63,13 +63,15 @@ function getProfileData()
             
             // usernamebox.innerHTML="Name: "+usernameboxlabel;
 
-            alert(usernameDB); 
-            alert(emailDB); 
-            alert(passwordDB); 
-            alert(genderDB); 
-            alert(distDB);
-            alert(rotaDB); 
-            alert(painDB);
+            document.getElementById("nameField").innerHTML = usernameDB;
+
+            // alert(usernameDB); 
+            // alert(emailDB); 
+            // alert(passwordDB); 
+            // alert(genderDB); 
+            // alert(distDB);
+            // alert(rotaDB); 
+            // alert(painDB);
 
             // usernamebox.value = snapshot.val().username;
             // emailbox.value = snapshot.val().email;
