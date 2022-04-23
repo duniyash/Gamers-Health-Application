@@ -24,8 +24,7 @@ const storage = getStorage();
 const dref = ref(database);
 
 
-$("#selbtn").click(function()
-{
+function getChart1Data(){
 
     // console.log("userUid", getAuth().currentUser);
     var userUid = (getAuth().currentUser).uid;
@@ -94,7 +93,9 @@ $("#selbtn").click(function()
             window.alert(errorCode);
             window.alert(errorMessage);
     });
-});
+}
+
+// setInterval(getChart1Data, 20000);
 
 
 
