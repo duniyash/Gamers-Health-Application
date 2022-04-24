@@ -46,7 +46,11 @@
     height: 500px;
 }
 
-.exercises{
+.gamesChart {
+    width: 30%;
+}
+
+.exercises {
     display: absolute;
     grid-gap: 10px;
     width: 30%;
