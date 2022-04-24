@@ -24,7 +24,7 @@ const storage = getStorage();
 const dref = ref(database);
 
 
-function getChart2Data(){
+function getDashboardData(){
 
     // console.log("userUid", getAuth().currentUser);
     var userUid = (getAuth().currentUser).uid;
@@ -39,14 +39,10 @@ function getChart2Data(){
             // alert(snapshot.val());
 
             // References
-            var usernameDB = snapshot.val().username;
-            var emailDB = snapshot.val().email;
-            var passwordDB = snapshot.val().password;
-            var genderDB = snapshot.val().gender;
-            var distDB = snapshot.val().keyboardRotation;
+            var distDB = snapshot.val().distanceMonitor;
             var rotaDB = snapshot.val().distanceMonitor;
-            var painDB = snapshot.val().backPain;
-            
+            var genderDB = snapshot.val().distanceMonitor;
+
             document.getElementById("blockHeadOne").innerHTML = genderDB;
             document.getElementById("blockHeadTwo").innerHTML = distDB;
             document.getElementById("blockHeadThree").innerHTML = rotaDB;
@@ -89,13 +85,32 @@ function getplayerWeekData(){
             var saturdayDB = snapshot.val().saturday;
             var sundayDB = snapshot.val().sunday;
             
-            console.log(mondayDB);
-            console.log(tuesdayDB);
-            console.log(wednesdayDB);
-            console.log(thursdayDB);
-            console.log(fridayDB);
-            console.log(saturdayDB);
-            console.log(sundayDB);
+            var test = [mondayDB, tuesdayDB, wednesdayDB, thursdayDB, fridayDB, saturdayDB, sundayDB];
+
+            // Chart 01
+
+            var ctx = document.getElementById('lineChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Mon', 'Tue', 'wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [{
+                        label: 'Game Play in Minutes per day',
+                        data: test,
+                        backgroundColor: [
+                            '#132119'
+
+                        ],
+                        borderColor: '#389b29',
+
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio :false
+                }
+            });
 
         }
         else
@@ -132,10 +147,41 @@ function getgamesChartData(){
             var gtaDB = snapshot.val().gta;
             var valorantDB = snapshot.val().valorant;
 
-            console.log(apexDB);
-            console.log(fortniteDB);
-            console.log(gtaDB);
-            console.log(valorantDB);
+            var test = [valorantDB, apexDB, fortniteDB, gtaDB];
+
+            // Chart 03
+
+            var ctx = document.getElementById('doughnut1').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Valorant', 'Apex', 'Fortnite', 'GTA v'],
+
+                    datasets: [{
+                        label: 'games',
+                        data: test,
+                        backgroundColor: [
+                            'rgba(133, 43, 16)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(120, 46, 139,1)'
+
+                        ],
+                        borderColor: [
+                            'rgba(133, 43, 16)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(120, 46, 139,1)'
+
+                        ],
+                        borderWidth: 1
+                    }]
+
+                },
+                options: {
+                    responsive: true
+                }
+            });
 
         }
         else
@@ -174,10 +220,9 @@ function exercisesChart(){
             var neckDB = snapshot.val().neck;
             
 
-            var test = [backDB, carpelDB, eyeDB, neckDB];
+            var test = [eyeDB, carpelDB, backDB, neckDB];
 
             // Chart 02
-            console.log(test);
 
             var ctx = document.getElementById('doughnut2').getContext('2d');
 
@@ -229,71 +274,7 @@ function exercisesChart(){
 
 
 
-
-setInterval(getChart2Data, 1000);
-// setInterval(getplayerWeekData, 1000);
-// setInterval(getgamesChartData, 1000);
-setInterval(exercisesChart, 3000);
-
-
-// Chart 01
-
-var ctx = document.getElementById('lineChart').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: ['Mon', 'Tue', 'wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-        datasets: [{
-            label: 'Game Play in Minutes per day',
-            data: [180, 60, 362, 360, 560, 665, 120, 254, 190, 190],
-            backgroundColor: [
-                '#132119'
-
-            ],
-            borderColor: '#389b29',
-
-            borderWidth: 1
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio :false
-    }
-});
-
-
-
-
-// Chart 03
-
-var ctx = document.getElementById('doughnut1').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-        labels: ['Valorant', 'Apex', 'Fortnite', 'GTA v'],
-
-        datasets: [{
-            label: 'games',
-            data: [42, 25, 8, 16],
-            backgroundColor: [
-                'rgba(133, 43, 16)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(120, 46, 139,1)'
-
-            ],
-            borderColor: [
-                'rgba(133, 43, 16)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(120, 46, 139,1)'
-
-            ],
-            borderWidth: 1
-        }]
-
-    },
-    options: {
-        responsive: true
-    }
-});
+setTimeout(getDashboardData, 500);
+setTimeout(getplayerWeekData, 500);
+setTimeout(getgamesChartData, 500);
+setTimeout(exercisesChart, 500);
