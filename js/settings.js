@@ -63,7 +63,7 @@ function getProfileData()
             
             // usernamebox.innerHTML="Name: "+usernameboxlabel;
 
-            document.getElementById("nameField").innerHTML = usernameDB;
+            document.getElementById("displayName").innerHTML = usernameDB;
 
             // alert(usernameDB); 
             // alert(emailDB); 
