@@ -23,6 +23,7 @@ const database = getDatabase(app);
 const storage = getStorage();
 const dref = ref(database);
 
+
 function getChart2Data(){
 
     // console.log("userUid", getAuth().currentUser);
@@ -61,12 +62,179 @@ function getChart2Data(){
             const errorMessage = error.message;
             console.log(errorCode);
             console.log(errorMessage);
-            window.alert(errorCode);
-            window.alert(errorMessage);
+    });  
+}
+
+
+function getplayerWeekData(){
+
+    // console.log("userUid", getAuth().currentUser);
+    var userUid = (getAuth().currentUser).uid;
+    // alert(userUid);
+
+    // chart1 DB
+    get(child(dref, 'playerWeek/'))
+    .then((snapshot)=>{
+        if(snapshot.exists()){
+            
+            // alert("wada na line 454");
+            // alert(snapshot.val());
+
+            // References
+            var mondayDB = snapshot.val().monday;
+            var tuesdayDB = snapshot.val().tuesday;
+            var wednesdayDB = snapshot.val().wednesday;
+            var thursdayDB = snapshot.val().thursday;
+            var fridayDB = snapshot.val().friday;
+            var saturdayDB = snapshot.val().saturday;
+            var sundayDB = snapshot.val().sunday;
+            
+            console.log(mondayDB);
+            console.log(tuesdayDB);
+            console.log(wednesdayDB);
+            console.log(thursdayDB);
+            console.log(fridayDB);
+            console.log(saturdayDB);
+            console.log(sundayDB);
+
+        }
+        else
+        {
+            alert("No data found!");
+        }
+    })
+    .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode);
+            console.log(errorMessage);
     });
 }
 
+
+function getgamesChartData(){
+
+    // console.log("userUid", getAuth().currentUser);
+    var userUid = (getAuth().currentUser).uid;
+    // alert(userUid);
+
+    // chart2 DB
+    get(child(dref, 'gamesChart/'))
+    .then((snapshot)=>{
+        if(snapshot.exists()){
+            
+            // alert("wada na line 454");
+            // alert(snapshot.val());
+
+            // References
+            var apexDB = snapshot.val().apex;
+            var fortniteDB = snapshot.val().fortnite;
+            var gtaDB = snapshot.val().gta;
+            var valorantDB = snapshot.val().valorant;
+
+            console.log(apexDB);
+            console.log(fortniteDB);
+            console.log(gtaDB);
+            console.log(valorantDB);
+
+        }
+        else
+        {
+            alert("No data found!");
+        }
+    })
+    .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode);
+            console.log(errorMessage);
+    });
+
+}
+
+
+function exercisesChart(){
+
+    // console.log("userUid", getAuth().currentUser);
+    var userUid = (getAuth().currentUser).uid;
+    // alert(userUid);
+
+    // chart3 DB
+    get(child(dref, 'exeChart/'))
+    .then((snapshot)=>{
+        if(snapshot.exists()){
+            
+            // alert("wada na line 454");
+            // alert(snapshot.val());
+
+            // References
+            var backDB = snapshot.val().back;
+            var carpelDB = snapshot.val().carpel;
+            var eyeDB = snapshot.val().eye;
+            var neckDB = snapshot.val().neck;
+            
+
+            var test = [backDB, carpelDB, eyeDB, neckDB];
+
+            // Chart 02
+            console.log(test);
+
+            var ctx = document.getElementById('doughnut2').getContext('2d');
+
+            var myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Eye Strains', 'Carpel Tunnel', 'Back Posture', 'Neck Strains'],
+
+                    datasets: [{
+                        label: 'Employees',
+                        data: test,
+                        backgroundColor: [
+                            'rgba(133, 43, 16)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(120, 46, 139,1)'
+
+                        ],
+                        borderColor: [
+                            'rgba(133, 43, 16)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(120, 46, 139,1)'
+
+                        ],
+                        borderWidth: 1
+                    }]
+
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio :false
+                }
+            });
+
+        }
+        else
+        {
+            alert("No data found!");
+        }
+    })
+    .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode);
+            console.log(errorMessage);
+    });
+}
+
+
+
+
 setInterval(getChart2Data, 1000);
+// setInterval(getplayerWeekData, 1000);
+// setInterval(getgamesChartData, 1000);
+setInterval(exercisesChart, 3000);
+
 
 // Chart 01
 
@@ -77,7 +245,7 @@ var myChart = new Chart(ctx, {
         labels: ['Mon', 'Tue', 'wed', 'Thu', 'Fri', 'Sat', 'Sun'],
         datasets: [{
             label: 'Game Play in Minutes per day',
-            data: [180, 60, 362, 360, 560, 665, 120, 254, 190,190],
+            data: [180, 60, 362, 360, 560, 665, 120, 254, 190, 190],
             backgroundColor: [
                 '#132119'
 
@@ -93,17 +261,20 @@ var myChart = new Chart(ctx, {
     }
 });
 
-// Chart 02
 
-var ctx = document.getElementById('doughnut').getContext('2d');
+
+
+// Chart 03
+
+var ctx = document.getElementById('doughnut1').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
-        labels: ['Eye Strains', 'Carpel Tunnel', 'Back Posture', 'Neck Strains'],
+        labels: ['Valorant', 'Apex', 'Fortnite', 'GTA v'],
 
         datasets: [{
-            label: 'Employees',
-            data: [42, 12, 8, 6],
+            label: 'games',
+            data: [42, 25, 8, 16],
             backgroundColor: [
                 'rgba(133, 43, 16)',
                 'rgba(54, 162, 235, 1)',
@@ -123,7 +294,6 @@ var myChart = new Chart(ctx, {
 
     },
     options: {
-        responsive: true,
-        maintainAspectRatio :false
+        responsive: true
     }
 });
