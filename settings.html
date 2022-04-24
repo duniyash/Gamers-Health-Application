@@ -8,12 +8,15 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/settings/settingsHome.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
     <!-- JavaScript Bundle with Popper -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </head>
+    
+</head>
 
-<body onload="load()" >
+
+<body  >
     <div class="navbar">
         <nav>
             <img src="img/logo2.png" alt="logo">
@@ -28,146 +31,218 @@
     </div>
     <div class="main"id="settingspage" >
         <h1 class="pageHead">Settings</h1>
+        <nav class="settingsNavbar" id="sNav">
+            
+            <ul class="navList">
+
+                <li class="navItem" onClick="displayBasic()"><a ><i class='bx bxs-face-mask'></i></a></li>
+                <li class="navItem" onClick="displayEmail()"><a ><i class='bx bxs-envelope'></i></a></li>
+
+                <li class="navItem"id="AgameSettings"onClick="displayGame()"><a > <i class='bx bx-game' ></i></a></li>
+            
+
+                
+
+            </ul>
+        
+    
+    
+    </nav>
         <section class="mainContent" >
 
-
+            
             <div class="settingsContent">
-
-                <div class="column left">
-                    <div class="basicInfo" >
-                        <h2>Basic Infromation</h2>
-                        <div class="inputContainer">
-                            <label for="name">Name :</label>
-                            <span name="name" id="nameField">Tharuka Hirushan</span>
-                        </div>
-
-                        <div class="inputContainer">
-                            <label for="gendar">Gendar : </label>
-                            <span name="gendar" id="genderField">Male</span>
-                        </div>
-                        
-                        <div class ='editBtn'id="editDiv" >
-                            
-                            <button class="btn" onclick="editNameBtn()">Edit basic details</button>
-                            
-                        </div>
-                    
-                    </div>
-                    
-                    <div class="emailInfo">
-                        <h2>Email Infromation</h2>
-                        <div class="inputContainer">
-                            <label for="email">Email :</label>
-                            <div id="you">
-                            <span name="email" id="emailField">tharuka@gmail.com</span>
-                             </div>
-                             <div id ='editBtnEmail'>
-                            
-                                <button class="btn" id="editEmail" onclick="editEmailBtn()">Edit Email</button>
-                            </div>
-                        </div>
-                        
-                            <div class="inputContainer">
-                                <label for="password">password :</label>
-                                <span name="password" id="passwordField">112233</span>  
-
-                                <div id ='editBtnPassword'>
+                <div class="basicLayout">
+                    <div class="column left"id="basicInfo" >
+                        <div class="basicInfo" >
+                            <div class="header">
+                                <h2>Basic Infromation</h2>
                                 
-                                    <button class="btn" id="editPassword" onclick="editPasswordBtn()">Reset password</button>
-                                </div>
+                                <!-- <a id="info" onclick="closeWindow('info')"><i class='bx bx-window-close bx-md'></i></a> -->
+                                
+                            </div>
+                            <div class="inputContainer">
+
+                                <label for="name">Name :</label>
+                                <span name="name"id="displayName">tharuka</span>
+                                <div  id="nameField"></div>
+                                
+                            </div>
+    
+                            
+                            <div class="inputContainer">
+                             
+                            <div class="displayGender">
+                                <form action="/action_page.php">
+                                    <label for="gendar">Gendar :</label>
+                                    <select name="gendar" id="gendar">
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="opel">Other</option>
+                                    
+                                    </select>
+                                    <br><br>
+                                    
+                                </form>
+                                
+                            </div>
                             </div>  
-                        
-                        
-                       
-                    </div>
-                </div>
-                <div class="column right">
-                    <div class="editGameInfo">
-                        <h2>Game Settings</h2>
-
-                            <div class="backPain">                        
-                                <form action="/action_page.php">
-                                    <label for="cars">Back Pain</label>
-                                    <select name="cars" id="cars">
-                                    <option value="volvo">Volvo</option>
-                                    <option value="saab">Saab</option>
-                                    <option value="opel">Opel</option>
-                                    <option value="audi">Audi</option>
-                                    </select>
-                                    <br><br>
-                                    
-                                </form>
+                            
+                            <div class ='editBtn'id="editBtn" >
+                                
+                                <button class="btn" onclick="editNameBtn()">Edit basic details</button>
+                                
                             </div>
-
                         
+                        </div>
+                        
+                    
+                    </div>
+                    <div class="column right">
+                        <div class="avatar" id="avatarDiv">
+                            <img src="https://cdn-icons-png.flaticon.com/512/147/147142.png" alt="Avatar" class="avatar">
+                        </div>
 
-                            <div class="kayboard">                        
-                                <form action="/action_page.php">
-                                    <label for="cars">kayboard</label>
-                                    <select name="cars" id="cars">
-                                    <option value="volvo">Volvo</option>
-                                    <option value="saab">Saab</option>
-                                    <option value="opel">Opel</option>
-                                    <option value="audi">Audi</option>
-                                    </select>
-                                    <br><br>
-                                   
-                                </form>
+
+                        <div class="deleteAcc" id="deleteInfo">
+                            <div class="header">
+                                <h2>Delete Account</h2>
+                                
                             </div>
-
-                            <div class="distance">                        
-                                <form action="/action_page.php">
-                                    <label for="cars">Distance</label>
-                                    <select name="cars" id="cars">
-                                    <option value="volvo">Volvo</option>
-                                    <option value="saab">Saab</option>
-                                    <option value="opel">Opel</option>
-                                    <option value="audi">Audi</option>
-                                    </select>
-                                    <br><br>
-                                    
-                                </form>
-                                <div class="favGame">                        
-                                    <form action="/action_page.php">
-                                        <label for="cars">Favourite Game</label>
-                                        <select name="cars" id="cars">
-                                        <option value="volvo">Volvo</option>
-                                        <option value="saab">Saab</option>
-                                        <option value="opel">Opel</option>
-                                        <option value="audi">Audi</option>
-                                        </select>
-                                        <br><br>
-                                        
-                                    </form>
-                                </div>
-                        <button class="btn" id="GameInfobtn">Update</button>
-                    </div>
-                    </div>
-                    <div class="deleteAcc">
-                        <h2>Delete Account</h2>
-                        <button class="btn" id="deleteAccount">Delete Account</button>
-        
-                       
+                            <button class="btn" id="deleteAccount">Delete Account</button>
+            
+                        
+                        </div>
                      </div>
-                    
-                    
-                
-                    
-                  
                 </div>
-                
+
+
+                <div class="editGameInfo" id="gameInfo">
+                    <h2>Game Settings</h2>
+
+                        <div class="backPain" id="backPain">                        
+                            <form action="/action_page.php">
+                                <label for="cars">Back Pain</label>
+                                <select name="cars" id="cars">
+                                <option value="volvo">Volvo</option>
+                                <option value="saab">Saab</option>
+                                <option value="opel">Opel</option>
+                                <option value="audi">Audi</option>
+                                </select>
+                                <br><br>
+                                
+                            </form>
+                        </div>
+
+                    
+
+                        <div class="kayboard" id="kayboard">                        
+                            <form >
+                                <label for="cars">kayboard</label>
+                                <select name="cars" id="cars">
+                                <option value="volvo">Volvo</option>
+                                <option value="saab">Saab</option>
+                                <option value="opel">Opel</option>
+                                <option value="audi">Audi</option>
+                                </select>
+                                <br><br>
+                               
+                            </form>
+                        </div>
+
+                        <div class="distance">                        
+                            <form >
+                                <label for="cars">Distance</label>
+                                <select name="cars" id="cars">
+                                <option value="volvo">Volvo</option>
+                                <option value="saab">Saab</option>
+                                <option value="opel">Opel</option>
+                                <option value="audi">Audi</option>
+                                </select>
+                                <br><br>
+                                
+                            </form>
+                        </div>
+                            <div class="favGame">                        
+                                <form >
+                                    <label for="cars">Favourite Game</label>
+                                    <select name="cars" id="cars">
+                                    <option value="volvo">Volvo</option>
+                                    <option value="saab">Saab</option>
+                                    <option value="opel">Opel</option>
+                                    <option value="audi">Audi</option>
+                                    </select>
+                                    <br><br>
+                                    
+                                </form>
+                            </div>
+                    <button class="btn" id="GameInfobtn">Update</button>
+               
+                </div>
+
+
+                <div id="emailInfo">
+                    <h2>Email Infromation</h2>
+                    <div class="inputContainer">
+                        
+
+                        <span ></span>
+                        <div class="displayEmail">
+                            <label for="email">Email :</label>  
+                            <span name="email" id="diplayEmail">tharuka@gmail.com</span>
+                            <div id="emailField" ></div>  
+                        </div>
+                    </div>
+
+                    
+                    
+                    
+                         <div id ='editBtnEmail'>
+                        
+                            <button class="btn" id="editEmail" onclick="editEmailBtn()">Edit Email</button>
+                        </div>
+
+                  
+
+
+                    
+                    
+                        <div class="inputContainer">
+                            <label for="password">password :</label>
+                            <span type ="password" name="password" id="displayPassword" >********</span>  
+                            <div id="passwordField"></div>
+                        </div>
+
+                        <!-- <div class="displayPassword">
+                            <label for="password">password :</label>
+                             <span type ="password" name="password" id="passwordField">112233</span> 
+                        </div> -->
+                            <div id ='editBtnPassword'>
+                        
+                                <button class="btn" id="editPassword" onclick="editPasswordBtn()">Reset password</button>
+                            </div>
+                                
+                         <!-- <div id ='editBtnEmail'>
+                        
+                            <button class="btn" id="editEmail" onclick="editEmailBtn()">Edit Email</button>
+                        </div> -->
+
+                  
+                        
+                    
+                   
+                </div>
                
             </div>
            
             
             
         </section>
-        <div class="popup">
-            <h2>tharusa</h2>
-    </div>
+       
     </div>
 
 </body>
+<script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js"></script>
 <script type="module" src="js/index.js"></script>
 <script src="js/settings/settingsHome.js"></script>
 <!-- Testing -->
@@ -190,6 +265,11 @@
     // Window loads
     window.onload = function(){
             getUsername();
+            
+            document.getElementById("gameInfo").style.display = "none";
+            document.getElementById("emailInfo").style.display = "none";
+            document.getElementById("info").style.display = "none";
+           
             if(currentUser == null){
                 window.location.href = "login.html";
                 
@@ -198,6 +278,7 @@
             {
                 // window.location.href = "dashboard.html";
             }
+          
         }
 </script>
 
