@@ -9,6 +9,7 @@ var timerSeconds;
 const minute = document.querySelector('#minute');
 const second = document.querySelector('#second');
 
+var needle = require('needle');
 
 startTimerBtn.addEventListener('click', () => {
 	clearInterval(timerSeconds);
@@ -66,6 +67,16 @@ camera_button.addEventListener('click', async function() {
 click_button.addEventListener('click', function() {
    	canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
    	let image_data_url = canvas.toDataURL('image/jpeg');
+
+	var data = {
+		file : image_data_url,
+		content_type: 'image/jpeg'
+	}
+
+	needle.get('', function(error, response) {
+	if (!error && response.statusCode == 200)
+		console.log(response.body);
+	});
 
 	pushNotif();
    	// data url of the image
