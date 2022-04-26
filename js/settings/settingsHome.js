@@ -3,9 +3,11 @@ function displayBasic(){
   document.getElementById("basicInfo").style.display = "block";
   document.getElementById("emailInfo").style.display = "none";
   document.getElementById("gameInfo").style.display = "none";
+  document.getElementById("saveNameBtn").style.display = "none";
   document.getElementById("deleteInfo").style.display="block";
   document.getElementById("avatarDiv").style.display = "block";
 }
+
 // navigate to Email Info
 function displayEmail(){
   document.getElementById("emailInfo").style.display = "block";
@@ -14,6 +16,7 @@ function displayEmail(){
   document.getElementById("deleteInfo").style.display="none";
   document.getElementById("avatarDiv").style.display = "none";
 }
+
 //navigate to Gameinfo
 function displayGame(){
   document.getElementById("gameInfo").style.display = "block";
@@ -22,40 +25,31 @@ function displayGame(){
   document.getElementById("deleteInfo").style.display="none";
   document.getElementById("avatarDiv").style.display = "none";
 }
+
 function editNameBtn() {
   // input field apears with button
  
-  const inputName = document.querySelector('#nameField');
-  const inputGender = document.querySelector('#genderField');
-  const savebtn = document.querySelector('#editBtn');
+  
+
   document.getElementById("displayName").style.display = "none";
-  
-  inputName.innerHTML='<input type="text" class="inputField"> ';
+  document.getElementById("gendarName").style.display = "none";
 
-  
-  savebtn.innerHTML='<button class="btn" id="saveNameBtn" onClick="onSave(\'name\')" >Save</button>';
+  document.getElementById("nameField").style.display = "block";
+  document.getElementById("genderField").style.display = "block";
 
- 
-  
-
- 
-   
+  document.getElementById("saveNameBtn").style.display = "block";
+  document.getElementById("basicInfoBtn").style.display = "none";
 }
 
 function editEmailBtn() {
   // input field apears with button
  
-  
   const inputEmail= document.querySelector('#emailField');
-
   const savebtn = document.querySelector('#editBtnEmail');
   document.getElementById("diplayEmail").style.display = "none";  
-  
   inputEmail.innerHTML='<input type="text"class="inputField"> ';
- 
   savebtn.innerHTML='<button  class="btn" id="emailSaveBtn" onClick="onSave(\'email\')" >Save Email</button>';
 
-   
 }
 
 function editPasswordBtn() {
@@ -71,21 +65,23 @@ function editPasswordBtn() {
   inputEmail.innerHTML='<input type="password"class="inputField"> ';
   savebtn.innerHTML='<button  class="btn" id="PasswordSaveBtn"onClick="onSave(\'password\')">Save Password</button>';
 
-   
 }
-
-
-
-
 
 function onSave(btn){
   if(btn == 'name'){
-    const saveBtn = document.querySelector('#editBtn');
-    saveBtn.innerHTML='<button class="btn" onclick="editNameBtn()">Edit basic details</button>';
+    
      //remove input field while 
     document.getElementById("displayName").style.display = "block";
-    var inputEmail= document.querySelector('#nameField');
-    inputEmail.innerHTML= " ";
+    document.getElementById("displayNameLabel").style.display = "block";
+
+    document.getElementById("gendarName").style.display = "block";
+    document.getElementById("genderLabel").style.display = "block";
+
+    document.getElementById("nameField").style.display = "none";
+    document.getElementById("genderField").style.display = "none";
+    document.getElementById("basicInfoBtn").style.display = "block";
+    document.getElementById("saveNameBtn").style.display = "none";
+   
   }
 
   else if(btn == 'email'){
@@ -107,5 +103,4 @@ function onSave(btn){
     inputEmail.innerHTML= " ";
   }
 }
-
 
