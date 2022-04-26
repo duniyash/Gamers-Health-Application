@@ -39,10 +39,14 @@ function getDashboardData(){
             // alert(snapshot.val());
 
             // References
+            var usernameDB = snapshot.val().username;
             var distDB = snapshot.val().distanceMonitor;
             var rotaDB = snapshot.val().distanceMonitor;
             var genderDB = snapshot.val().distanceMonitor;
 
+            var welcomeMsg = "Welcome "+usernameDB
+
+            document.getElementById("welcomeMsg").innerHTML = welcomeMsg;
             document.getElementById("blockHeadOne").innerHTML = genderDB;
             document.getElementById("blockHeadTwo").innerHTML = distDB;
             document.getElementById("blockHeadThree").innerHTML = rotaDB;
@@ -274,7 +278,7 @@ function exercisesChart(){
 
 
 
-setTimeout(getDashboardData, 500);
-setTimeout(getplayerWeekData, 500);
-setTimeout(getgamesChartData, 500);
-setTimeout(exercisesChart, 500);
+setTimeout(getDashboardData, 1000);
+setTimeout(getplayerWeekData, 1000);
+setTimeout(getgamesChartData, 1000);
+setTimeout(exercisesChart, 1000);
