@@ -1,60 +1,182 @@
+/*Font Imports*/
+
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
-/* css of nav bar */
-.settingsNavbar{
+/*General Rules*/
+
+* {
+    padding: 0%;
+    margin: 0%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color: black;
+}
+
+
+/*body & main container*/
+
+body {
+    background-color: #24252b;
+    display: flex;
+    overflow-y: hidden;
+    height: max-content;
+}
+
+
+/* Nav Bar */
+
+.navbar {
+    height: 95vh;
+    width: 5rem;
+    margin: 2.5vh 1rem 2.5vh 1rem;
+    background-color: #fff;
+    border-radius: 10px;
+    display: flex;
     justify-content: center;
 }
 
-.navList{
-    display: flex;
-    margin :auto;
-    height: fit-content;
-    width: fit-content;
-    background-color: white;
-    border-radius: 12px;
-    width: 50%;
-    height: 50%;
-    
+.navbar img {
+    width: 3rem;
+    height: 3rem;
+    margin-top: 1rem;
+}
+
+nav ul {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+nav ul li {
+    height: 3rem;
+    width: 3rem;
+    position: relative;
+    margin-top: 2rem;
+    background-color: none;
+    border-radius: 10px;
+    transition: all 0.25s ease;
+}
+
+nav ul li i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    color: #000;
+}
+
+nav ul li:hover {
+    background-color: #5D9D0B;
+}
+
+nav ul li:hover i {
+    color: #fff;
+}
+
+nav ul li:hover .tooltip {
+    visibility: visible;
 }
 
 
-.navItem{
-align-self: auto;
-margin: auto;
-padding: 0%;
+/*Main Page*/
+
+.main {
+    width: 100%;
+    height: max-content;
+    overflow-y: visible;
+}
+
+.main .pageHead {
+    margin: 7vh 0 0 2rem;
+    font-family: 'Sora', sans-serif;
+    font-size: 36px;
+    letter-spacing: 0;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+/* .main .mainContent {
+    display: flex;
+    height: 580px;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    width: 100%;
+} */
+
+/* .mainContent .card {
+    width: 100%;
+    margin: 2rem;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    font-family: 'Poppins', sans-serif;
+    background-color: #2e3239;
+} */
+
+
+/*General Settings For settings Page*/
+
+/* css of settings nav bar */
+.settingsNavbar {
+    justify-content: center;
+    margin: 10px;
+}
+
+.navList {
+    display: flex;
+    margin :auto;
+    background-color: white;
+    border-radius: 10px;
+    width: 500px;
+    height: 4rem;
+}
+
+.navItem {
+    align-self: auto;
+    margin: auto;
+    padding: 0%;
+    cursor: pointer;
 }
 
 
 /* transsistion of nav bar items */
-.header{
+/* .header {
     display: flex;
     height: fit-content;
     width: 100%;
+    color: black;
     justify-content: space-between;
-}
+} */
 
-.avatar {
+.right .avatar {
     vertical-align: middle;
     width: 60%;
     height: 60%;
-    border-radius: 50%;
-  }
+    background-color: white;
+}
 
-
-h2{
+h2 {
     font-family: 'Poppins';
     font-size: 1.3rem;
     font-weight: 900;
     text-transform: uppercase;
-    color : white;
+    color : rgb(0, 0, 0);
 }
 
-.btn{
+.btn {
     background-color: gray; 
     color: white;
     border: 2px solid #4CAF50;
-    border-radius: 12px;
+    border-radius: 10px;
     padding: 16px 32px;
     text-align: center;
     text-decoration: none;
@@ -63,21 +185,29 @@ h2{
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
-
 }
 
-.inputContainer{
+.btn:hover {
+    background-color: #5D9D0B;
+    color: white;
+    border-radius: 10px;
+    border : solid white;
+}
+
+.inputContainer {
     font-family: 'Poppins';
-    border-radius: 12px;
-    background-color:#2e3239;
+    border-radius: 10px;
+    background-color:#2ae524;
     border :solid white;
     margin: 1rem;
+    color: black;
+    font-size: 20px;
     padding : 1rem;
-    
+    display: flex;
 }
 
-.backPain ,.kayboard ,.distance ,.favGame{
-    border-radius: 12px;
+.backPain ,.kayboard ,.distance ,.favGame {
+    border-radius: 10px;
     background-color:#2e3239;
     border :solid white;
     margin: 1rem;
@@ -88,173 +218,129 @@ h2{
 
 
 
-.btn:hover{
-    background-color: #5D9D0B;
-    color: white;
-    border-radius: 12px;
-    border : solid white;
-}
-
-
-.settingsContent{
-    
-    background-color:#2e3239;
-    border-radius: 12px;
+.settingsContent {
     width: 95%;
-    height: fit-content;
-    
-    justify-content:space-around ;
-    padding : 2rem 2em;
-    color: white;
+    height: 480px;
+    margin: 2rem;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    font-family: 'Poppins', sans-serif;
+    background-color: #2e3239;
 } 
 
-.basicLayout{
+.basicLayout {
     display:flex;
 }
-/*.column{
-  
-    float: left;
-    
-    
-}*/
 
-
-.column.left{
+.column.left {
     width: 50%;
     flex-direction: column;
     height: fit-content;
     display: flex ;
-    
 }
 
-
-.column.right{
-    
+.column.right {
     width: 50%;
     flex-direction: column;
     height: fit-content;
 }
 
-
-
-.basicInfo{
-    
+.basicInfo {
     font-family: 'Poppins';
     font-weight: 500;
-    background-color:#2e3239;
+    background-color:#ffffff;
     border-radius: 12px;
     padding: 1rem 1em;
     margin: 1rem;
-    height: 44%;
+    margin-top: 45px;
+    height: 400px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-    
 }
 
-
-.emailInfo{
-    
+.emailInfo {
     font-family: 'Poppins';
     font-weight: 500;
     background-color:#2e3239;
-    border-radius: 12px;
+    border-radius: 10px;
     padding: 0.5rem 1em;
-  
-    
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-    
-    }
+}
 
-.editGameInfo{
-
+.editGameInfo {
     font-family: 'Poppins';
     background-color:#2e3239;
-    border-radius: 12px;
+    border-radius: 10px;
     padding: 1rem 1em;
     margin: 1rem;
     width: 90%;
-
-    border-radius: 12px;
-  
-    
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
 
-.deleteAcc{
+.deleteAcc {
     font-family: 'Poppins';
     background-color:#2e3239;
-    border-radius: 12px;
+    border-radius: 10px;
     padding: 1rem 1em;
     margin: 1rem;
     width: 60%;
     height: 24%;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-    
 }
-
-
-
 
 .basicInfo:hover,.emailInfo:hover, .editGameInfo:hover {
-    transition: 0.2s;
-    background-color: #3e8e41;
+    transition: 0.9s;
+    background-color: #ffffff;
     transform: translateY(-0.5rem);
-    color: white;
-  }
+    color: rgb(0, 0, 0);
+}
 
-.deleteAcc:hover{
+.deleteAcc:hover {
     transition: 0.7s ;
     background-color: #3e8e41;
     color: white;
     transform: translateY(-0.5rem);
-   
-
-        animation: fadeIn 5s;
-        -webkit-animation: fadeIn 5s;
-        -moz-animation: fadeIn 5s;
-        -o-animation: fadeIn 5s;
-        -ms-animation: fadeIn 5s;
+    animation: fadeIn 5s;
+    -webkit-animation: fadeIn 5s;
+    -moz-animation: fadeIn 5s;
+    -o-animation: fadeIn 5s;
+    -ms-animation: fadeIn 5s;
       
-      @keyframes fadeIn {
+    @keyframes fadeIn {
         0% {opacity:0;}
         100% {opacity:1;}
-      }
-      
-      @-moz-keyframes fadeIn {
+    }
+    
+    @-moz-keyframes fadeIn {
         0% {opacity:0;}
         100% {opacity:1;}
-      }
-      
-      @-webkit-keyframes fadeIn {
+    }
+    
+    @-webkit-keyframes fadeIn {
         0% {opacity:0;}
         100% {opacity:1;}
-      }
-      
-      @-o-keyframes fadeIn {
+    }
+    
+    @-o-keyframes fadeIn {
         0% {opacity:0;}
         100% {opacity:1;}
-      }
+    } 
       
-      @-ms-keyframes fadeIn {
-        0% {opacity:0;}
-        100% {opacity:1;}
-      }
 }
-.deleteAcc:not(hover),
+
+/* .deleteAcc:not(hover),
 .basicInfo:not(hover),
 .editGameInfo:not(hover),
-.emailInfo:not(hover){
+.emailInfo:not(hover) {
     transition: 0.7s ;
     transform: translateY(+0.7rem);
-}
-
+} */
 
 #settingspage {
-    animation: fadeInAnimation ease 3s
-    
+    animation: fadeInAnimation ease 2s 
 }
   
 @keyframes fadeInAnimation {
@@ -266,67 +352,70 @@ h2{
      }
 }
 
+#displayNameLabel {
+    padding-right: 10px;
+}
 
-.inputField{
-    height: 1.5rem;
+#genderLabel {
+    padding-right: 10px;
+}
+
+.inputField {
+    font-family: 'Poppins';
+    padding: 10px;
+    height: 1.8rem;
     width: 100%;
-   
+    font-size: 20px;
     display: inline-block;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 10px;
     box-sizing: border-box; 
 }
 
-
-#nameField:hover{
-    
-        opacity: 50%;   
+.inputGenderField {
+    font-family: 'Poppins';
+    width: 100%;
+    font-size: 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box; 
 }
 
-#nameField{
-    
-        opacity:100%;
-        transition:opacity 0.8s
-}
-
-
-#genderField:hover{
-    
+#nameField:hover {
     opacity: 50%;   
 }
 
-#genderField{
-
+#nameField {
     opacity:100%;
     transition:opacity 0.8s
-
 }
 
-
-
-#genderField:hover{
-    
+#genderField:hover {
     opacity: 50%;   
 }
 
-#genderField{
-
+#genderField {
     opacity:100%;
     transition:opacity 0.8s
-
 }
 
+#genderField:hover {
+    opacity: 50%;   
+}
+
+#genderField {
+    opacity:100%;
+    transition:opacity 0.8s
+}
 
 #genderField:hover ,
 #emailField:hover ,
-#passwordField:hover{
-    
+#passwordField:hover {
     opacity: 50%;   
 }
 
-#genderField,#emailField,#passwordField{
-
+#genderField,#emailField,#passwordField {
     opacity:100%;
     transition:opacity 0.8s
-
 }
