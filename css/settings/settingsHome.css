@@ -157,11 +157,25 @@ nav ul li:hover .tooltip {
     justify-content: space-between;
 } */
 
-.right .avatar {
+#avatarDiv {
     vertical-align: middle;
     width: 60%;
     height: 60%;
     background-color: white;
+    border-radius: 10px;
+    margin-top: 45px;
+    padding: 1rem 1em;
+}
+
+.right .avatar {
+    vertical-align: middle;
+    width: 60%;
+    height: 60%;
+    padding-left: 90px;
+}
+
+#myfile {
+    width: 50%;
 }
 
 h2 {
@@ -206,17 +220,16 @@ h2 {
     display: flex;
 }
 
-.backPain ,.kayboard ,.distance ,.favGame {
+.backPain ,.kayboard ,.distance {
     border-radius: 10px;
-    background-color:#2e3239;
+    background-color: rgb(42, 229, 36);
     border :solid white;
     margin: 1rem;
     padding-top: 1rem;
     padding-left: 1rem;
-    
+    font-size: 20px;
+    display: flex;
 }
-
-
 
 .settingsContent {
     width: 95%;
@@ -230,6 +243,7 @@ h2 {
 
 .basicLayout {
     display:flex;
+    padding-left: 45px;
 }
 
 .column.left {
@@ -269,38 +283,38 @@ h2 {
 }
 
 .editGameInfo {
-    font-family: 'Poppins';
-    background-color:#2e3239;
-    border-radius: 10px;
-    padding: 1rem 1em;
-    margin: 1rem;
-    width: 90%;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
-    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    font-family: Poppins;
+    font-weight: 500;
+    margin: 45px 1rem 1rem;
+    padding: 1rem;
+    border-radius: 12px;
+    background-color: white;
+    height: 400px;
+    box-shadow: rgb(0 0 0 / 10%) 0px 4px 6px -1px, rgb(0 0 0 / 6%) 0px 2px 4px -1px;
 }
 
 .deleteAcc {
     font-family: 'Poppins';
-    background-color:#2e3239;
+    background-color:white;
     border-radius: 10px;
-    padding: 1rem 1em;
-    margin: 1rem;
+    padding: 10px;
+    margin-top: 15px;
     width: 60%;
-    height: 24%;
+    height: 125px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
 
-.basicInfo:hover,.emailInfo:hover, .editGameInfo:hover {
+/* .basicInfo:hover,.emailInfo:hover, .editGameInfo:hover {
     transition: 0.9s;
     background-color: #ffffff;
     transform: translateY(-0.5rem);
     color: rgb(0, 0, 0);
-}
+} */
 
-.deleteAcc:hover {
+/* .deleteAcc:hover {
     transition: 0.7s ;
-    background-color: #3e8e41;
+    background-color: white;
     color: white;
     transform: translateY(-0.5rem);
     animation: fadeIn 5s;
@@ -309,27 +323,7 @@ h2 {
     -o-animation: fadeIn 5s;
     -ms-animation: fadeIn 5s;
       
-    @keyframes fadeIn {
-        0% {opacity:0;}
-        100% {opacity:1;}
-    }
-    
-    @-moz-keyframes fadeIn {
-        0% {opacity:0;}
-        100% {opacity:1;}
-    }
-    
-    @-webkit-keyframes fadeIn {
-        0% {opacity:0;}
-        100% {opacity:1;}
-    }
-    
-    @-o-keyframes fadeIn {
-        0% {opacity:0;}
-        100% {opacity:1;}
-    } 
-      
-}
+} */
 
 /* .deleteAcc:not(hover),
 .basicInfo:not(hover),
@@ -339,6 +333,7 @@ h2 {
     transform: translateY(+0.7rem);
 } */
 
+/* fade animation start css */
 #settingspage {
     animation: fadeInAnimation ease 2s 
 }
@@ -351,6 +346,8 @@ h2 {
         opacity: 1;
      }
 }
+
+/* fade animation end css */
 
 #displayNameLabel {
     padding-right: 10px;
@@ -382,40 +379,57 @@ h2 {
     box-sizing: border-box; 
 }
 
-#nameField:hover {
-    opacity: 50%;   
+#dltBtns {
+    display: flex;
 }
 
-#nameField {
-    opacity:100%;
-    transition:opacity 0.8s
+#basicEmailInfo {
+    font-family: 'Poppins';
+    font-weight: 500;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 12px;
+    background-color: white;
+    margin-top: 45px;
+    height: 400px;
+    box-shadow: rgb(0 0 0 / 10%) 0px 4px 6px -1px, rgb(0 0 0 / 6%) 0px 2px 4px -1px;
 }
 
-#genderField:hover {
-    opacity: 50%;   
+.displayEmail {
+    width: 100%;
+    display: flex;
 }
 
-#genderField {
-    opacity:100%;
-    transition:opacity 0.8s
+#emailLabel{
+    width: 73px;
+    padding-right: 10px;
 }
 
-#genderField:hover {
-    opacity: 50%;   
+#passwordLabel{
+    width: 117px;
+    padding-right: 10px;
 }
 
-#genderField {
-    opacity:100%;
-    transition:opacity 0.8s
+#backPainSelect,
+#kayboardSelect,
+#distanceSelect {
+    font-family: 'Poppins';
+    font-size: 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+    height: 35px;
+    margin-left: 10px;
 }
 
-#genderField:hover ,
-#emailField:hover ,
-#passwordField:hover {
-    opacity: 50%;   
-}
-
-#genderField,#emailField,#passwordField {
-    opacity:100%;
-    transition:opacity 0.8s
+#backPainSaveBtn,
+#backPainEditBtn,
+#kayboardSaveBtn,
+#kayboardEditBtn,
+#distanceSaveBtn,
+#distanceEditBtn {
+    height: 50px;
+    margin-top: -10px;
+    margin-left: 80px;
 }
