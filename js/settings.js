@@ -61,25 +61,15 @@ function getProfileData()
             var rotaDB = snapshot.val().distanceMonitor;
             var painDB = snapshot.val().backPain;
             
-            // usernamebox.innerHTML="Name: "+usernameboxlabel;
 
             document.getElementById("displayName").innerHTML = usernameDB;
+            document.getElementById("gendarName").innerHTML = genderDB;
+            document.getElementById("diplayEmail").innerHTML = emailDB;
+            document.getElementById("displayPassword").innerHTML = passwordDB;
+            document.getElementById("backPainSpan").innerHTML = painDB;
+            document.getElementById("kayboardSpan").innerHTML = rotaDB;
+            document.getElementById("distanceSpan").innerHTML = distDB;
 
-            // alert(usernameDB); 
-            // alert(emailDB); 
-            // alert(passwordDB); 
-            // alert(genderDB); 
-            // alert(distDB);
-            // alert(rotaDB); 
-            // alert(painDB);
-
-            // usernamebox.value = snapshot.val().username;
-            // emailbox.value = snapshot.val().email;
-            // passwordbox.value = snapshot.val().password;
-            // genderbox.value = snapshot.val().gender;
-            // distbox.value = snapshot.val().keyboardRotation;
-            // rotabox.value = snapshot.val().distanceMonitor;
-            // painbox.value = snapshot.val().backPain;
 
         }
         else
