@@ -37,7 +37,6 @@
         <section class="mainContent">
             <div class="settingsContent">
 
-
                 <div class="basicLayout">
                     <div class="column left" id="basicInfo">
                         <div class="basicInfo" >
@@ -50,8 +49,12 @@
                                 <label for="name" id="displayNameLabel">Name :</label>
                                 <span name="name"id="displayName"> </span>
                                 <div id="nameField">
-                                    <input type="text" class="inputField">
+                                    <input type="text" id="name" class="inputField">
                                 </div>
+                            </div>
+                            <div class ='editBtn'id="editBtnName" >
+                                <button class="btn" onclick="editNameBtn()" id="editNameBtn">Edit</button>
+                                <button class="btn" id="saveNameBtn" onClick="onSave('name1')">Save</button>
                             </div>
 
                             <div class="inputContainer">
@@ -65,112 +68,118 @@
                                         <option value="opel">Other</option>
                                     </select>
                                 </div>   
-                            </div>  
-                            <div class ='editBtn'id="editBtn" >
-                                <button class="btn" onclick="editNameBtn()" id="basicInfoBtn">Edit</button>
-                                <button class="btn" id="saveNameBtn" onClick="onSave('name')">Save</button>
-                            </div>
+                                
+                            </div> 
+                            <div class ='editBtn'id="editBtnGender" >
+                                <button class="btn" onclick="editGenderBtn()" id="editGenderBtn">Edit</button>
+                                <button class="btn" id="saveGenderBtn" onClick="onSave('name2')">Save</button>
+                            </div> 
+                            
                         </div>
                     </div>
                     <div class="column right">
                         <div class="avatar" id="avatarDiv">
+                            <div class="header">
+                                <h2>Basic Infromation</h2>
+                            </div>
                             <img src="https://cdn-icons-png.flaticon.com/512/147/147142.png" alt="Avatar" class="avatar">
-                            <input type="file" id="myfile" name="myfile"><br><br>
-                            <input type="submit" value="Submit">  
+                            <!-- <img src="" alt="Avatar" class="avatar"> -->
+                            <input type="file" id="myPhoto" >
+                            <button class="btn" id="savePhotoBtn" onClick="imgSaveBtn">Save</button> 
                         </div>
                         <div class="deleteAcc" id="deleteInfo">
                             <div class="header">
                                 <h2>Delete Account</h2>
+                                <p>Are you sure?</p>
                             </div>
-                            <button class="btn" id="deleteAccount">Delete Account</button>
-                        </div>
+                            <div id="dltBtns">
+                                <button class="btn" id="deleteAccount" onClick="onDelete()">Delete Account</button>
+                                <button class="btn" id="onDeleteNo" onClick="onDeleteNo()">No</button>
+                                <button class="btn" id="onDeleteYes" onClick="onDeleteYes()">Yes</button>
+                            </div>
+                            </div>
                     </div>
                 </div>
 
 
                 <div id="emailInfo">
-                    <h2>Email Infromation</h2>
-                    <div class="inputContainer">
-                        <span ></span>
-                        <div class="displayEmail">
-                            <label for="email">Email :</label>  
-                            <span name="email" id="diplayEmail"></span>
-                            <div id="emailField">
-
-                            </div>  
+                    <div id="basicEmailInfo">
+                        <h2>Email Infromation</h2>
+                        <div class="inputContainer">
+                            <div class="displayEmail">
+                                <label for="email" id="emailLabel">Email :</label>  
+                                <span name="email" id="diplayEmail"></span>
+                                <div id="emailField">
+                                    <input type="text"class="inputField" id="newEmail">
+                                </div>  
+                            </div>
                         </div>
-                    </div>
-                    <div id ='editBtnEmail'>
-                        <button class="btn" id="editEmail" onclick="editEmailBtn()">Edit Email</button>
-                    </div>
-
-                    <div class="inputContainer">
-                        <label for="password">password :</label>
-                        <span type ="password" name="password" id="displayPassword" >********</span>  
-                        <div id="passwordField">
-
+                        <div id ='editBtnEmail'>
+                            <button class="btn" id="editEmailBtn" onclick="editEmailBtn()">Edit Email</button>
+                            <button  class="btn" id="emailSaveBtn" onClick="onSave('email')" >Save Email</button>
                         </div>
-                    </div>
-                    <div id ='editBtnPassword'>
-                        <button class="btn" id="editPassword" onclick="editPasswordBtn()">Reset password</button>
-                    </div>  
+    
+                        <div class="inputContainer">
+                            <div class="displayEmail">
+                                <label for="password" id="passwordLabel">password :</label>
+                                <span type ="password" name="password" id="displayPassword" >********</span>  
+                                <div id="passwordField">
+                                    <input type="password"class="inputField" id="newPassword"> 
+                                </div>
+                            </div>
+                        </div>
+                        <div id ='editBtnPassword'>
+                            <button class="btn" id="editPassword" onclick="editPasswordBtn()">Reset password</button>
+                            <button  class="btn" id="PasswordSaveBtn"onClick="onSave('password')">Save Password</button>
+                        </div> 
+                    </div> 
                 </div>
 
 
                 <div class="editGameInfo" id="gameInfo">
                     <h2>Game Settings</h2>
+
                         <div class="backPain" id="backPain">                        
-                            <form action="/action_page.php">
-                                <label for="cars">Back Pain</label>
-                                <span name="gendar"id="backPainSpan"> </span>
-                                <select name="cars" id="cars">
-                                    <option value="volvo">Volvo</option>
-                                    <option value="saab">Saab</option>
-                                    <option value="opel">Opel</option>
-                                    <option value="audi">Audi</option>
-                                </select>
-                                <br><br>
-                            </form>
+                            <label for="backPain">Back Pain :</label>
+                            <span name="backPainSpan"id="backPainSpan"> </span>
+                            <select name="backPainSelect" id="backPainSelect">
+                                <option value="" disabled selected>Back Pain</option>
+                                <option value="volvo">Volvo</option>
+                                <option value="saab">Saab</option>
+                                <option value="opel">Opel</option>
+                                <option value="audi">Audi</option>
+                            </select>
+                            <button class="btn" onclick="editbackPainBtn()" id="backPainEditBtn">Update</button>
+                            <button class="btn" onclick="onSave('backPain')" id="backPainSaveBtn">Save</button>
                         </div>  
+
                         <div class="kayboard" id="kayboard">                        
-                            <form >
-                                <label for="cars">kayboard</label>
-                                <span name="gendar"id="kayboardSpan"> </span>
-                                <select name="cars" id="cars">
-                                    <option value="volvo">Volvo</option>
-                                    <option value="saab">Saab</option>
-                                    <option value="opel">Opel</option>
-                                    <option value="audi">Audi</option>
-                                </select>
-                                <br><br>
-                            </form>
+                            <label for="kayboard">kayboard :</label>
+                            <span name="kayboardSpan"id="kayboardSpan"> </span>
+                            <select name="kayboardSelect" id="kayboardSelect">
+                                <option value="" disabled selected>kayboard</option>
+                                <option value="volvo">Volvo</option>
+                                <option value="saab">Saab</option>
+                                <option value="opel">Opel</option>
+                                <option value="audi">Audi</option>
+                            </select>
+                            <button class="btn" onclick="editkayboardBtn()" id="kayboardEditBtn">Update</button>
+                            <button class="btn" onclick="onSave('kayboard')" id="kayboardSaveBtn">Save</button>
+                        </div>           
+
+                        <div class="distance" id="distance">                        
+                            <label for="distance">Distance :</label>
+                            <span name="distanceSpan"id="distanceSpan"> </span>
+                            <select name="distanceSelect" id="distanceSelect">
+                                <option value="" disabled selected>Distance</option>
+                                <option value="volvo">Volvo</option>
+                                <option value="saab">Saab</option>
+                                <option value="opel">Opel</option>
+                                <option value="audi">Audi</option>
+                            </select>
+                            <button class="btn" onclick="editdistanceBtn()" id="distanceEditBtn">Update</button>
+                            <button class="btn" onclick="onSave('distance')" id="distanceSaveBtn">Save</button>
                         </div>
-                        <div class="distance">                        
-                            <form >
-                                <label for="cars">Distance</label>
-                                <span name="gendar"id="distanceSpan"> </span>
-                                <select name="cars" id="cars">
-                                    <option value="volvo">Volvo</option>
-                                    <option value="saab">Saab</option>
-                                    <option value="opel">Opel</option>
-                                    <option value="audi">Audi</option>
-                                </select>
-                                <br><br>
-                            </form>
-                        </div>
-                            <!-- <div class="favGame">                        
-                                <form >
-                                    <label for="cars">Favourite Game</label>
-                                    <select name="cars" id="cars">
-                                        <option value="volvo">Volvo</option>
-                                        <option value="saab">Saab</option>
-                                        <option value="opel">Opel</option>
-                                        <option value="audi">Audi</option>
-                                    </select>
-                                    <br><br> 
-                                </form>
-                            </div> -->
-                    <button class="btn" id="GameInfobtn">Update</button>
                 </div>
                 
 
@@ -216,6 +225,9 @@
             document.getElementById("nameField").style.display = "none";
             document.getElementById("genderField").style.display = "none";
             document.getElementById("saveNameBtn").style.display = "none";
+            document.getElementById("saveGenderBtn").style.display = "none";
+            document.getElementById("onDeleteYes").style.display = "none";
+            document.getElementById("onDeleteNo").style.display = "none";
         }
     }
 
