@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings</title>
-    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/settings/settingsHome.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <!--Jquery-->
@@ -26,50 +25,58 @@
             </ul>
         </nav>
     </div>
-    <div class="main"id="settingspage" >
+    <div class="main" id="settingspage" >
         <h1 class="pageHead">Settings</h1>
         <nav class="settingsNavbar" id="sNav">
             <ul class="navList">
-                <li class="navItem" onClick="displayBasic()"><a ><i class='bx bxs-face-mask'></i></a></li>
-                <li class="navItem" onClick="displayEmail()"><a ><i class='bx bxs-envelope'></i></a></li>
-                <li class="navItem"id="AgameSettings"onClick="displayGame()"><a > <i class='bx bx-game' ></i></a></li>
+                <li class="navItem" onClick="displayBasic()"><a><i class='bx bxs-face-mask'></i></a></li>
+                <li class="navItem" onClick="displayEmail()"><a><i class='bx bxs-envelope'></i></a></li>
+                <li class="navItem" onClick="displayGame()"><a><i class='bx bxs-game'></i></a></li>
             </ul>
         </nav>
-        <section class="mainContent" >
+        <section class="mainContent">
             <div class="settingsContent">
+
+
                 <div class="basicLayout">
-                    <div class="column left"id="basicInfo" >
+                    <div class="column left" id="basicInfo">
                         <div class="basicInfo" >
+                            
                             <div class="header">
                                 <h2>Basic Infromation</h2>
-                                <!-- <a id="info" onclick="closeWindow('info')"><i class='bx bx-window-close bx-md'></i></a> -->
                             </div>
+
                             <div class="inputContainer">
-                                <label for="name">Name :</label>
-                                <span name="name"id="displayName"></span>
-                                <div  id="nameField"></div>
-                            </div>
-                            <div class="inputContainer">
-                                <div class="displayGender">
-                                    <form action="/action_page.php">
-                                        <label for="gendar">Gendar :</label>
-                                        <select name="gendar" id="gendar">
-                                            <option value="male">Male</option>
-                                            <option value="female">Female</option>
-                                            <option value="opel">Other</option>
-                                        </select>
-                                        <br><br>
-                                    </form>                   
+                                <label for="name" id="displayNameLabel">Name :</label>
+                                <span name="name"id="displayName"> </span>
+                                <div id="nameField">
+                                    <input type="text" class="inputField">
                                 </div>
+                            </div>
+
+                            <div class="inputContainer">
+                                <label for="gendar" id="genderLabel">Gender :</label>
+                                <span name="gendar"id="gendarName"> </span>
+                                <div id="genderField">
+                                    <select name="gendar" class="inputGenderField" id="gendar">
+                                        <option value="" disabled selected>Select Gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="opel">Other</option>
+                                    </select>
+                                </div>   
                             </div>  
                             <div class ='editBtn'id="editBtn" >
-                                <button class="btn" onclick="editNameBtn()">Edit basic details</button>
+                                <button class="btn" onclick="editNameBtn()" id="basicInfoBtn">Edit</button>
+                                <button class="btn" id="saveNameBtn" onClick="onSave('name')">Save</button>
                             </div>
                         </div>
                     </div>
                     <div class="column right">
                         <div class="avatar" id="avatarDiv">
                             <img src="https://cdn-icons-png.flaticon.com/512/147/147142.png" alt="Avatar" class="avatar">
+                            <input type="file" id="myfile" name="myfile"><br><br>
+                            <input type="submit" value="Submit">  
                         </div>
                         <div class="deleteAcc" id="deleteInfo">
                             <div class="header">
@@ -77,13 +84,45 @@
                             </div>
                             <button class="btn" id="deleteAccount">Delete Account</button>
                         </div>
-                     </div>
+                    </div>
                 </div>
+
+
+                <div id="emailInfo">
+                    <h2>Email Infromation</h2>
+                    <div class="inputContainer">
+                        <span ></span>
+                        <div class="displayEmail">
+                            <label for="email">Email :</label>  
+                            <span name="email" id="diplayEmail"></span>
+                            <div id="emailField">
+
+                            </div>  
+                        </div>
+                    </div>
+                    <div id ='editBtnEmail'>
+                        <button class="btn" id="editEmail" onclick="editEmailBtn()">Edit Email</button>
+                    </div>
+
+                    <div class="inputContainer">
+                        <label for="password">password :</label>
+                        <span type ="password" name="password" id="displayPassword" >********</span>  
+                        <div id="passwordField">
+
+                        </div>
+                    </div>
+                    <div id ='editBtnPassword'>
+                        <button class="btn" id="editPassword" onclick="editPasswordBtn()">Reset password</button>
+                    </div>  
+                </div>
+
+
                 <div class="editGameInfo" id="gameInfo">
                     <h2>Game Settings</h2>
                         <div class="backPain" id="backPain">                        
                             <form action="/action_page.php">
                                 <label for="cars">Back Pain</label>
+                                <span name="gendar"id="backPainSpan"> </span>
                                 <select name="cars" id="cars">
                                     <option value="volvo">Volvo</option>
                                     <option value="saab">Saab</option>
@@ -96,6 +135,7 @@
                         <div class="kayboard" id="kayboard">                        
                             <form >
                                 <label for="cars">kayboard</label>
+                                <span name="gendar"id="kayboardSpan"> </span>
                                 <select name="cars" id="cars">
                                     <option value="volvo">Volvo</option>
                                     <option value="saab">Saab</option>
@@ -108,6 +148,7 @@
                         <div class="distance">                        
                             <form >
                                 <label for="cars">Distance</label>
+                                <span name="gendar"id="distanceSpan"> </span>
                                 <select name="cars" id="cars">
                                     <option value="volvo">Volvo</option>
                                     <option value="saab">Saab</option>
@@ -117,7 +158,7 @@
                                 <br><br>
                             </form>
                         </div>
-                            <div class="favGame">                        
+                            <!-- <div class="favGame">                        
                                 <form >
                                     <label for="cars">Favourite Game</label>
                                     <select name="cars" id="cars">
@@ -128,45 +169,18 @@
                                     </select>
                                     <br><br> 
                                 </form>
-                            </div>
+                            </div> -->
                     <button class="btn" id="GameInfobtn">Update</button>
                 </div>
-                <div id="emailInfo">
-                    <h2>Email Infromation</h2>
-                    <div class="inputContainer">
-                        <span ></span>
-                        <div class="displayEmail">
-                            <label for="email">Email :</label>  
-                            <span name="email" id="diplayEmail">tharuka@gmail.com</span>
-                            <div id="emailField" ></div>  
-                        </div>
-                    </div>
-                    <div id ='editBtnEmail'>
-                        <button class="btn" id="editEmail" onclick="editEmailBtn()">Edit Email</button>
-                    </div>
-                    <div class="inputContainer">
-                        <label for="password">password :</label>
-                        <span type ="password" name="password" id="displayPassword" >********</span>  
-                        <div id="passwordField"></div>
-                    </div>
+                
 
-                    <!-- <div class="displayPassword">
-                        <label for="password">password :</label>
-                        <span type ="password" name="password" id="passwordField">112233</span> 
-                    </div> -->
-                    <div id ='editBtnPassword'>
-                        <button class="btn" id="editPassword" onclick="editPasswordBtn()">Reset password</button>
-                    </div>  
-                    <!-- <div id ='editBtnEmail'>
-                        <button class="btn" id="editEmail" onclick="editEmailBtn()">Edit Email</button>
-                    </div> -->
-                </div>
             </div>
         </section>
     </div>
 </body>
 
 <script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js"></script>
+<script type="module" src="js/index.js"></script>
 <script type="module" src="js/settings.js"></script>
 <script src="js/settings/settingsHome.js"></script>
 
@@ -189,21 +203,20 @@
 
     // Window loads
     window.onload = function(){
-            getUsername();
-            
+        getUsername();
+        if(currentUser == null){
+            window.location.href = "login.html";
+        }
+        else
+        {
+            // window.location.href = "dashboard.html";
             document.getElementById("gameInfo").style.display = "none";
             document.getElementById("emailInfo").style.display = "none";
-            document.getElementById("info").style.display = "none";
-           
-            if(currentUser == null){
-                window.location.href = "login.html";
-                
-            }
-            else
-            {
-                // window.location.href = "dashboard.html";
-            }
-          
+            
+            document.getElementById("nameField").style.display = "none";
+            document.getElementById("genderField").style.display = "none";
+            document.getElementById("saveNameBtn").style.display = "none";
+        }
     }
 
 </script>
