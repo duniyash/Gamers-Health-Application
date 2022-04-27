@@ -9,8 +9,8 @@ function displayBasic()
   document.getElementById("editGenderBtn").style.display = "block";
   document.getElementById("displayName").style.display = "block";
   document.getElementById("gendarName").style.display = "block";
-  document.getElementById("name").style.display = "none";
-  document.getElementById("gendar").style.display = "none";
+  document.getElementById("newName").style.display = "none";
+  document.getElementById("newGendar").style.display = "none";
   document.getElementById("emailInfo").style.display = "none";
   document.getElementById("gameInfo").style.display = "none";
   document.getElementById("saveNameBtn").style.display = "none";
@@ -68,7 +68,7 @@ function editNameBtn()
   document.getElementById("displayName").style.display = "none";
   document.getElementById("editNameBtn").style.display = "none";
   document.getElementById("nameField").style.display = "block";
-  document.getElementById("name").style.display = "block";
+  document.getElementById("newName").style.display = "block";
   document.getElementById("saveNameBtn").style.display = "block";
 }
 
@@ -76,7 +76,7 @@ function editGenderBtn()
 {
   document.getElementById("gendarName").style.display = "none";
   document.getElementById("genderField").style.display = "block";
-  document.getElementById("gendar").style.display = "block";
+  document.getElementById("newGendar").style.display = "block";
   document.getElementById("saveGenderBtn").style.display = "block";
   document.getElementById("editGenderBtn").style.display = "none";
 }
