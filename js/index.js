@@ -78,7 +78,7 @@ $("#btnsignup").click(function()
     var distanceMonitor = document.getElementById('distanceMonitor').value;
     var backPain = document.getElementById('backPain').value;
 
-    if(name !="" && email != "" && password != "" && cPassword != "" && gender != "" && keyboardRotation != "" && distanceMonitor != "" && backPain != "")
+    if(name != "" && email != "" && password != "" && cPassword != "" && gender != "" && keyboardRotation != "" && distanceMonitor != "" && backPain != "")
     {
         if(password == cPassword) 
         {
