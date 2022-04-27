@@ -99,7 +99,8 @@ $("#btnsignup").click(function()
                     gender: gender,
                     keyboardRotation: keyboardRotation,
                     distanceMonitor: distanceMonitor,
-                    backPain: backPain
+                    backPain: backPain,
+                    image: ""
                 })
                 .then(() => {
                     // Data saved successfully!
