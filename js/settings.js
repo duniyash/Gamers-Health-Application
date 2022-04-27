@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
-import { getAuth, updateEmail, updatePassword, sendPasswordResetEmail, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+import { getAuth, updateEmail, updatePassword, sendPasswordResetEmail, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, deleteUser } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 import { getDatabase, set, get, ref, child, update, remove } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
 import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-storage.js";
 
@@ -50,7 +50,7 @@ function getProfileData()
             document.getElementById("backPainSpan").innerHTML = painDB;
             document.getElementById("kayboardSpan").innerHTML = distDB;
             document.getElementById("distanceSpan").innerHTML = rotaDB;
-            document.getElementById("imageName").innerHTML = '<img src="imageDB" class="avatar">';
+            myimg.src = imageDB
 
         }
         else
@@ -292,27 +292,53 @@ $("#PasswordSaveBtn").click(function()
     }
 });
 
+// User profile picture
 // variables & references
 var files = [];
 var reader = new FileReader();
 var input = document.createElement('input');
 input.type = 'file';
+var name = null;
+var extention = null;
 
 input.onchange = e => 
 {
     files = e.target.files;
 
-    var extention = GetFileExt(files[0]);
-    var name = GetFileName(files[0]);
-
-    namebox.value = name;
-    extlab.innerHTML = extention;
-    
+    extention = GetFileExt(files[0]);
+    name = GetFileName(files[0]);    
     console.log(name);
     console.log(extention);
+    
+    if((extention !== ".jpg")){
+        showErrorMessage('Only support jpg formats');
+        return;
+    }
+
+    // if((extention !== ".png")){
+    //     showErrorMessage('Only support png formats');
+    //     return;
+    // }
+    
+    // if((extention !== ".jpeg")){
+    //     showErrorMessage('Only support jpeg formats');
+    //     return;
+    // }
 
     reader.readAsDataURL(files[0]);
 }
+
+reader.onload = function()
+{
+    myimg.src = reader.result;
+    console.log(myimg);
+}
+
+// Image Select Button
+$("#selectImg").click(function()
+{
+    input.click();
+});
 
 function GetFileExt(file)
 {
@@ -328,54 +354,104 @@ function GetFileName(file)
     return fname;
 }
 
+// Image Upload Button
 $("#savePhotoBtn").click(function()
 {
-    input.click();
+
+    var ImgToUpload = files[0];
+
+    if(files.length == 0){
+        showErrorMessage('Add a Image first.');
+        return;
+    }
+
+    var ImgName = name + extention;
+
+    if((extention !== ".jpg")){
+        showErrorMessage('Only support jpg formats');
+        return;
+    }
+
+    if(!ValidateName()){
+        showErrorMessage('name can not contain ".", "#", "$", "[", or "]"');
+        return;
+    }
+
+    const metaData ={
+        contentType: ImgToUpload.type
+    }
+
+    const storageRef = sRef(storage, "Images/" +ImgName);
+
+    const UploadTask = uploadBytesResumable(storageRef, ImgToUpload, metaData);
+
+    UploadTask.on('sate-changed', (snapshot)=>{
+        var progess = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        showErrorMessage("Uploading " + progess + "%");
+    },
+    (error) => {
+        alert("error: image not uploaded!")
+    },
+    ()=>{
+        getDownloadURL(UploadTask.snapshot.ref).then((DownloadURL)=>{
+            SaveURLtoRealtimeDB(DownloadURL);
+        });
+    }
+    );
+
+    // functions for realtime database
+    function SaveURLtoRealtimeDB(URL) {
+
+        var userUid = (getAuth().currentUser).uid;
+        update(ref(database, 'users/' + userUid),{
+            image: URL,
+        })
+        .then(()=>{
+            showErrorMessage("Data updated successfully.");
+        })
+        .catch((error)=>{
+            alert(error);
+        });
+
+    }
+
+    // can't contain ".", "#", "$", "[", or "]"
+    function ValidateName ()
+    {
+        var regex = /[\.#$\[\]]/
+        return !(regex.test(name));
+    }
+
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Delete user account
-function DeleteData(){
-
-    window.alert("Deleting!!!!!!!!!");
-    var userUid = (getAuth().currentUser).uid;
-    alert(userUid);
+$("#onDeleteYes").click(function()
+{
 
     deleteUser(getAuth().currentUser).then(() => {
+        
         // User deleted.
+        sessionStorage.removeItem('user');
+        localStorage.removeItem('user');
+        localStorage.removeItem('keepLoggedIn');
+        window.location.replace("login.html");
 
-        // // Delete user in settings
-        // function DeleteData(userUid){
-        //     remove(ref(database, 'users/' + user.uid))
-        //     .then(()=>{
-        //         alert("Data removed successfully.");
-        //     })
-        //     .catch((error)=>{
-        //         alert(error);
-        //     });
-        // }
-
-        window.alert("User deleted.");
-    }).catch((error) => {
+    }).catch((error) => 
+    {
         // An error ocurred
-        alert(error);
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode);
+        if (errorCode == "auth/requires-recent-login") {
+            errorMessage = "auth requires recent login";
+        }
+        showErrorMessage(errorMessage)
+        
     });
+    
+});
 
-}
 
 
 //error code function 
