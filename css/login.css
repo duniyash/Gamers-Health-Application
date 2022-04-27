@@ -47,6 +47,7 @@ body{
 .loginContainer {
   position: absolute;
   padding: 1.75rem;
+  padding-top: 1.5rem;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
