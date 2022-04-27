@@ -43,11 +43,11 @@
                         <div class="basicInfo" >
                             
                             <div class="header">
-                                <h2>Basic Infromation</h2>
+                                <h2>Basic Information</h2>
                             </div>
 
                             <div class="inputContainer">
-                                <label for="name" id="displayNameLabel">Name :</label>
+                                <label for="name" id="displayNameLabel">Name:</label>
                                 <span name="name"id="displayName"> </span>
                                 <div id="nameField">
                                     <input type="text" id="newName" class="inputField">
@@ -59,7 +59,7 @@
                             </div>
 
                             <div class="inputContainer">
-                                <label for="gendar" id="genderLabel">Gender :</label>
+                                <label for="gendar" id="genderLabel">Gender:</label>
                                 <span name="gendar"id="gendarName"> </span>
                                 <div id="genderField">
                                     <select name="gendar" class="inputGenderField" id="newGendar">
@@ -79,7 +79,7 @@
                     <div class="column right">
                         <div class="avatar" id="avatarDiv">
                             <div class="header">
-                                <h2>Basic Infromation</h2>
+                                <h2>Profile Picture</h2>
                             </div>
                             <div class="upload">
                                 <img src="img/noprofil.jpg" id="myimg" width = 140 height = 135 alt="">
@@ -121,7 +121,7 @@
                                 </div>  
                             </div>
                         </div>
-                        <div id ='editBtnEmail'>
+                        <div class ='editBtn' id ='editBtnEmail'>
                             <button class="btn" id="editEmailBtn" onclick="editEmailBtn()">Edit Email</button>
                             <button  class="btn" id="emailSaveBtn" onClick="onSave('email')" >Save Email</button>
                         </div>
@@ -135,7 +135,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id ='editBtnPassword'>
+                        <div class ='editBtn' id ='editBtnPassword'>
                             <button class="btn" id="editPassword" onclick="editPasswordBtn()">Reset password</button>
                             <button  class="btn" id="PasswordSaveBtn"onClick="onSave('password')">Save Password</button>
                         </div> 
@@ -146,56 +146,73 @@
                 <div class="editGameInfo" id="gameInfo">
                     <h2>Game Settings</h2>
 
-                    <div class="backPain" id="backPain">                        
-                        <label for="backPain">Back Pain :</label>
-                        <span name="backPainSpan"id="backPainSpan"> </span>
-                        <select name="backPainSelect" id="backPainSelect">
-                            <option value="" disabled selected>back pain</option>
-                            <option value="often">often</option>
-                            <option value="rarely">rarely</option>
-                            <option value="never">never</option>
-                        </select>
-                        <button class="btn" onclick="editbackPainBtn()" id="backPainEditBtn">Update</button>
-                        <button class="btn" onclick="onSave('backPain')" id="backPainSaveBtn">Save</button>
+                    <div class="backPain" id="backPain">  
+                        <span class="content">
+                            <label for="backPain">Back Pain :</label>
+                            <span name="backPainSpan"id="backPainSpan"> </span>
+                            <select name="backPainSelect" id="backPainSelect">
+                                <option value="" disabled selected>back pain</option>
+                                <option value="often">often</option>
+                                <option value="rarely">rarely</option>
+                                <option value="never">never</option>
+                            </select>
+                        </span>                      
+                        
+                        <div class ='editBtn'>
+                            <button class="btn" onclick="editbackPainBtn()" id="backPainEditBtn">Update</button>
+                            <button class="btn" onclick="onSave('backPain')" id="backPainSaveBtn">Save</button>
+                        </div>
+                        
                     </div>  
 
-                    <div class="kayboard" id="kayboard">                        
-                        <label for="kayboard">kayboard :</label>
-                        <span name="kayboardSpan"id="kayboardSpan"> </span>
-                        <select name="kayboardSelect" id="kayboardSelect">
-                            <option value="" disabled selected>keyboard Rotation</option>
-                            <option value="0">0</option>
-                            <option value="10">10</option>
-                            <option value="20">20</option>
-                            <option value="30">30</option>
-                            <option value="40">40</option>
-                            <option value="50">50</option>
-                            <option value="60">60</option>
-                            <option value="70">70</option>
-                            <option value="80">80</option>
-                            <option value="90">90</option>
-                        </select>
-                        <button class="btn" onclick="editkayboardBtn()" id="kayboardEditBtn">Update</button>
-                        <button class="btn" onclick="onSave('kayboard')" id="kayboardSaveBtn">Save</button>
+                    <div class="kayboard" id="kayboard">  
+                        <div class="content">
+                            <label for="kayboard">kayboard :</label>
+                            <span name="kayboardSpan"id="kayboardSpan"> </span>
+                            <select name="kayboardSelect" id="kayboardSelect">
+                                <option value="" disabled selected>keyboard Rotation</option>
+                                <option value="0">0</option>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="30">30</option>
+                                <option value="40">40</option>
+                                <option value="50">50</option>
+                                <option value="60">60</option>
+                                <option value="70">70</option>
+                                <option value="80">80</option>
+                                <option value="90">90</option>
+                            </select>
+                        </div>                      
+                        <div class ='editBtn'>
+                            <button class="btn" onclick="editkayboardBtn()" id="kayboardEditBtn">Update</button>
+                            <button class="btn" onclick="onSave('kayboard')" id="kayboardSaveBtn">Save</button>
+                        </div>
+                        
                     </div>           
 
-                    <div class="distance" id="distance">                        
-                        <label for="distance">Distance :</label>
-                        <span name="distanceSpan"id="distanceSpan"> </span>
-                        <select name="distanceSelect" id="distanceSelect">
-                            <option value="" disabled selected>distance from eyes to monitor</option>
-                            <option value="10cm">10cm</option>
-                            <option value="20cm">20cm</option>
-                            <option value="30cm">30cm</option>
-                            <option value="40cm">40cm</option>
-                            <option value="50cm">50cm</option>
-                            <option value="60cm">60cm</option>
-                            <option value="70cm">70cm</option>
-                            <option value="80cm">80cm</option>
-                            <option value="90cm">90cm</option>
-                        </select>
-                        <button class="btn" onclick="editdistanceBtn()" id="distanceEditBtn">Update</button>
-                        <button class="btn" onclick="onSave('distance')" id="distanceSaveBtn">Save</button>
+                    <div class="distance" id="distance">     
+                        <div class="content">
+                            <label for="distance">Distance :</label>
+                            <span name="distanceSpan"id="distanceSpan"> </span>
+                            <select name="distanceSelect" id="distanceSelect">
+                                <option value="" disabled selected>distance from eyes to monitor</option>
+                                <option value="10cm">10cm</option>
+                                <option value="20cm">20cm</option>
+                                <option value="30cm">30cm</option>
+                                <option value="40cm">40cm</option>
+                                <option value="50cm">50cm</option>
+                                <option value="60cm">60cm</option>
+                                <option value="70cm">70cm</option>
+                                <option value="80cm">80cm</option>
+                                <option value="90cm">90cm</option>
+                            </select>
+                        </div>                   
+                        
+                        <div class ='editBtn'>
+                            <button class="btn" onclick="editdistanceBtn()" id="distanceEditBtn">Update</button>
+                            <button class="btn" onclick="onSave('distance')" id="distanceSaveBtn">Save</button>
+                        </div>
+                        
                     </div>
                 </div>
                 

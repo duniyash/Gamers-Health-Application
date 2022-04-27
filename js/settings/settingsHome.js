@@ -17,6 +17,7 @@ function displayBasic()
   document.getElementById("saveGenderBtn").style.display = "none";
   document.getElementById("onDeleteNo").style.display = "none";
   document.getElementById("onDeleteYes").style.display = "none";
+  document.getElementById("errorMessageShow").style.display ="none";
 }
 
 // navigate to Email Info
@@ -36,6 +37,7 @@ function displayEmail()
   document.getElementById("gameInfo").style.display = "none";
   document.getElementById("deleteInfo").style.display="none";
   document.getElementById("avatarDiv").style.display = "none";
+  document.getElementById("errorMessageShow").style.display ="none";
 }
 
 //navigate to Gameinfo
@@ -61,6 +63,7 @@ function displayGame()
   document.getElementById("backPainSaveBtn").style.display = "none";
   document.getElementById("kayboardSaveBtn").style.display = "none";
   document.getElementById("distanceSaveBtn").style.display = "none";
+  document.getElementById("errorMessageShow").style.display ="none";
 }
 
 function editNameBtn() 
