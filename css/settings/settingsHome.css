@@ -433,3 +433,31 @@ h2 {
     margin-top: -10px;
     margin-left: 80px;
 }
+
+.upload {
+    width: 140px;
+    position: relative;
+    margin: auto;
+}
+
+.upload img {
+    border-radius: 50%;
+    border: 6px solid #eaeaea;
+}
+
+.upload .round {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: black;
+    width: 35px;
+    height: 35px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+}
+  
+
+  
