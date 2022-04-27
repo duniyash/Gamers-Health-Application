@@ -36,7 +36,7 @@
         </nav>
         <section class="mainContent">
             <div class="settingsContent">
-
+                <span class="errorMessageShow " id="errorMessageShow"></span>
                 <div class="basicLayout">
                     <div class="column left" id="basicInfo">
                         <div class="basicInfo" >
@@ -49,7 +49,7 @@
                                 <label for="name" id="displayNameLabel">Name :</label>
                                 <span name="name"id="displayName"> </span>
                                 <div id="nameField">
-                                    <input type="text" id="name" class="inputField">
+                                    <input type="text" id="newName" class="inputField">
                                 </div>
                             </div>
                             <div class ='editBtn'id="editBtnName" >
@@ -61,11 +61,10 @@
                                 <label for="gendar" id="genderLabel">Gender :</label>
                                 <span name="gendar"id="gendarName"> </span>
                                 <div id="genderField">
-                                    <select name="gendar" class="inputGenderField" id="gendar">
+                                    <select name="gendar" class="inputGenderField" id="newGendar">
                                         <option value="" disabled selected>Select Gender</option>
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                        <option value="opel">Other</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
                                     </select>
                                 </div>   
                                 
@@ -110,7 +109,7 @@
                                 <label for="email" id="emailLabel">Email :</label>  
                                 <span name="email" id="diplayEmail"></span>
                                 <div id="emailField">
-                                    <input type="text"class="inputField" id="newEmail">
+                                    <input type="email"class="inputField" id="newEmail">
                                 </div>  
                             </div>
                         </div>
@@ -143,11 +142,10 @@
                             <label for="backPain">Back Pain :</label>
                             <span name="backPainSpan"id="backPainSpan"> </span>
                             <select name="backPainSelect" id="backPainSelect">
-                                <option value="" disabled selected>Back Pain</option>
-                                <option value="volvo">Volvo</option>
-                                <option value="saab">Saab</option>
-                                <option value="opel">Opel</option>
-                                <option value="audi">Audi</option>
+                                <option value="" disabled selected>back pain</option>
+                                <option value="often">often</option>
+                                <option value="rarely">rarely</option>
+                                <option value="never">never</option>
                             </select>
                             <button class="btn" onclick="editbackPainBtn()" id="backPainEditBtn">Update</button>
                             <button class="btn" onclick="onSave('backPain')" id="backPainSaveBtn">Save</button>
@@ -157,11 +155,17 @@
                             <label for="kayboard">kayboard :</label>
                             <span name="kayboardSpan"id="kayboardSpan"> </span>
                             <select name="kayboardSelect" id="kayboardSelect">
-                                <option value="" disabled selected>kayboard</option>
-                                <option value="volvo">Volvo</option>
-                                <option value="saab">Saab</option>
-                                <option value="opel">Opel</option>
-                                <option value="audi">Audi</option>
+                                <option value="" disabled selected>keyboard Rotation</option>
+                                <option value="0">0</option>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="30">30</option>
+                                <option value="40">40</option>
+                                <option value="50">50</option>
+                                <option value="60">60</option>
+                                <option value="70">70</option>
+                                <option value="80">80</option>
+                                <option value="90">90</option>
                             </select>
                             <button class="btn" onclick="editkayboardBtn()" id="kayboardEditBtn">Update</button>
                             <button class="btn" onclick="onSave('kayboard')" id="kayboardSaveBtn">Save</button>
@@ -171,11 +175,16 @@
                             <label for="distance">Distance :</label>
                             <span name="distanceSpan"id="distanceSpan"> </span>
                             <select name="distanceSelect" id="distanceSelect">
-                                <option value="" disabled selected>Distance</option>
-                                <option value="volvo">Volvo</option>
-                                <option value="saab">Saab</option>
-                                <option value="opel">Opel</option>
-                                <option value="audi">Audi</option>
+                                <option value="" disabled selected>distance from eyes to monitor</option>
+                                <option value="10cm">10cm</option>
+                                <option value="20cm">20cm</option>
+                                <option value="30cm">30cm</option>
+                                <option value="40cm">40cm</option>
+                                <option value="50cm">50cm</option>
+                                <option value="60cm">60cm</option>
+                                <option value="70cm">70cm</option>
+                                <option value="80cm">80cm</option>
+                                <option value="90cm">90cm</option>
                             </select>
                             <button class="btn" onclick="editdistanceBtn()" id="distanceEditBtn">Update</button>
                             <button class="btn" onclick="onSave('distance')" id="distanceSaveBtn">Save</button>
