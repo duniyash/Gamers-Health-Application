@@ -41,6 +41,7 @@ function getProfileData()
             var distDB = snapshot.val().keyboardRotation;
             var rotaDB = snapshot.val().distanceMonitor;
             var painDB = snapshot.val().backPain;
+            var imageDB = snapshot.val().image;
 
             document.getElementById("displayName").innerHTML = usernameDB;
             document.getElementById("gendarName").innerHTML = genderDB;
@@ -49,6 +50,7 @@ function getProfileData()
             document.getElementById("backPainSpan").innerHTML = painDB;
             document.getElementById("kayboardSpan").innerHTML = distDB;
             document.getElementById("distanceSpan").innerHTML = rotaDB;
+            document.getElementById("imageName").innerHTML = '<img src="imageDB" class="avatar">';
 
         }
         else
@@ -289,6 +291,56 @@ $("#PasswordSaveBtn").click(function()
         showErrorMessage(errorMessage)
     }
 });
+
+// variables & references
+var files = [];
+var reader = new FileReader();
+var input = document.createElement('input');
+input.type = 'file';
+
+input.onchange = e => 
+{
+    files = e.target.files;
+
+    var extention = GetFileExt(files[0]);
+    var name = GetFileName(files[0]);
+
+    namebox.value = name;
+    extlab.innerHTML = extention;
+    
+    console.log(name);
+    console.log(extention);
+
+    reader.readAsDataURL(files[0]);
+}
+
+function GetFileExt(file)
+{
+    var temp = file.name.split('.');
+    var ext = temp.slice((temp.length-1),temp.length);
+    return '.' + ext[0];
+}
+
+function GetFileName(file)
+{
+    var temp = file.name.split('.');
+    var fname = temp.slice(0,-1).join('.');
+    return fname;
+}
+
+$("#savePhotoBtn").click(function()
+{
+    input.click();
+});
+
+
+
+
+
+
+
+
+
 
 
 
