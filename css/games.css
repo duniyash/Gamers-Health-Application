@@ -196,6 +196,7 @@ nav ul li:hover .tooltip {
   height: max-content;
   width: 95%;
   margin:2rem;
+
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
@@ -240,6 +241,17 @@ nav ul li:hover .tooltip {
   transition: all 250ms ease-in-out;
 }
 
+#stopButton {
+  color:#ff3333;
+  border: 1px solid #ff3333;
+  display: none;
+}
+
+#stopButton:hover{
+  color: #fff;
+  background-color: #ff3333;
+}
+
 .defaultBtn:hover {
   color: #fff;
   background-color: #5d9d0b;
@@ -248,18 +260,39 @@ nav ul li:hover .tooltip {
 /*modal*/
 
 .modal {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: max-content;
-    width: 50%;
-    margin: 2rem;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-    color: #fff;
-    font-family: 'Poppins', sans-serif;
-    background-color: #2e3239;
-    border: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  height: max-content;
+  width: 50%;
+  margin: 2rem;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  background-color: #2e3239;
+
+  border: none;
+}
+.result {
+  text-align: center;
+  transition: all 0.5s ease;
+  text-transform: capitalize;
+  font-family: "Open Sans ", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+#resultGood {
+  color: #5d9d0b;
+  display: none;
+}
+
+#resultBad {
+  color: #ff3333;
+  display: none;
 }
