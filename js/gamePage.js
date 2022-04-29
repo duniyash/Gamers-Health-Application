@@ -15,6 +15,8 @@ var timerSeconds;
 var sec = 0;
 var min = 0;
 
+var noOfExercises;
+
 var postureOutput;
 
 const minute = document.querySelector("#minute");
@@ -74,7 +76,7 @@ click_button.addEventListener("click", function () {
 
 //on-click event to close the camera input stream and start the timer
 closeModalBtn.addEventListener("click", () => {
-  if (postureOutput=='incorrect') {                                     // <= change incorrect to correct here
+  if (postureOutput=='correct') {                                     // <= change incorrect to correct here
     stream.getTracks().forEach((track) => track.stop());
 
     startTimerBtn.style.display = 'none';
@@ -122,7 +124,6 @@ stopTimerBtn.addEventListener('click', () => {
 
   //send time played to firebase here
 
-
   stopTimerBtn.style.display = 'none';
   startTimerBtn.style.display = 'block';
   clearInterval(timerSeconds);
@@ -157,5 +158,8 @@ function pushNotif(exercise) {
     body: exercise,
     icon: "imglogo.png",
   }).show();
+
+  //increment noOfExercises in DB
+
   console.log("XYZ");
 }
