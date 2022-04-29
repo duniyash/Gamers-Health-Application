@@ -30,8 +30,27 @@ function getDashboardData(){
     var userUid = (getAuth().currentUser).uid;
     // alert(userUid);
 
-
     get(child(dref, 'users/' + userUid))
+    .then((snapshot)=>{
+        if(snapshot.exists()){
+            // References
+            var usernameDB = snapshot.val().username;
+            var welcomeMsg = "Welcome, " + usernameDB;
+            document.getElementById("welcomeMsg").innerHTML = welcomeMsg;
+        }
+        else
+        {
+            alert("No data found!");
+        }
+    })
+    .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode);
+            console.log(errorMessage);
+    });  
+
+    get(child(dref, 'dashboard/' + userUid))
     .then((snapshot)=>{
         if(snapshot.exists()){
             
@@ -39,17 +58,13 @@ function getDashboardData(){
             // alert(snapshot.val());
 
             // References
-            var usernameDB = snapshot.val().username;
-            var distDB = snapshot.val().distanceMonitor;
-            var rotaDB = snapshot.val().distanceMonitor;
-            var genderDB = snapshot.val().distanceMonitor;
+            var totalHoursPlayed = snapshot.val().totalHoursPlayed;
+            var todayhoursPlayed = snapshot.val().todayhoursPlayed;
+            var exercisesCompleted = snapshot.val().exercisesCompleted;
 
-            var welcomeMsg = "Welcome "+usernameDB
-
-            document.getElementById("welcomeMsg").innerHTML = welcomeMsg;
-            document.getElementById("blockHeadOne").innerHTML = genderDB;
-            document.getElementById("blockHeadTwo").innerHTML = distDB;
-            document.getElementById("blockHeadThree").innerHTML = rotaDB;
+            document.getElementById("blockHeadOne").innerHTML = totalHoursPlayed;
+            document.getElementById("blockHeadTwo").innerHTML = todayhoursPlayed;
+            document.getElementById("blockHeadThree").innerHTML = exercisesCompleted;
 
         }
         else
@@ -73,11 +88,10 @@ function getplayerWeekData(){
     // alert(userUid);
 
     // chart1 DB
-    get(child(dref, 'playerWeek/'))
+    get(child(dref, 'plyerWeek/' + userUid))
     .then((snapshot)=>{
         if(snapshot.exists()){
             
-            // alert("wada na line 454");
             // alert(snapshot.val());
 
             // References
@@ -138,7 +152,7 @@ function getgamesChartData(){
     // alert(userUid);
 
     // chart2 DB
-    get(child(dref, 'gamesChart/'))
+    get(child(dref, 'gamesChart/' + userUid))
     .then((snapshot)=>{
         if(snapshot.exists()){
             
@@ -148,10 +162,12 @@ function getgamesChartData(){
             // References
             var apexDB = snapshot.val().apex;
             var fortniteDB = snapshot.val().fortnite;
-            var gtaDB = snapshot.val().gta;
             var valorantDB = snapshot.val().valorant;
+            var genshinImpactDB = snapshot.val().genshinImpact;
+            var eldenRingDB = snapshot.val().eldenRing;
+            var leagueOfLegendsDB = snapshot.val().leagueOfLegends;
 
-            var test = [valorantDB, apexDB, fortniteDB, gtaDB];
+            var test = [valorantDB, apexDB, fortniteDB, genshinImpactDB, eldenRingDB, leagueOfLegendsDB];
 
             // Chart 03
 
@@ -159,7 +175,7 @@ function getgamesChartData(){
             var myChart = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
-                    labels: ['Valorant', 'Apex', 'Fortnite', 'GTA v'],
+                    labels: ['Valorant', 'Apex', 'Fortnite', 'Genshin Impac', 'Elden Ring', 'League Of Legend'],
 
                     datasets: [{
                         label: 'games',
@@ -168,6 +184,8 @@ function getgamesChartData(){
                             'rgba(133, 43, 16)',
                             'rgba(54, 162, 235, 1)',
                             'rgba(255, 206, 86, 1)',
+                            'rgba(133, 43, 16)',
+                            'rgba(54, 162, 235, 1)',
                             'rgba(120, 46, 139,1)'
 
                         ],
@@ -175,6 +193,8 @@ function getgamesChartData(){
                             'rgba(133, 43, 16)',
                             'rgba(54, 162, 235, 1)',
                             'rgba(255, 206, 86, 1)',
+                            'rgba(133, 43, 16)',
+                            'rgba(54, 162, 235, 1)',
                             'rgba(120, 46, 139,1)'
 
                         ],
@@ -211,7 +231,7 @@ function exercisesChart(){
     // alert(userUid);
 
     // chart3 DB
-    get(child(dref, 'exeChart/'))
+    get(child(dref, 'exercisesChart/' + userUid))
     .then((snapshot)=>{
         if(snapshot.exists()){
             
@@ -219,13 +239,13 @@ function exercisesChart(){
             // alert(snapshot.val());
 
             // References
-            var backDB = snapshot.val().back;
-            var carpelDB = snapshot.val().carpel;
-            var eyeDB = snapshot.val().eye;
-            var neckDB = snapshot.val().neck;
+            var totalArmDB = snapshot.val().totalArm;
+            var totalBackDB = snapshot.val().totalBack;
+            var totalEyeDB = snapshot.val().totalEye;
+            var totalOtherDB = snapshot.val().totalOther;
             
 
-            var test = [eyeDB, carpelDB, backDB, neckDB];
+            var test = [totalEyeDB, totalArmDB, totalBackDB, totalOtherDB];
 
             // Chart 02
 
@@ -234,7 +254,7 @@ function exercisesChart(){
             var myChart = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
-                    labels: ['Eye Strains', 'Carpel Tunnel', 'Back Posture', 'Neck Strains'],
+                    labels: ['Eye', 'Arm', 'Back Posture', 'Other'],
 
                     datasets: [{
                         label: 'Employees',
