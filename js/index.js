@@ -405,6 +405,77 @@ function showErrorMessage(p) {
     // loginCont.style.padding = "24px";
 }
 
+//priority assignment
+
+var avgPriority;
+var highPriority;
+var lowPriority;
+
+
+function assignPriority(keyboardRotation, distanceMonitor, backPain) {
+    //eye strain
+    if(highPriority==null) {                    
+        highPriority="eye";
+    } else if (avgPriority==null) {
+        avgPriority="eye";
+    } else {
+        lowPriority="eye";
+    };
+
+    //arm strain
+    if ((keyboardRotation > 40) && (keyboardRotation < 70)){
+        if(avgPriority==null) {
+            avgPriority="arm";
+        } else if (lowPriority==null) {
+            lowPriority="arm";
+        } else {
+            highPriority="arm";
+        };
+    } else if (distanceMonitor <= 40 ){
+        if(lowPriority==null) {
+            lowPriority="arm";
+        } else if (avgPriority==null) {
+            avgPriority="arm";
+        } else {
+            highPriority="arm";
+        };
+    } else {
+        if(highPriority==null) {
+            highPriority="arm";
+        } else if (avgPriority==null) {
+            avgPriority="arm";
+        } else {
+            lowPriority="arm";
+        };
+    };
+
+    //back pain
+    if (backPain=="often"){
+        if(highPriority==null) {
+            highPriority="back";
+        } else if (avgPriority==null) {
+            avgPriority="back";
+        } else {
+            lowPriority="back";
+        };
+    } else if (backPain=="rarely" ){
+        if(avgPriority==null) {
+            avgPriority="back";
+        } else if (lowPriority==null) {
+            lowPriority="back";
+        } else {
+            highPriority="back";
+        };
+    } else {
+        if(lowPriority==null) {
+            lowPriority="back";
+        } else if (avgPriority==null) {
+            avgPriority="back";
+        } else {
+            highPriority="back";
+        };
+    };
+};
 
 
 
