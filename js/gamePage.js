@@ -1,3 +1,29 @@
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+import { getAuth, sendPasswordResetEmail, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+import { getDatabase, set, get, ref, child, update, remove } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
+import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-storage.js";
+
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBJhkQhDdkTbB-Uhhqiytfx6Fm5tVjb1Cs",
+    authDomain: "physico-64e55.firebaseapp.com",
+    databaseURL: "https://physico-64e55-default-rtdb.firebaseio.com",
+    projectId: "physico-64e55",
+    storageBucket: "physico-64e55.appspot.com",
+    messagingSenderId: "919838418395",
+    appId: "1:919838418395:web:4c3d8f7a3af1b0219ff3fe",
+    measurementId: "G-P2KKMSZWSK"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth();
+const database = getDatabase(app);
+const storage = getStorage();
+const dref = ref(database);
+
+
 const startTimerBtn = document.querySelector("#startButton");
 const stopTimerBtn = document.querySelector("#stopButton");
 const closeModalBtn = document.querySelector("#close-modal");
