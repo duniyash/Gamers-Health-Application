@@ -68,7 +68,7 @@ function getProfileData()
     });
 }
 
-setTimeout(getProfileData, 1000);
+
 
 
 // Update Name in settings
@@ -453,7 +453,6 @@ $("#onDeleteYes").click(function()
 });
 
 
-
 //error code function 
 var errorMessageSpan = document.getElementById('errorMessageShow');
 var loginCont = document.getElementById('loginContainer');
@@ -463,3 +462,7 @@ function showErrorMessage(p) {
     errorMessageSpan.style.display = "block";
     // loginCont.style.padding = "24px";
 }
+
+
+
+setTimeout(getProfileData, 1000);
