@@ -209,8 +209,15 @@ $("#stopButton").click(function()
   //send time played to firebase here
   var userUid = (getAuth().currentUser).uid;
   update(ref(database, 'valorant/' + userUid),{
+    totalHoursPlayedValorant: totalTimePlayed,
     todayhoursPlayedValorant: todayTimePlayed,
-    totalHoursPlayedValorant: totalTimePlayed
+    mondayhoursPlayedValorant: 0,
+    tuesdayhoursPlayedValorant: 0,
+    wednesdayhoursPlayedValorant: 0,
+    thursdayhoursPlayedValorant: 0,
+    fridayhoursPlayedValorant: 0,
+    saturdayhoursPlayedValorant: 0,
+    sundayhoursPlayedValorant: 0
   })
   .then(()=>{
       console.log("Data updated successfully.");
@@ -249,15 +256,19 @@ const sendHttpRequest = (method, url, data) => {
 
 //function to set exercises =>
 
-var exerciseQueueNo;
+var exerciseQueueNo = 0;
 
-function setExercisePriority(highPriority, avgPriority, lowPriority) {
-  exerciseQueue = [
+function setExercisePriority() {
+  
+  // firebase
+
+
+  var exerciseQueue = [
     highPriority,
     "other",
     avgPriority,
     "other",
-    avgPriority,
+    lowPriority,
     "other",
   ];
 
@@ -271,6 +282,8 @@ function setExercisePriority(highPriority, avgPriority, lowPriority) {
     //assign a back exercise to exercise variable
   } else if (exerciseInQueue == "eye") {
     //assign an eye exercise to exercise variable
+    //firebase assign
+    // firebase update wxw count
   } else {
     //assign an other exercise to exercise variable
   }
