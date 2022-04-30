@@ -34,13 +34,12 @@ function getDashboardData(){
     .then((snapshot)=>{
         if(snapshot.exists()){
             // References
-            var usernameDB = snapshot.val().username;
-            var welcomeMsg = "Welcome, " + usernameDB;
+            var welcomeMsg = "Welcome, " + (snapshot.val().username);
             document.getElementById("welcomeMsg").innerHTML = welcomeMsg;
         }
         else
         {
-            alert("No data found!");
+            alert("No data found! ==> Line 43");
         }
     })
     .catch((error) => {
@@ -60,16 +59,38 @@ function getDashboardData(){
             // References
             var totalHoursPlayed = snapshot.val().totalHoursPlayedValorant;
             var todayhoursPlayed = snapshot.val().todayhoursPlayedValorant;
-            // var exercisesCompleted = snapshot.val().exercisesCompleted;
 
             document.getElementById("blockHeadOne").innerHTML = totalHoursPlayed;
             document.getElementById("blockHeadTwo").innerHTML = todayhoursPlayed;
-            document.getElementById("blockHeadThree").innerHTML = "0";
 
         }
         else
         {
-            alert("No data found!");
+            alert("No data found! ==> Line 69");
+        }
+    })
+    .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode);
+            console.log(errorMessage);
+    });  
+
+    get(child(dref, 'exercises/' + userUid))
+    .then((snapshot)=>{
+        if(snapshot.exists()){
+            
+            // alert("wada na line 454");
+            // alert(snapshot.val());
+
+            // References
+            var totalExercises = snapshot.val().totalExercises;
+            document.getElementById("blockHeadThree").innerHTML = totalExercises;
+
+        }
+        else
+        {
+            alert("No data found! ==> Line 93");
         }
     })
     .catch((error) => {
@@ -88,20 +109,20 @@ function getplayerWeekData(){
     // alert(userUid);
 
     // chart1 DB
-    get(child(dref, 'plyerWeek/' + userUid))
+    get(child(dref, 'valorant/' + userUid))
     .then((snapshot)=>{
         if(snapshot.exists()){
             
             // alert(snapshot.val());
 
             // References
-            var mondayDB = snapshot.val().monday;
-            var tuesdayDB = snapshot.val().tuesday;
-            var wednesdayDB = snapshot.val().wednesday;
-            var thursdayDB = snapshot.val().thursday;
-            var fridayDB = snapshot.val().friday;
-            var saturdayDB = snapshot.val().saturday;
-            var sundayDB = snapshot.val().sunday;
+            var mondayDB = snapshot.val().mondayhoursPlayedValorant;
+            var tuesdayDB = snapshot.val().tuesdayhoursPlayedValorant;
+            var wednesdayDB = snapshot.val().wednesdayhoursPlayedValorant;
+            var thursdayDB = snapshot.val().thursdayhoursPlayedValorant;
+            var fridayDB = snapshot.val().fridayhoursPlayedValorant;
+            var saturdayDB = snapshot.val().saturdayhoursPlayedValorant;
+            var sundayDB = snapshot.val().sundayhoursPlayedValorant;
             
             var test = [mondayDB, tuesdayDB, wednesdayDB, thursdayDB, fridayDB, saturdayDB, sundayDB];
 
@@ -133,7 +154,7 @@ function getplayerWeekData(){
         }
         else
         {
-            alert("No data found!");
+            alert("No data found! ==> Line 157");
         }
     })
     .catch((error) => {
@@ -152,7 +173,7 @@ function getgamesChartData(){
     // alert(userUid);
 
     // chart2 DB
-    get(child(dref, 'gamesChart/' + userUid))
+    get(child(dref, 'valorant/' + userUid))
     .then((snapshot)=>{
         if(snapshot.exists()){
             
@@ -160,14 +181,10 @@ function getgamesChartData(){
             // alert(snapshot.val());
 
             // References
-            var apexDB = snapshot.val().apex;
-            var fortniteDB = snapshot.val().fortnite;
-            var valorantDB = snapshot.val().valorant;
-            var genshinImpactDB = snapshot.val().genshinImpact;
-            var eldenRingDB = snapshot.val().eldenRing;
-            var leagueOfLegendsDB = snapshot.val().leagueOfLegends;
+            var valorantDB = snapshot.val().totalHoursPlayedValorant;
 
-            var test = [valorantDB, apexDB, fortniteDB, genshinImpactDB, eldenRingDB, leagueOfLegendsDB];
+
+            var test = [valorantDB, 2, 3, 4, 5, 6];
 
             // Chart 03
 
@@ -211,7 +228,7 @@ function getgamesChartData(){
         }
         else
         {
-            alert("No data found!");
+            alert("No data found! ==> Line 231");
         }
     })
     .catch((error) => {
@@ -231,7 +248,7 @@ function exercisesChart(){
     // alert(userUid);
 
     // chart3 DB
-    get(child(dref, 'exercisesChart/' + userUid))
+    get(child(dref, 'exercises/' + userUid))
     .then((snapshot)=>{
         if(snapshot.exists()){
             
@@ -286,7 +303,7 @@ function exercisesChart(){
         }
         else
         {
-            alert("No data found!");
+            alert("No data found! ==> Line 306");
         }
     })
     .catch((error) => {
