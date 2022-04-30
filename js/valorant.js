@@ -187,7 +187,7 @@ $("#click-photo").click(function()
   // data url of the image
   console.log(image_data_url);
 
-  pushNotif();
+  //pushNotif();
 });
 
 //on-click event to close the camera input stream and start the timer
@@ -227,8 +227,8 @@ $("#close-modal").click(function()
         }
       }
 
-      if (min == 20) {
-        pushNotif("exercise");
+      if (min == 35) {                                                          //change value per game
+        sendExercise();
       }
     }, 1000);
   }
@@ -333,7 +333,7 @@ const sendHttpRequest = (method, url, data) => {
 var exerciseQueueNo = 0;
 var exerciseQueue = [];
 
-function setExercisePriority() {
+function sendExercise() {
   
   // Read priority data
   get(child(dref, 'exercises/' + userUid))
