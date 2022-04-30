@@ -65,7 +65,6 @@ function login(user){
 
 
 
-
 // Create a New User
 $("#btnsignup").click(function()
 {
@@ -80,7 +79,6 @@ $("#btnsignup").click(function()
 
     if(name != "" && email != "" && password != "" && cPassword != "" && gender != "" && keyboardRotation != "" && distanceMonitor != "" && backPain != "")
     {
-        
         if(password == cPassword) 
         {
             createUserWithEmailAndPassword(auth, email, password)
@@ -121,10 +119,10 @@ $("#btnsignup").click(function()
                     lowPriority: "",
                     avgPriority: "",
                     highPriority: "",
-                    thursday: 0,
-                    friday: 0,
-                    saturday: 0,
-                    sunday: 0
+                    totalEye: 0,
+                    totalArm: 0,
+                    totalBack: 0,
+                    totalOther: 0
                 })
                 .then(() => {
                     // Data saved successfully!
@@ -173,26 +171,26 @@ $("#btnsignup").click(function()
 
 
 
-                // Store User exercisesChart to db exercisesChart branch
-                set(ref(database, 'exercisesChart/' + user.uid), {
-                    totalEye: 0,
-                    totalArm: 0,
-                    totalBack: 0,
-                    totalOther: 0
-                })
-                .then(() => {
-                    // Data saved successfully!
-                    console.log('New exercisesChart Data Saved Successfully!');
-                    // call login function
-                    // login(user);
-                    // window.location.href = "dashboard.html";
-                })
-                .catch((error) => {
-                    // The write failed...
-                    console.log(error);
-                });
+                // // Store User exercisesChart to db exercisesChart branch
+                // set(ref(database, 'exercisesChart/' + user.uid), {
+                //     totalEye: 0,
+                //     totalArm: 0,
+                //     totalBack: 0,
+                //     totalOther: 0
+                // })
+                // .then(() => {
+                //     // Data saved successfully!
+                //     console.log('New exercisesChart Data Saved Successfully!');
+                //     // call login function
+                //     // login(user);
+                //     // window.location.href = "dashboard.html";
+                // })
+                // .catch((error) => {
+                //     // The write failed...
+                //     console.log(error);
+                // });
 
-                // Store User gamesChart to db gamesChart branch
+                // // Store User gamesChart to db gamesChart branch
                 // set(ref(database, 'gamesChart/' + user.uid), {
                 //     apex: 0,
                 //     fortnite: 0,
@@ -502,14 +500,14 @@ function assignPriority(keyboardRotation, distanceMonitor, backPain) {
         lowPriority: lowPriority
     })
     .then(()=>{
-        console.log("Data updated successfully.");
+        console.log("Line 504");
         // showErrorMessage("Data updated successfully.");
         // location.reload();
     })
     .catch((error)=>{
         console.log(error);
     });
-    
+
 };
 
 
