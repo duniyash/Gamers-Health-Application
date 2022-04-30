@@ -60,6 +60,10 @@ var thursdayhours = 0;
 var fridayhours = 0;
 var saturdayhours = 0;
 var sundayhours = 0;
+var armExe = 0;
+var backExe = 0;
+var eyeExe = 0;
+var otherExe = 0;
 // var timer;
 var timerSeconds;
 
@@ -271,20 +275,35 @@ const sendHttpRequest = (method, url, data) => {
 //function to set exercises =>
 
 var exerciseQueueNo = 0;
+var exerciseQueue = [];
 
 function setExercisePriority() {
   
-  // firebase
+  // Read priority data
+  get(child(dref, 'exercises/' + userUid))
+  .then((snapshot)=>{
+      if(snapshot.exists()){
+          // References
+          var highPriority = snapshot.val().highPriority;
+          var avgPriority = snapshot.val().avgPriority;
+          var lowPriority = snapshot.val().lowPriority;
+
+          exerciseQueue = [ highPriority, "other", avgPriority, "other", lowPriority, "other" ];
+      }
+      else
+      {
+          alert("No data found!");
+      }
+  })
+  .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode);
+          console.log(errorMessage);
+  }); 
 
 
-  var exerciseQueue = [
-    highPriority,
-    "other",
-    avgPriority,
-    "other",
-    lowPriority,
-    "other",
-  ];
+  
 
   var exerciseInQueue = exerciseQueue[exerciseQueueNo];
   var exercise;
@@ -292,15 +311,40 @@ function setExercisePriority() {
   //assign value to exercise to exercise variable using exercise in queue
   if (exerciseInQueue == "arm") {
     //assign an arm exercise to exercise variable
+    exercise = "Open & close hands 10 times.";
+    armExe++ ;
   } else if (exerciseInQueue == "back") {
     //assign a back exercise to exercise variable
+    exercise = "Stand up, bend over & stretch your back to try touching your toes. Lie on your stomach on the floor with the forearms touching the ground and hold a plank for 20 seconds.";
+    backExe++ ;
   } else if (exerciseInQueue == "eye") {
     //assign an eye exercise to exercise variable
-    //firebase assign
-    // firebase update wxw count
+    exercise = "Blink eyes every 4 seconds for 20 seconds. Close eyes and roll them for 10 seconds. Focus on different items in your room.";
+    eyeExe++ ;
   } else {
     //assign an other exercise to exercise variable
+    exercise = "Drink water.";
+    otherExe++ ;
   }
+
+
+  //update exercises count data in DB
+  var userUid = (getAuth().currentUser).uid;
+  update(ref(database, 'exercises/' + userUid),{
+      totalEye: eyeExe,
+      totalArm: armExe,
+      totalBack: backExe,
+      totalOther: otherExe
+  })
+  .then(()=>{
+      console.log("Data updated successfully.");
+      // showErrorMessage("Data updated successfully.");
+      // location.reload();
+  })
+  .catch((error)=>{
+      console.log(error);
+  });
+
 
   pushNotif(exercise);
 
