@@ -50,7 +50,7 @@ function getDashboardData(){
             console.log(errorMessage);
     });  
 
-    get(child(dref, 'dashboard/' + userUid))
+    get(child(dref, 'valorant/' + userUid))
     .then((snapshot)=>{
         if(snapshot.exists()){
             
@@ -58,13 +58,13 @@ function getDashboardData(){
             // alert(snapshot.val());
 
             // References
-            var totalHoursPlayed = snapshot.val().totalHoursPlayed;
-            var todayhoursPlayed = snapshot.val().todayhoursPlayed;
-            var exercisesCompleted = snapshot.val().exercisesCompleted;
+            var totalHoursPlayed = snapshot.val().totalHoursPlayedValorant;
+            var todayhoursPlayed = snapshot.val().todayhoursPlayedValorant;
+            // var exercisesCompleted = snapshot.val().exercisesCompleted;
 
             document.getElementById("blockHeadOne").innerHTML = totalHoursPlayed;
             document.getElementById("blockHeadTwo").innerHTML = todayhoursPlayed;
-            document.getElementById("blockHeadThree").innerHTML = exercisesCompleted;
+            document.getElementById("blockHeadThree").innerHTML = "0";
 
         }
         else
