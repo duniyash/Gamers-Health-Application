@@ -103,8 +103,7 @@ $("#btnsignup").click(function()
                 })
                 .then(() => {
                     // Data saved successfully!
-                    console.log('New User Data Saved Successfully!');
-                    assignPriority(keyboardRotation, distanceMonitor, backPain);
+                    console.log('New user data created successfully!');
                     // call login function
                     // login(user);
                     // window.location.href = "dashboard.html";
@@ -119,6 +118,7 @@ $("#btnsignup").click(function()
                     lowPriority: "",
                     avgPriority: "",
                     highPriority: "",
+                    totalExercises: 0,
                     totalEye: 0,
                     totalArm: 0,
                     totalBack: 0,
@@ -126,7 +126,7 @@ $("#btnsignup").click(function()
                 })
                 .then(() => {
                     // Data saved successfully!
-                    console.log('New plyerWeek Data Saved Successfully!');
+                    console.log('New exercises data created successfully!');
                     // call login function
                     // login(user);
                     // window.location.href = "dashboard.html";
@@ -151,9 +151,10 @@ $("#btnsignup").click(function()
                 })
                 .then(() => {
                     // Data saved successfully!
-                    console.log('New valorant Data Saved Successfully!');
+                    console.log('New valorant data created successfully!');
                     // call login function
                     // login(user);
+                    assignPriority(keyboardRotation, distanceMonitor, backPain);
                     window.location.href = "dashboard.html";
                 })
                 .catch((error) => {
@@ -211,7 +212,7 @@ $("#btnsignup").click(function()
                 //     console.log(error);
                 // });
 
-                console.log('User Signup Successfully!');
+                console.log('New user signup successfully!');
                 // alert('User Signup Successfully!');
                                             
             })
@@ -500,7 +501,7 @@ function assignPriority(keyboardRotation, distanceMonitor, backPain) {
         lowPriority: lowPriority
     })
     .then(()=>{
-        console.log("Line 504");
+        console.log("Priority Data updated Successfully!");
         // showErrorMessage("Data updated successfully.");
         // location.reload();
     })
