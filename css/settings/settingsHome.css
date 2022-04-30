@@ -379,7 +379,7 @@ h2 {
 /* fade animation end css */
 
 #displayNameLabel {
-  padding-right: 10px;
+  width: 35%;
 }
 
 #genderLabel {
