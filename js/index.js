@@ -80,6 +80,7 @@ $("#btnsignup").click(function()
 
     if(name != "" && email != "" && password != "" && cPassword != "" && gender != "" && keyboardRotation != "" && distanceMonitor != "" && backPain != "")
     {
+        assignPriority(keyboardRotation, distanceMonitor, backPain);
         if(password == cPassword) 
         {
             createUserWithEmailAndPassword(auth, email, password)
@@ -431,7 +432,7 @@ var lowPriority;
 
 function assignPriority(keyboardRotation, distanceMonitor, backPain) {
     //eye strain
-    if(highPriority==null) {                    
+    if(highPriority==null) {
         highPriority="eye";
     } else if (avgPriority==null) {
         avgPriority="eye";
