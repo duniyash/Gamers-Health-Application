@@ -53,6 +53,13 @@ var thisTimePlayed;
 var todayTimePlayed;
 var totalTimePlayed;
 let today;
+var mondayhours = 0;
+var tuesdayhours = 0;
+var wednesdayhours = 0;
+var thursdayhours = 0;
+var fridayhours = 0;
+var saturdayhours = 0;
+var sundayhours = 0;
 // var timer;
 var timerSeconds;
 
@@ -173,35 +180,42 @@ $("#stopButton").click(function()
   
   switch (new Date().getDay()) {
     case 0:
-      todayday = "Sunday";
+      today = "Sunday";
       thisTimePlayed = min + sec / 60;
+      sundayhours += thisTimePlayed;
       break;
     case 1:
-      todayday = "Monday";
+      today = "Monday";
       thisTimePlayed = min + sec / 60;
+      mondayhours += thisTimePlayed
       break;
     case 2:
-      todayday = "Tuesday";
+      today = "Tuesday";
       thisTimePlayed = min + sec / 60;
+      tuesdayhours += thisTimePlayed
       break;
     case 3:
-      todayday = "Wednesday";
+      today = "Wednesday";
       thisTimePlayed = min + sec / 60;
+      wednesdayhours += thisTimePlayed
       break;
     case 4:
-      todayday = "Thursday";
+      today = "Thursday";
       thisTimePlayed = min + sec / 60;
+      thursdayhours += thisTimePlayed
       break;
     case 5:
-      todayday = "Friday";
+      today = "Friday";
       thisTimePlayed = min + sec / 60;
+      fridayhours += thisTimePlayed
       break;
     case  6:
-      todayday = "Saturday";
+      today = "Saturday";
       thisTimePlayed = min + sec / 60;
+      saturdayhours += thisTimePlayed
   }
 
-  console.log(todayday);
+  console.log(today);
 
   todayTimePlayed += thisTimePlayed;
   totalTimePlayed += todayTimePlayed;
@@ -211,13 +225,13 @@ $("#stopButton").click(function()
   update(ref(database, 'valorant/' + userUid),{
     totalHoursPlayedValorant: totalTimePlayed,
     todayhoursPlayedValorant: todayTimePlayed,
-    mondayhoursPlayedValorant: 0,
-    tuesdayhoursPlayedValorant: 0,
-    wednesdayhoursPlayedValorant: 0,
-    thursdayhoursPlayedValorant: 0,
-    fridayhoursPlayedValorant: 0,
-    saturdayhoursPlayedValorant: 0,
-    sundayhoursPlayedValorant: 0
+    mondayhoursPlayedValorant: mondayhours,
+    tuesdayhoursPlayedValorant: tuesdayhours,
+    wednesdayhoursPlayedValorant: wednesdayhours,
+    thursdayhoursPlayedValorant: thursdayhours,
+    fridayhoursPlayedValorant: fridayhours,
+    saturdayhoursPlayedValorant: saturdayhours,
+    sundayhoursPlayedValorant: sundayhours
   })
   .then(()=>{
       console.log("Data updated successfully.");
