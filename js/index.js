@@ -115,18 +115,43 @@ $("#btnsignup").click(function()
                 });
 
                 // Store playing week data to db plyerWeek branch
-                set(ref(database, 'plyerWeek/' + user.uid), {
-                    monday: 0,
-                    tuesday: 0,
-                    wednesday: 0,
-                    thursday: 0,
-                    friday: 0,
-                    saturday: 0,
-                    sunday: 0
+                // set(ref(database, 'plyerWeek/' + user.uid), {
+                //     monday: 0,
+                //     tuesday: 0,
+                //     wednesday: 0,
+                //     thursday: 0,
+                //     friday: 0,
+                //     saturday: 0,
+                //     sunday: 0
+                // })
+                // .then(() => {
+                //     // Data saved successfully!
+                //     console.log('New plyerWeek Data Saved Successfully!');
+                //     // call login function
+                //     // login(user);
+                //     // window.location.href = "dashboard.html";
+                // })
+                // .catch((error) => {
+                //     // The write failed...
+                //     console.log(error);
+                // });
+
+                // Store valorant data to db valorant branch
+                set(ref(database, 'valorant/' + user.uid), {
+                    totalHoursPlayedValorant: 0,
+                    todayhoursPlayedValorant: 0,
+                    mondayhoursPlayedValorant: 0,
+                    tuesdayhoursPlayedValorant: 0,
+                    wednesdayhoursPlayedValorant: 0,
+                    thursdayhoursPlayedValorant: 0,
+                    fridayhoursPlayedValorant: 0,
+                    saturdayhoursPlayedValorant: 0,
+                    sundayhoursPlayedValorant: 0,
+
                 })
                 .then(() => {
                     // Data saved successfully!
-                    console.log('New plyerWeek Data Saved Successfully!');
+                    console.log('New valorant Data Saved Successfully!');
                     // call login function
                     // login(user);
                     // window.location.href = "dashboard.html";
@@ -136,23 +161,15 @@ $("#btnsignup").click(function()
                     console.log(error);
                 });
 
-                // Store User dashboard to db dashboard branch
-                set(ref(database, 'dashboard/' + user.uid), {
-                    totalHoursPlayed: 0,
-                    todayhoursPlayed: 0,
-                    exercisesCompleted: 0
-                })
-                .then(() => {
-                    // Data saved successfully!
-                    console.log('New dashboard Data Saved Successfully!');
-                    // call login function
-                    // login(user);
-                    // window.location.href = "dashboard.html";
-                })
-                .catch((error) => {
-                    // The write failed...
-                    console.log(error);
-                });
+
+
+
+
+
+
+
+
+
 
                 // Store User exercisesChart to db exercisesChart branch
                 set(ref(database, 'exercisesChart/' + user.uid), {
@@ -174,25 +191,25 @@ $("#btnsignup").click(function()
                 });
 
                 // Store User gamesChart to db gamesChart branch
-                set(ref(database, 'gamesChart/' + user.uid), {
-                    apex: 0,
-                    fortnite: 0,
-                    valorant: 0,
-                    genshinImpact: 0,
-                    eldenRing: 0,
-                    leagueOfLegends: 0
-                })
-                .then(() => {
-                    // Data saved successfully!
-                    console.log('New gamesChart Data Saved Successfully!');
-                    // call login function
-                    // login(user);
-                    window.location.href = "dashboard.html";
-                })
-                .catch((error) => {
-                    // The write failed...
-                    console.log(error);
-                });
+                // set(ref(database, 'gamesChart/' + user.uid), {
+                //     apex: 0,
+                //     fortnite: 0,
+                //     valorant: 0,
+                //     genshinImpact: 0,
+                //     eldenRing: 0,
+                //     leagueOfLegends: 0
+                // })
+                // .then(() => {
+                //     // Data saved successfully!
+                //     console.log('New gamesChart Data Saved Successfully!');
+                //     // call login function
+                //     // login(user);
+                //     window.location.href = "dashboard.html";
+                // })
+                // .catch((error) => {
+                //     // The write failed...
+                //     console.log(error);
+                // });
 
                 console.log('User Signup Successfully!');
                 // alert('User Signup Successfully!');
