@@ -80,7 +80,7 @@ $("#btnsignup").click(function()
 
     if(name != "" && email != "" && password != "" && cPassword != "" && gender != "" && keyboardRotation != "" && distanceMonitor != "" && backPain != "")
     {
-        assignPriority(keyboardRotation, distanceMonitor, backPain);
+        
         if(password == cPassword) 
         {
             createUserWithEmailAndPassword(auth, email, password)
@@ -106,6 +106,7 @@ $("#btnsignup").click(function()
                 .then(() => {
                     // Data saved successfully!
                     console.log('New User Data Saved Successfully!');
+                    assignPriority(keyboardRotation, distanceMonitor, backPain);
                     // call login function
                     // login(user);
                     // window.location.href = "dashboard.html";
@@ -115,27 +116,27 @@ $("#btnsignup").click(function()
                     console.log(error);
                 });
 
-                // Store playing week data to db plyerWeek branch
-                // set(ref(database, 'plyerWeek/' + user.uid), {
-                //     monday: 0,
-                //     tuesday: 0,
-                //     wednesday: 0,
-                //     thursday: 0,
-                //     friday: 0,
-                //     saturday: 0,
-                //     sunday: 0
-                // })
-                // .then(() => {
-                //     // Data saved successfully!
-                //     console.log('New plyerWeek Data Saved Successfully!');
-                //     // call login function
-                //     // login(user);
-                //     // window.location.href = "dashboard.html";
-                // })
-                // .catch((error) => {
-                //     // The write failed...
-                //     console.log(error);
-                // });
+                // Store exercises data to db exercises branch
+                set(ref(database, 'exercises/' + user.uid), {
+                    lowPriority: "",
+                    avgPriority: "",
+                    highPriority: "",
+                    thursday: 0,
+                    friday: 0,
+                    saturday: 0,
+                    sunday: 0
+                })
+                .then(() => {
+                    // Data saved successfully!
+                    console.log('New plyerWeek Data Saved Successfully!');
+                    // call login function
+                    // login(user);
+                    // window.location.href = "dashboard.html";
+                })
+                .catch((error) => {
+                    // The write failed...
+                    console.log(error);
+                });
 
                 // Store valorant data to db valorant branch
                 set(ref(database, 'valorant/' + user.uid), {
@@ -155,7 +156,7 @@ $("#btnsignup").click(function()
                     console.log('New valorant Data Saved Successfully!');
                     // call login function
                     // login(user);
-                    // window.location.href = "dashboard.html";
+                    window.location.href = "dashboard.html";
                 })
                 .catch((error) => {
                     // The write failed...
@@ -423,12 +424,11 @@ function showErrorMessage(p) {
     // loginCont.style.padding = "24px";
 }
 
-//priority assignment
 
+//priority assignment
 var avgPriority;
 var highPriority;
 var lowPriority;
-
 
 function assignPriority(keyboardRotation, distanceMonitor, backPain) {
     //eye strain
@@ -493,6 +493,23 @@ function assignPriority(keyboardRotation, distanceMonitor, backPain) {
             highPriority="back";
         };
     };
+
+    //update priority data with user inputs
+    var userUid = (getAuth().currentUser).uid;
+    update(ref(database, 'exercises/' + userUid),{
+        highPriority: highPriority,
+        avgPriority: avgPriority,
+        lowPriority: lowPriority
+    })
+    .then(()=>{
+        console.log("Data updated successfully.");
+        // showErrorMessage("Data updated successfully.");
+        // location.reload();
+    })
+    .catch((error)=>{
+        console.log(error);
+    });
+    
 };
 
 
