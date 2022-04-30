@@ -42,6 +42,62 @@ const database = getDatabase(app);
 const storage = getStorage();
 const dref = ref(database);
 
+function getDashboardData()
+{
+  var userUid = (getAuth().currentUser).uid;
+  get(child(dref, 'valorant/' + userUid))
+    .then((snapshot)=>{
+        if(snapshot.exists()){
+            
+            // alert("wada na line 454");
+            // alert(snapshot.val());
+
+            // References
+            var totalHoursPlayed = snapshot.val().totalHoursPlayedValorant;
+            var todayhoursPlayed = snapshot.val().todayhoursPlayedValorant;
+
+            document.getElementById("blockHeadOne").innerHTML = totalHoursPlayed;
+            document.getElementById("blockHeadTwo").innerHTML = todayhoursPlayed;
+
+        }
+        else
+        {
+            alert("No data found! ==> Line 69");
+        }
+    })
+    .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode);
+            console.log(errorMessage);
+    });  
+
+    get(child(dref, 'exercises/' + userUid))
+    .then((snapshot)=>{
+        if(snapshot.exists()){
+            
+            // alert("wada na line 454");
+            // alert(snapshot.val());
+
+            // References
+            var totalExercises = snapshot.val().totalExercises;
+            document.getElementById("blockHeadThree").innerHTML = totalExercises;
+
+        }
+        else
+        {
+            alert("No data found! ==> Line 93");
+        }
+    })
+    .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode);
+            console.log(errorMessage);
+    });
+}
+
+setTimeout(getDashboardData, 1000);
 
 const startTimerBtn = document.querySelector("#startButton");
 const stopTimerBtn = document.querySelector("#stopButton");
@@ -327,10 +383,12 @@ function setExercisePriority() {
     otherExe++ ;
   }
 
+  var totalExercises = eyeExe + armExe + backExe + otherExe;
 
   //update exercises count data in DB
   var userUid = (getAuth().currentUser).uid;
   update(ref(database, 'exercises/' + userUid),{
+      totalExercises: totalExercises, 
       totalEye: eyeExe,
       totalArm: armExe,
       totalBack: backExe,
