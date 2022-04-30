@@ -98,7 +98,7 @@ nav ul li:hover .tooltip {
 
 .main .pageHead {
     margin: 7vh 0 0 2rem;
-    font-family :'Popins'  ;
+    font-family: 'Sora', sans-serif;
     font-size: 36px;
     letter-spacing: 0;
     font-weight: 500;
@@ -152,7 +152,7 @@ nav ul li:hover .tooltip {
 
 .articles .card-container {
     cursor: default;
-    transition: all 0.8s ease;
+    transition: all 0.9s ease;
     border-radius: 15px;
     width: 385px;
 }

@@ -51,51 +51,27 @@
         <section class="mainContent" >
 
             
-            <div class="settingsContent">
-                <div class="basicLayout">
-                    <div class="column left"id="basicInfo" >
-                        <div class="basicInfo" >
-                            <div class="header">
-                                <h2>Basic Infromation</h2>
-                                
-                                <!-- <a id="info" onclick="closeWindow('info')"><i class='bx bx-window-close bx-md'></i></a> -->
-                                
-                            </div>
-                            <div class="inputContainer">
+ <!-- Testing -->
+            <div>
+                <div class="labels">
 
-                                <label for="name">Name :</label>
-                                <span name="name"id="displayName">tharuka</span>
-                                <div  id="nameField"></div>
-                                
-                            </div>
-    
-                            
-                            <div class="inputContainer">
-                             
-                            <div class="displayGender">
-                                <form action="/action_page.php">
-                                    <label for="gendar">Gendar :</label>
-                                    <select name="gendar" id="gendar">
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
-                                    <option value="opel">Other</option>
-                                    
-                                    </select>
-                                    <br><br>
-                                    
-                                </form>
-                                
-                            </div>
-                            </div>  
-                            
-                            <div class ='editBtn'id="editBtn" >
-                                
-                                <button class="btn" onclick="editNameBtn()">Edit basic details</button>
-                                
-                            </div>
-                        
-                        </div>
-                        
+                    <p id="usernamebox"></p> <br><br>
+                    <p id="emailbox"></p> <br><br>
+                    <p id="passwordbox"></p> <br><br>
+                    <p id="genderbox"></p> <br><br>
+                    <p id="distbox"></p> <br><br>
+                    <p id="rotabox"></p> <br><br>
+                    <p id="painbox"></p> <br><br>
+
+
+
+                    <!-- <label for="">Usre Name: </label> <p id="usernamebox"></p> <br><br>
+                    <label for="">Email</label> <input type="text" id="emailbox"> <br><br>
+                    <label for="">Password</label> <input type="text" id="passwordbox"> <br><br>
+                    <label for="">Gender</label> <input type="text" id="genderbox"> <br><br>
+                    <label for="">Distance to Monitor</label> <input type="text" id="distbox"> <br><br>
+                    <label for="">Keyboard Rotation</label> <input type="text" id="rotabox"> <br><br>
+                    <label for="">BackPain</label> <input type="text" id="painbox"> <br><br> -->
                     
                     </div>
                     <div class="column right">
@@ -115,70 +91,24 @@
                         </div>
                      </div>
                 </div>
-
-
-                <div class="editGameInfo" id="gameInfo">
-                    <h2>Game Settings</h2>
-
-                        <div class="backPain" id="backPain">                        
-                            <form action="/action_page.php">
-                                <label for="cars">Back Pain</label>
-                                <select name="cars" id="cars">
-                                <option value="volvo">Volvo</option>
-                                <option value="saab">Saab</option>
-                                <option value="opel">Opel</option>
-                                <option value="audi">Audi</option>
-                                </select>
-                                <br><br>
-                                
-                            </form>
-                        </div>
-
+   <hr>
+                <!-- <div class="labels">
+                    <label for="">Usre Name</label> <input type="text" id="usernamebox"> <br><br>
+                    <label for="">Email</label> <input type="text" id="emailbox"> <br><br>
+                    <label for="">Password</label> <input type="text" id="passwordbox"> <br><br>
+                    <label for="">Distance to Monitor</label> <input type="text" id="distbox"> <br><br>
+                    <label for="">Keyboard Rotation</label> <input type="text" id="rotabox"> <br><br>
+                    <label for="">BackPain</label> <input type="text" id="painbox"> <br><br>
+                    <label for="">Gender</label>
+                    <select id="genderbox"> <br><br>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select> -->
                     
-
-                        <div class="kayboard" id="kayboard">                        
-                            <form >
-                                <label for="cars">kayboard</label>
-                                <select name="cars" id="cars">
-                                <option value="volvo">Volvo</option>
-                                <option value="saab">Saab</option>
-                                <option value="opel">Opel</option>
-                                <option value="audi">Audi</option>
-                                </select>
-                                <br><br>
-                               
-                            </form>
-                        </div>
-
-                        <div class="distance">                        
-                            <form >
-                                <label for="cars">Distance</label>
-                                <select name="cars" id="cars">
-                                <option value="volvo">Volvo</option>
-                                <option value="saab">Saab</option>
-                                <option value="opel">Opel</option>
-                                <option value="audi">Audi</option>
-                                </select>
-                                <br><br>
-                                
-                            </form>
-                        </div>
-                            <div class="favGame">                        
-                                <form >
-                                    <label for="cars">Favourite Game</label>
-                                    <select name="cars" id="cars">
-                                    <option value="volvo">Volvo</option>
-                                    <option value="saab">Saab</option>
-                                    <option value="opel">Opel</option>
-                                    <option value="audi">Audi</option>
-                                    </select>
-                                    <br><br>
-                                    
-                                </form>
-                            </div>
-                    <button class="btn" id="GameInfobtn">Update</button>
-               
-                </div>
+                    <!-- <button id="instbtn">Insert</button> -->
+                    <!-- <button id="updbtn">Update</button>
+                    <button id="delbtn">Delete</button> -->
+                <!-- </div> -->
 
 
                 <div id="emailInfo">
@@ -242,9 +172,8 @@
     </div>
 
 </body>
-<script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js"></script>
-<script type="module" src="js/index.js"></script>
-<script src="js/settings/settingsHome.js"></script>
+<!-- <script type="module" src="js/index.js"></script> -->
+<script type="module" src="js/settings.js"></script>
 <!-- Testing -->
 <script>
     // Functions
