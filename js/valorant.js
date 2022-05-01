@@ -207,11 +207,11 @@ $("#click-photo").click(function()
 });
 
 function doPostureOutput(postureOutput) {
-  if (postureOutput == "correct") {
+  if (postureOutput == "incorrect") {
     document.getElementById("resultGood").style.display = "none";
     document.getElementById("resultBad").style.display = "block";
     console.log(postureOutput)
-  } else if (postureOutput == "incorrect") {
+  } else if (postureOutput == "correct") {
     document.getElementById("resultBad").style.display = "none";
     document.getElementById("resultGood").style.display = "block";
     click_button.style.display = "none";
@@ -223,7 +223,7 @@ function doPostureOutput(postureOutput) {
 //on-click event to close the camera input stream and start the timer
 $("#close-modal").click(function()
 {
-  if (postureOutput == "incorrect") {
+  if (postureOutput == "correct") {
     // <= change incorrect to correct here
     stream.getTracks().forEach((track) => track.stop());
 
@@ -257,7 +257,7 @@ $("#close-modal").click(function()
         }
       }
 
-      if (sec == 5) {
+      if (min == 35) {
         sendExercise();
       }
     }, 1000);
@@ -505,8 +505,8 @@ function sendExercise() {
               console.log(error);
           });
 
-          // pushNotif(exercise);
-          console.log("Notification"+ exercise);
+          pushNotif(exercise);
+          //console.log("Notification"+ exercise);
 
           if (exerciseQueueNo == 5) {
             exerciseQueueNo = 0;

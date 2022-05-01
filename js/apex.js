@@ -257,7 +257,7 @@ $("#close-modal").click(function()
         }
       }
 
-      if (sec == 5) {
+      if (min == 20) {
         sendExercise();
       }
     }, 1000);
@@ -505,8 +505,8 @@ function sendExercise() {
                 console.log(error);
             });
   
-            // pushNotif(exercise);
-            console.log("Notification"+ exercise);
+            pushNotif(exercise);
+            //console.log("Notification"+ exercise);
   
             if (exerciseQueueNo == 5) {
               exerciseQueueNo = 0;
