@@ -232,7 +232,7 @@ $("#close-modal").click(function()
         }
       }
 
-      if (sec == 3) {                                                          //change value per game
+      if (sec == 3) {
         sendExercise();
       }
     }, 1000);
