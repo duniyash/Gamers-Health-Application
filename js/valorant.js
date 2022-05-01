@@ -173,22 +173,31 @@ $("#click-photo").click(function()
     console.log(responseData);
 
     postureOutput = responseData.Prediction;
+    doPostureOutput(postureOutput);
   });
 
+  //console.log(postureOutput);
+
+  
+  // data url of the image
+  //console.log(image_data_url);
+
+  //pushNotif();
+});
+
+function doPostureOutput(postureOutput) {
   if (postureOutput == "incorrect") {
     document.getElementById("resultGood").style.display = "none";
     document.getElementById("resultBad").style.display = "block";
+    console.log(postureOutput)
   } else if (postureOutput == "correct") {
     document.getElementById("resultBad").style.display = "none";
     document.getElementById("resultGood").style.display = "block";
     click_button.style.display = "none";
     camera_button.style.display = "none";
+    console.log(postureOutput)
   }
-  // data url of the image
-  console.log(image_data_url);
-
-  //pushNotif();
-});
+}
 
 //on-click event to close the camera input stream and start the timer
 $("#close-modal").click(function()
