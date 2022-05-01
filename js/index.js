@@ -154,6 +154,30 @@ $("#btnsignup").click(function()
                     console.log('New valorant data created successfully!');
                     // call login function
                     // login(user);
+                })
+                .catch((error) => {
+                    // The write failed...
+                    console.log(error);
+                });
+
+                // Store apex data to db valorant branch
+                set(ref(database, 'apex/' + user.uid), {
+                    totalHoursPlayedApex: 0,
+                    todayhoursPlayedApex: 0,
+                    mondayhoursPlayedApex: 0,
+                    tuesdayhoursPlayedApex: 0,
+                    wednesdayhoursPlayedApex: 0,
+                    thursdayhoursPlayedApex: 0,
+                    fridayhoursPlayedApex: 0,
+                    saturdayhoursPlayedApex: 0,
+                    sundayhoursPlayedApex: 0,
+
+                })
+                .then(() => {
+                    // Data saved successfully!
+                    console.log('New valorant data created successfully!');
+                    // call login function
+                    // login(user);
                     assignPriority(keyboardRotation, distanceMonitor, backPain);
                     window.location.href = "dashboard.html";
                 })
