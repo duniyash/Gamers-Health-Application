@@ -138,6 +138,9 @@ setTimeout(getDashboardData, 1000);
 //on-click event to start the flow and open the modal
 $("#startButton").click(function()
 {
+  exerciseQueueNo = 0;
+  click_button.style.display = "block";
+  camera_button.style.display = "block";
   clearInterval(timerSeconds);
   second.innerHTML = "00";
   minute.innerHTML = "00";
@@ -229,71 +232,95 @@ $("#close-modal").click(function()
         }
       }
 
-      if (min == 35) {                                                          //change value per game
+      if (sec == 3) {                                                          //change value per game
         sendExercise();
       }
     }, 1000);
   }
-  console.log(min);
-  console.log(sec);
+
 });
 
 //on-click event to stop timer
 $("#stopButton").click(function()
 {
   clearInterval(timerSeconds);
-  console.log(min);
-  console.log(sec);
-
-  var todayDate = new Date().getDay()
-
-  if (todayDate == 0) {
-    today = "Sunday";
-    thisTimePlayed = parseInt(min);
-    sundayhours += thisTimePlayed;
-  } else if (todayDate == 1) {
-    today = "Monday";
-    thisTimePlayed = parseInt(min);
-    mondayhours += thisTimePlayed
-  } else if (todayDate == 2) {
-    today = "Tuesday";
-    thisTimePlayed = parseInt(min);
-    tuesdayhours += thisTimePlayed
-  } else if (todayDate == 3) {
-    today = "Wednesday";
-    thisTimePlayed = parseInt(min);
-    wednesdayhours += thisTimePlayed
-  } else if (todayDate == 4) {
-    today = "Thursday";
-    thisTimePlayed = parseInt(min);
-    thursdayhours += thisTimePlayed
-  } else if (todayDate == 5) {
-    today = "Friday";
-    thisTimePlayed = parseInt(min);
-    fridayhours += thisTimePlayed
-  } else if (todayDate == 6) {
-    today = "Saturday";
-    thisTimePlayed = parseInt(min);
-    saturdayhours += thisTimePlayed
-  }
-
-  console.log(today);
 
   var userUid = (getAuth().currentUser).uid;
   get(child(dref, 'valorant/' + userUid))
   .then((snapshot)=>{
       if(snapshot.exists()){
 
+          var todayDate = new Date().getDay()
+
+          if (todayDate == 0) {
+            today = "Sunday";
+            thisTimePlayed = parseInt(min);
+            sundayhours += thisTimePlayed;
+          } else if (todayDate == 1) {
+            today = "Monday";
+            thisTimePlayed = parseInt(min);
+            mondayhours += thisTimePlayed
+          } else if (todayDate == 2) {
+            today = "Tuesday";
+            thisTimePlayed = parseInt(min);
+            tuesdayhours += thisTimePlayed
+          } else if (todayDate == 3) {
+            today = "Wednesday";
+            thisTimePlayed = parseInt(min);
+            wednesdayhours += thisTimePlayed
+          } else if (todayDate == 4) {
+            today = "Thursday";
+            thisTimePlayed = parseInt(min);
+            thursdayhours += thisTimePlayed
+          } else if (todayDate == 5) {
+            today = "Friday";
+            thisTimePlayed = parseInt(min);
+            fridayhours += thisTimePlayed
+          } else if (todayDate == 6) {
+            today = "Saturday";
+            thisTimePlayed = parseInt(min);
+            saturdayhours += thisTimePlayed
+          }
+        
+          console.log(today);
+
           // References
-          var tot = snapshot.val().totalHoursPlayedValorant;
-          var to = snapshot.val().todayhoursPlayedValorant;
+          todayTimePlayed = snapshot.val().totalHoursPlayedValorant;
+          totalTimePlayed = snapshot.val().todayhoursPlayedValorant;
 
+          console.log(todayTimePlayed + " 291");
+          console.log(totalTimePlayed + " 292");
 
-          todayTimePlayed = to;
-          totalTimePlayed = tot;
+          if(min != 0) {
+            todayTimePlayed += min; 
+            totalTimePlayed += todayTimePlayed; 
+          }
+          
+          console.log(todayTimePlayed + " 299");
+          console.log(totalTimePlayed + " 300");
 
-          console.log(todayTimePlayed);
-          console.log(totalTimePlayed);
+          // //send time played to firebase here
+          var userUid = (getAuth().currentUser).uid;
+          update(ref(database, 'valorant/' + userUid),{
+            totalHoursPlayedValorant: totalTimePlayed,
+            todayhoursPlayedValorant: todayTimePlayed,
+            mondayhoursPlayedValorant: mondayhours,
+            tuesdayhoursPlayedValorant: tuesdayhours,
+            wednesdayhoursPlayedValorant: wednesdayhours,
+            thursdayhoursPlayedValorant: thursdayhours,
+            fridayhoursPlayedValorant: fridayhours,
+            saturdayhoursPlayedValorant: saturdayhours,
+            sundayhoursPlayedValorant: sundayhours
+          })
+          .then(()=>{
+              console.log("Data updated successfully.");
+              // showErrorMessage("Data updated successfully.");
+              // location.reload();
+          })
+          .catch((error)=>{
+              console.log(error);
+          });
+
       }
       else
       {
@@ -306,33 +333,6 @@ $("#stopButton").click(function()
           console.log(errorCode);
           console.log(errorMessage);
   });
-
-  // todayTimePlayed += min; 
-  // totalTimePlayed += todayTimePlayed; 
-  console.log("312"+todayTimePlayed);
-  console.log("312"+totalTimePlayed);
-
-  // //send time played to firebase here
-  // var userUid = (getAuth().currentUser).uid;
-  // update(ref(database, 'valorant/' + userUid),{
-  //   totalHoursPlayedValorant: totalTimePlayed,
-  //   todayhoursPlayedValorant: todayTimePlayed,
-  //   mondayhoursPlayedValorant: mondayhours,
-  //   tuesdayhoursPlayedValorant: tuesdayhours,
-  //   wednesdayhoursPlayedValorant: wednesdayhours,
-  //   thursdayhoursPlayedValorant: thursdayhours,
-  //   fridayhoursPlayedValorant: fridayhours,
-  //   saturdayhoursPlayedValorant: saturdayhours,
-  //   sundayhoursPlayedValorant: sundayhours
-  // })
-  // .then(()=>{
-  //     console.log("Data updated successfully.");
-  //     // showErrorMessage("Data updated successfully.");
-  //     // location.reload();
-  // })
-  // .catch((error)=>{
-  //     console.log(error);
-  // });
 
   stopTimerBtn.style.display = "none";
   startTimerBtn.style.display = "block";
@@ -367,6 +367,7 @@ var exerciseQueue = [];
 function sendExercise() {
   
   // Read priority data
+  var userUid = (getAuth().currentUser).uid;
   get(child(dref, 'exercises/' + userUid))
   .then((snapshot)=>{
       if(snapshot.exists()){
@@ -374,8 +375,81 @@ function sendExercise() {
           var highPriority = snapshot.val().highPriority;
           var avgPriority = snapshot.val().avgPriority;
           var lowPriority = snapshot.val().lowPriority;
+          var totExercises = snapshot.val().totalExercises;
+          var totArm = snapshot.val().totalArm;
+          var totBack = snapshot.val().totalBack;
+          var totEye = snapshot.val().totalEye;
+          var totOther = snapshot.val().totalOther;
+
+          console.log(highPriority);
+          console.log(avgPriority);
+          console.log(lowPriority);
 
           exerciseQueue = [ highPriority, "other", avgPriority, "other", lowPriority, "other" ];
+
+          var exerciseInQueue = exerciseQueue[exerciseQueueNo];
+          var exercise;
+
+          //assign value to exercise to exercise variable using exercise in queue
+          if (exerciseInQueue == "arm") {
+            //assign an arm exercise to exercise variable
+            exercise = "Open & close hands 10 times.";
+            armExe++ ;
+          } else if (exerciseInQueue == "back") {
+            //assign a back exercise to exercise variable
+            exercise = "Stand up, bend over & stretch your back to try touching your toes. Lie on your stomach on the floor with the forearms touching the ground and hold a plank for 20 seconds.";
+            backExe++ ;
+          } else if (exerciseInQueue == "eye") {
+            //assign an eye exercise to exercise variable
+            exercise = "Blink eyes every 4 seconds for 20 seconds. Close eyes and roll them for 10 seconds. Focus on different items in your room.";
+            eyeExe++ ;
+          } else {
+            //assign an other exercise to exercise variable
+            exercise = "Drink water.";
+            otherExe++ ;
+          }
+
+          var totalExercises = eyeExe + armExe + backExe + otherExe;
+
+          totExercises += totalExercises;
+          totArm += armExe;
+          totBack += backExe;
+          totEye += eyeExe;
+          totOther += otherExe;
+
+          totalExercises = 0;
+          armExe = 0;
+          backExe = 0;
+          eyeExe = 0;
+          otherExe = 0;
+
+          //update exercises count data in DB
+          var userUid = (getAuth().currentUser).uid;
+          update(ref(database, 'exercises/' + userUid),{
+              totalExercises: totExercises, 
+              totalEye: totEye,
+              totalArm: totArm,
+              totalBack: totBack,
+              totalOther: totOther
+          })
+          .then(()=>{
+              console.log("Exercises count data updated successfully.");
+              // showErrorMessage("Data updated successfully.");
+              // location.reload();
+          })
+          .catch((error)=>{
+              console.log(error);
+          });
+
+          // pushNotif(exercise);
+          console.log("Notification"+ exercise);
+
+          if (exerciseQueueNo == 5) {
+            exerciseQueueNo = 0;
+          } else {
+            exerciseQueueNo = exerciseQueueNo + 1;
+          };
+
       }
       else
       {
@@ -390,58 +464,6 @@ function sendExercise() {
   }); 
 
 
-  
-
-  var exerciseInQueue = exerciseQueue[exerciseQueueNo];
-  var exercise;
-
-  //assign value to exercise to exercise variable using exercise in queue
-  if (exerciseInQueue == "arm") {
-    //assign an arm exercise to exercise variable
-    exercise = "Open & close hands 10 times.";
-    armExe++ ;
-  } else if (exerciseInQueue == "back") {
-    //assign a back exercise to exercise variable
-    exercise = "Stand up, bend over & stretch your back to try touching your toes. Lie on your stomach on the floor with the forearms touching the ground and hold a plank for 20 seconds.";
-    backExe++ ;
-  } else if (exerciseInQueue == "eye") {
-    //assign an eye exercise to exercise variable
-    exercise = "Blink eyes every 4 seconds for 20 seconds. Close eyes and roll them for 10 seconds. Focus on different items in your room.";
-    eyeExe++ ;
-  } else {
-    //assign an other exercise to exercise variable
-    exercise = "Drink water.";
-    otherExe++ ;
-  }
-
-  var totalExercises = eyeExe + armExe + backExe + otherExe;
-
-  //update exercises count data in DB
-  var userUid = (getAuth().currentUser).uid;
-  update(ref(database, 'exercises/' + userUid),{
-      totalExercises: totalExercises, 
-      totalEye: eyeExe,
-      totalArm: armExe,
-      totalBack: backExe,
-      totalOther: otherExe
-  })
-  .then(()=>{
-      console.log("Data updated successfully.");
-      // showErrorMessage("Data updated successfully.");
-      // location.reload();
-  })
-  .catch((error)=>{
-      console.log(error);
-  });
-
-
-  pushNotif(exercise);
-
-  if (exerciseQueueNo == 5) {
-    exerciseQueueNo = 0;
-  } else {
-    exerciseQueueNo = exerciseQueueNo + 1;
-  };
 }
 
 //function to push desktop notifications =>
