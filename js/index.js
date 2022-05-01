@@ -28,7 +28,7 @@ const dref = ref(database);
 
 //modal for forgor password confirmation email
 var FPconfirmation = document.getElementById('FPconfirmation');
-// var userUid = null;
+
 
 
 //error 
@@ -88,8 +88,7 @@ $("#btnsignup").click(function()
                 const user = userCredential.user;
                 
                 // ... user.uid  
-                // userUid = user.uid; 
-                // alert(userUid);
+
                 
                // Store User details to db user branch
                set(ref(database, 'users/' + user.uid), {
@@ -186,8 +185,7 @@ $("#btnlogin").click(function()
             const user = userCredential.user;
             
             // ... user.uid  
-            // userUid = user.uid; 
-            // alert(userUid);
+
 
             // Show user profile
             // if (user !== null) {
@@ -196,6 +194,7 @@ $("#btnlogin").click(function()
             //     // this value to authenticate with your backend server, if
             //     // you have one. Use User.getToken() instead.
                   
+
             //     // console.log(user);
             //     // console.log(uid);
             //     // window.alert(user);
@@ -346,11 +345,6 @@ function showErrorMessage(p) {
     errorMessageSpan.style.display = "block";
     // loginCont.style.padding = "24px";
 }
-
-
-
-
-
 
 // updbtn.addEventListener('click', UpdateData);
 // delbtn.addEventListener('click', DeleteData);
