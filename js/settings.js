@@ -135,6 +135,142 @@ $("#backPainSaveBtn").click(function()
             backPain: backPainSelect,
         })
         .then(()=>{
+
+            var userUid = (getAuth().currentUser).uid;
+            get(child(dref, 'exercises/' + userUid))
+            .then((snapshot)=>{
+                if(snapshot.exists()){
+                    
+                    // References
+                    var keyboardRotation = snapshot.val().keyboardRotation;
+                    var distanceMonitor = snapshot.val().distanceMonitor;
+                    var backPain = snapshot.val().backPain;
+
+                    //priority assignment
+                    var avgPriority;
+                    var highPriority;
+                    var lowPriority;
+
+                    function assignPriority(keyboardRotation, distanceMonitor, backPain) {
+
+                        //eye strain
+                        if (distanceMonitor <= 30) {
+                            if(highPriority==null) {
+                                highPriority="eye";
+                            } else if (avgPriority==null) {
+                                avgPriority="eye";
+                            } else {
+                                lowPriority="eye";
+                            }
+                        } else if (distanceMonitor > 60) {
+                            if(lowPriority==null) {
+                                lowPriority="eye";
+                            } else if (avgPriority==null) {
+                                avgPriority="eye";
+                            } else {
+                                highPriority="eye";
+                            }
+                        } else {
+                            if(avgPriority==null) {
+                                avgPriority="eye";
+                            } else if (highPriority==null) {
+                                highPriority="eye";
+                            } else {
+                                lowPriority="eye";
+                            }
+                        }
+                    
+                        //arm strain
+                        if ( keyboardRotation >= 70){
+                            if(highPriority==null) {
+                                highPriority="arm";
+                            } else if (avgPriority==null) {
+                                avgPriority="arm";
+                            } else {
+                                lowPriority="arm";
+                            }
+                            
+                        } else if (keyboardRotation <= 40 ){
+                            if(lowPriority==null) {
+                                lowPriority="arm";
+                            } else if (avgPriority==null) {
+                                avgPriority="arm";
+                            } else {
+                                highPriority="arm";
+                            }
+                    
+                        } else {
+                            if(avgPriority==null) {
+                                avgPriority="arm";
+                            } else if (lowPriority==null) {
+                                lowPriority="arm";
+                            } else {
+                                highPriority="arm";
+                            }
+                        };
+                    
+                        //back pain
+                        if (backPain=="often"){
+                            if(highPriority==null) {
+                                highPriority="back";
+                            } else if (avgPriority==null) {
+                                avgPriority="back";
+                            } else {
+                                lowPriority="back";
+                            }
+                    
+                        } else if (backPain=="rarely" ){
+                            if(avgPriority==null) {
+                                avgPriority="back";
+                            } else if (lowPriority==null) {
+                                lowPriority="back";
+                            } else {
+                                highPriority="back";
+                            }
+                    
+                        } else {
+                            if(lowPriority==null) {
+                                lowPriority="back";
+                            } else if (avgPriority==null) {
+                                avgPriority="back";
+                            } else {
+                                highPriority="back";
+                            }
+                        }
+                    
+                        //update priority data with user inputs
+                        var userUid = (getAuth().currentUser).uid;
+                        update(ref(database, 'exercises/' + userUid),{
+                            highPriority: highPriority,
+                            avgPriority: avgPriority,
+                            lowPriority: lowPriority
+                        })
+                        .then(()=>{
+                            console.log("Priority Data updated Successfully!");
+                            // showErrorMessage("Data updated successfully.");
+                            // location.reload();
+                        })
+                        .catch((error)=>{
+                            console.log(error);
+                        });
+                    
+                    };
+
+                    assignPriority(keyboardRotation, distanceMonitor, backPain);
+
+                }
+                else
+                {
+                    alert("No data found! ==> Line 43");
+                }
+            })
+            .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.log(errorCode);
+                    console.log(errorMessage);
+            }); 
+
             showErrorMessage("Data updated successfully.");
             location.reload();
         })
@@ -161,6 +297,142 @@ $("#kayboardSaveBtn").click(function()
             keyboardRotation: kayboardSelect,
         })
         .then(()=>{
+            
+            var userUid = (getAuth().currentUser).uid;
+            get(child(dref, 'exercises/' + userUid))
+            .then((snapshot)=>{
+                if(snapshot.exists()){
+                    
+                    // References
+                    var keyboardRotation = snapshot.val().keyboardRotation;
+                    var distanceMonitor = snapshot.val().distanceMonitor;
+                    var backPain = snapshot.val().backPain;
+
+                    //priority assignment
+                    var avgPriority;
+                    var highPriority;
+                    var lowPriority;
+
+                    function assignPriority(keyboardRotation, distanceMonitor, backPain) {
+
+                        //eye strain
+                        if (distanceMonitor <= 30) {
+                            if(highPriority==null) {
+                                highPriority="eye";
+                            } else if (avgPriority==null) {
+                                avgPriority="eye";
+                            } else {
+                                lowPriority="eye";
+                            }
+                        } else if (distanceMonitor > 60) {
+                            if(lowPriority==null) {
+                                lowPriority="eye";
+                            } else if (avgPriority==null) {
+                                avgPriority="eye";
+                            } else {
+                                highPriority="eye";
+                            }
+                        } else {
+                            if(avgPriority==null) {
+                                avgPriority="eye";
+                            } else if (highPriority==null) {
+                                highPriority="eye";
+                            } else {
+                                lowPriority="eye";
+                            }
+                        }
+                    
+                        //arm strain
+                        if ( keyboardRotation >= 70){
+                            if(highPriority==null) {
+                                highPriority="arm";
+                            } else if (avgPriority==null) {
+                                avgPriority="arm";
+                            } else {
+                                lowPriority="arm";
+                            }
+                            
+                        } else if (keyboardRotation <= 40 ){
+                            if(lowPriority==null) {
+                                lowPriority="arm";
+                            } else if (avgPriority==null) {
+                                avgPriority="arm";
+                            } else {
+                                highPriority="arm";
+                            }
+                    
+                        } else {
+                            if(avgPriority==null) {
+                                avgPriority="arm";
+                            } else if (lowPriority==null) {
+                                lowPriority="arm";
+                            } else {
+                                highPriority="arm";
+                            }
+                        };
+                    
+                        //back pain
+                        if (backPain=="often"){
+                            if(highPriority==null) {
+                                highPriority="back";
+                            } else if (avgPriority==null) {
+                                avgPriority="back";
+                            } else {
+                                lowPriority="back";
+                            }
+                    
+                        } else if (backPain=="rarely" ){
+                            if(avgPriority==null) {
+                                avgPriority="back";
+                            } else if (lowPriority==null) {
+                                lowPriority="back";
+                            } else {
+                                highPriority="back";
+                            }
+                    
+                        } else {
+                            if(lowPriority==null) {
+                                lowPriority="back";
+                            } else if (avgPriority==null) {
+                                avgPriority="back";
+                            } else {
+                                highPriority="back";
+                            }
+                        }
+                    
+                        //update priority data with user inputs
+                        var userUid = (getAuth().currentUser).uid;
+                        update(ref(database, 'exercises/' + userUid),{
+                            highPriority: highPriority,
+                            avgPriority: avgPriority,
+                            lowPriority: lowPriority
+                        })
+                        .then(()=>{
+                            console.log("Priority Data updated Successfully!");
+                            // showErrorMessage("Data updated successfully.");
+                            // location.reload();
+                        })
+                        .catch((error)=>{
+                            console.log(error);
+                        });
+                    
+                    };
+
+                    assignPriority(keyboardRotation, distanceMonitor, backPain);
+
+                }
+                else
+                {
+                    alert("No data found! ==> Line 43");
+                }
+            })
+            .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.log(errorCode);
+                    console.log(errorMessage);
+            }); 
+
             showErrorMessage("Data updated successfully.");
             location.reload();
         })
@@ -187,6 +459,142 @@ $("#distanceSaveBtn").click(function()
             distanceMonitor: distanceSelect,
         })
         .then(()=>{
+            
+            var userUid = (getAuth().currentUser).uid;
+            get(child(dref, 'exercises/' + userUid))
+            .then((snapshot)=>{
+                if(snapshot.exists()){
+                    
+                    // References
+                    var keyboardRotation = snapshot.val().keyboardRotation;
+                    var distanceMonitor = snapshot.val().distanceMonitor;
+                    var backPain = snapshot.val().backPain;
+
+                    //priority assignment
+                    var avgPriority;
+                    var highPriority;
+                    var lowPriority;
+
+                    function assignPriority(keyboardRotation, distanceMonitor, backPain) {
+
+                        //eye strain
+                        if (distanceMonitor <= 30) {
+                            if(highPriority==null) {
+                                highPriority="eye";
+                            } else if (avgPriority==null) {
+                                avgPriority="eye";
+                            } else {
+                                lowPriority="eye";
+                            }
+                        } else if (distanceMonitor > 60) {
+                            if(lowPriority==null) {
+                                lowPriority="eye";
+                            } else if (avgPriority==null) {
+                                avgPriority="eye";
+                            } else {
+                                highPriority="eye";
+                            }
+                        } else {
+                            if(avgPriority==null) {
+                                avgPriority="eye";
+                            } else if (highPriority==null) {
+                                highPriority="eye";
+                            } else {
+                                lowPriority="eye";
+                            }
+                        }
+                    
+                        //arm strain
+                        if ( keyboardRotation >= 70){
+                            if(highPriority==null) {
+                                highPriority="arm";
+                            } else if (avgPriority==null) {
+                                avgPriority="arm";
+                            } else {
+                                lowPriority="arm";
+                            }
+                            
+                        } else if (keyboardRotation <= 40 ){
+                            if(lowPriority==null) {
+                                lowPriority="arm";
+                            } else if (avgPriority==null) {
+                                avgPriority="arm";
+                            } else {
+                                highPriority="arm";
+                            }
+                    
+                        } else {
+                            if(avgPriority==null) {
+                                avgPriority="arm";
+                            } else if (lowPriority==null) {
+                                lowPriority="arm";
+                            } else {
+                                highPriority="arm";
+                            }
+                        };
+                    
+                        //back pain
+                        if (backPain=="often"){
+                            if(highPriority==null) {
+                                highPriority="back";
+                            } else if (avgPriority==null) {
+                                avgPriority="back";
+                            } else {
+                                lowPriority="back";
+                            }
+                    
+                        } else if (backPain=="rarely" ){
+                            if(avgPriority==null) {
+                                avgPriority="back";
+                            } else if (lowPriority==null) {
+                                lowPriority="back";
+                            } else {
+                                highPriority="back";
+                            }
+                    
+                        } else {
+                            if(lowPriority==null) {
+                                lowPriority="back";
+                            } else if (avgPriority==null) {
+                                avgPriority="back";
+                            } else {
+                                highPriority="back";
+                            }
+                        }
+                    
+                        //update priority data with user inputs
+                        var userUid = (getAuth().currentUser).uid;
+                        update(ref(database, 'exercises/' + userUid),{
+                            highPriority: highPriority,
+                            avgPriority: avgPriority,
+                            lowPriority: lowPriority
+                        })
+                        .then(()=>{
+                            console.log("Priority Data updated Successfully!");
+                            // showErrorMessage("Data updated successfully.");
+                            // location.reload();
+                        })
+                        .catch((error)=>{
+                            console.log(error);
+                        });
+                    
+                    };
+
+                    assignPriority(keyboardRotation, distanceMonitor, backPain);
+
+                }
+                else
+                {
+                    alert("No data found! ==> Line 43");
+                }
+            })
+            .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.log(errorCode);
+                    console.log(errorMessage);
+            }); 
+
             showErrorMessage("Data updated successfully.");
             location.reload();
         })
