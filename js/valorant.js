@@ -48,41 +48,38 @@ const startTimerBtn = document.querySelector("#startButton");
 const stopTimerBtn = document.querySelector("#stopButton");
 // const closeModalBtn = document.querySelector("#close-modal");
 const modal = document.querySelector("#modal");
-
-var stream;
-var thisTimePlayed;
-var todayTimePlayed;
-var totalTimePlayed;
-var totalHoursPlayed;
-var todayhoursPlayed;
-let today;
-var mondayhours = 0;
-var tuesdayhours = 0;
-var wednesdayhours = 0;
-var thursdayhours = 0;
-var fridayhours = 0;
-var saturdayhours = 0;
-var sundayhours = 0;
-var armExe = 0;
-var backExe = 0;
-var eyeExe = 0;
-var otherExe = 0;
-// var timer;
-var timerSeconds;
-
 let camera_button = document.querySelector("#start-camera");
 let video = document.querySelector("#video");
 let click_button = document.querySelector("#click-photo");
 let canvas = document.querySelector("#canvas");
-
-var sec;
-var min;
-
-// var noOfExercises;
-var postureOutput;
-
 var minute = document.querySelector("#minute");
 var second = document.querySelector("#second");
+
+var stream;
+
+
+
+var totalHoursPlayed;
+var todayhoursPlayed;
+
+var thismondayhours = 0;
+var thistuesdayhours = 0;
+var thiswednesdayhours = 0;
+var thisthursdayhours = 0;
+var thisfridayhours = 0;
+var thissaturdayhours = 0;
+var thissundayhours = 0;
+
+var armExe = 0;
+var backExe = 0;
+var eyeExe = 0;
+var otherExe = 0;
+var sec;
+var min;
+var timerSeconds;
+var postureOutput;
+
+
 
 function getDashboardData()
 {
@@ -232,7 +229,7 @@ $("#close-modal").click(function()
         }
       }
 
-      if (sec == 3) {
+      if (min == 40) {
         sendExercise();
       }
     }, 1000);
@@ -253,53 +250,85 @@ $("#stopButton").click(function()
           var todayDate = new Date().getDay()
 
           if (todayDate == 0) {
-            today = "Sunday";
-            thisTimePlayed = parseInt(min);
-            sundayhours += thisTimePlayed;
+            var today = "Sunday";
+            var thisTimePlayed = parseInt(min);
+            if(thisTimePlayed != 0) {
+              thissundayhours += thisTimePlayed;
+            }
+            
           } else if (todayDate == 1) {
-            today = "Monday";
-            thisTimePlayed = parseInt(min);
-            mondayhours += thisTimePlayed
+            var today = "Monday";
+            var thisTimePlayed = parseInt(min);
+            if(thisTimePlayed != 0) {
+              thismondayhours += thisTimePlayed;
+            }
+            
           } else if (todayDate == 2) {
-            today = "Tuesday";
-            thisTimePlayed = parseInt(min);
-            tuesdayhours += thisTimePlayed
+            var today = "Tuesday";
+            var thisTimePlayed = parseInt(min);
+            if(thisTimePlayed != 0) {
+              thistuesdayhours += thisTimePlayed;
+            }
+            
           } else if (todayDate == 3) {
-            today = "Wednesday";
-            thisTimePlayed = parseInt(min);
-            wednesdayhours += thisTimePlayed
+            var today = "Wednesday";
+            var thisTimePlayed = parseInt(min);
+            if(thisTimePlayed != 0) {
+              thiswednesdayhours += thisTimePlayed;
+            }
+            
           } else if (todayDate == 4) {
-            today = "Thursday";
-            thisTimePlayed = parseInt(min);
-            thursdayhours += thisTimePlayed
+            var today = "Thursday";
+            var thisTimePlayed = parseInt(min);
+            if(thisTimePlayed != 0) {
+              thisthursdayhours += thisTimePlayed;
+            }
+            
           } else if (todayDate == 5) {
-            today = "Friday";
-            thisTimePlayed = parseInt(min);
-            fridayhours += thisTimePlayed
+            var today = "Friday";
+            var thisTimePlayed = parseInt(min);
+            if(thisTimePlayed != 0) {
+              thisfridayhours += thisTimePlayed;
+            }
+            
           } else if (todayDate == 6) {
-            today = "Saturday";
-            thisTimePlayed = parseInt(min);
-            saturdayhours += thisTimePlayed
+            var today = "Saturday";
+            var thisTimePlayed = parseInt(min);
+            if(thisTimePlayed != 0) {
+              thissaturdayhours += thisTimePlayed;
+            }
+            
           }
-        
-          console.log(today);
 
           // References
-          todayTimePlayed = snapshot.val().totalHoursPlayedValorant;
-          totalTimePlayed = snapshot.val().todayhoursPlayedValorant;
+          var totalTimePlayed = snapshot.val().totalHoursPlayedValorant;
+          var todayTimePlayed = snapshot.val().todayhoursPlayedValorant;
 
-          console.log(todayTimePlayed + " 291");
-          console.log(totalTimePlayed + " 292");
+          var mondayhours = snapshot.val().mondayhoursPlayedValorant;
+          var tuesdayhours = snapshot.val().tuesdayhoursPlayedValorant;
+          var wednesdayhours = snapshot.val().wednesdayhoursPlayedValorant;
+          var thursdayhours = snapshot.val().thursdayhoursPlayedValorant;
+          var fridayhours = snapshot.val().fridayhoursPlayedValorant;
+          var saturdayhours = snapshot.val().saturdayhoursPlayedValorant;
+          var sundayhours = snapshot.val().sundayhoursPlayedValorant;
 
           if(min != 0) {
-            todayTimePlayed += min; 
-            totalTimePlayed += todayTimePlayed; 
-          }
-          
-          console.log(todayTimePlayed + " 299");
-          console.log(totalTimePlayed + " 300");
+            todayTimePlayed += thisTimePlayed; 
 
-          // //send time played to firebase here
+            if(thisTimePlayed != 0){
+              totalTimePlayed += thisTimePlayed;
+            }
+          }
+
+          mondayhours += thismondayhours;
+          tuesdayhours += thistuesdayhours;
+          wednesdayhours += thiswednesdayhours;
+          thursdayhours += thisthursdayhours;
+          fridayhours += thisfridayhours;
+          saturdayhours += thissaturdayhours;
+          sundayhours += thissundayhours;
+
+          // send time played to firebase here
           var userUid = (getAuth().currentUser).uid;
           update(ref(database, 'valorant/' + userUid),{
             totalHoursPlayedValorant: totalTimePlayed,
@@ -313,9 +342,7 @@ $("#stopButton").click(function()
             sundayhoursPlayedValorant: sundayhours
           })
           .then(()=>{
-              console.log("Data updated successfully.");
-              // showErrorMessage("Data updated successfully.");
-              // location.reload();
+              console.log("time played updated successfully.");
           })
           .catch((error)=>{
               console.log(error);
