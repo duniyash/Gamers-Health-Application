@@ -364,7 +364,7 @@ h2 {
 
 /* fade animation start css */
 #settingspage {
-  animation: fadeInAnimation ease 2s;
+  animation: fadeInAnimation ease 3s;
 }
 
 @keyframes fadeInAnimation {
