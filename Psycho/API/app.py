@@ -19,13 +19,9 @@ model = load_model('psycho_model')
 im_w = 256
 im_h = 256
 
-psychoDict = {0: "correct", 1: "incorrect"}
 
-def convert_to_array(img):
-    im = cv2.imread(img)
-    img = Image.fromarray(im, 'RGB')
-    image = img.resize((im_w, im_h))
-    return np.array(image)
+
+
 
 def download_image_and_save(url):
     f = open('psycho.jpg','wb')
