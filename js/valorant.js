@@ -58,10 +58,6 @@ var second = document.querySelector("#second");
 var stream;
 
 
-
-var totalHoursPlayed;
-var todayhoursPlayed;
-
 var thismondayhours = 0;
 var thistuesdayhours = 0;
 var thiswednesdayhours = 0;
@@ -81,53 +77,81 @@ var postureOutput;
 
 
 
-function getDashboardData()
-{
+function getDashboardData(){
+
+  // console.log("userUid", getAuth().currentUser);
   var userUid = (getAuth().currentUser).uid;
+  // alert(userUid);
+
   get(child(dref, 'valorant/' + userUid))
-    .then((snapshot)=>{
-        if(snapshot.exists()){
-            
-            // References
-            totalHoursPlayed = snapshot.val().totalHoursPlayedValorant;
-            todayhoursPlayed = snapshot.val().todayhoursPlayedValorant;
+  .then((snapshot)=>{
+      if(snapshot.exists()){
 
-            document.getElementById("blockHeadOne").innerHTML = totalHoursPlayed;
-            document.getElementById("blockHeadTwo").innerHTML = todayhoursPlayed;
+          // References
+          var totalHoursPlayedValorant = snapshot.val().totalHoursPlayedValorant;
+          var todayhoursPlayedValorant = snapshot.val().todayhoursPlayedValorant;
+          
+          var userUid = (getAuth().currentUser).uid;
+          get(child(dref, 'apex/' + userUid))
+          .then((snapshot)=>{
+              if(snapshot.exists()){
+                  
+                  // References
+                  var totalHoursPlayedApex = snapshot.val().totalHoursPlayedApex;
+                  var todayhoursPlayedApex = snapshot.val().todayhoursPlayedApex;
+      
+                  document.getElementById("blockHeadOne").innerHTML = totalHoursPlayedValorant + totalHoursPlayedApex;
+                  document.getElementById("blockHeadTwo").innerHTML = todayhoursPlayedValorant + todayhoursPlayedApex;
+      
+              }
+              else
+              {
+                  alert("No data found! ==> Line 69");
+              }
+          })
+          .catch((error) => {
+                  const errorCode = error.code;
+                  const errorMessage = error.message;
+                  console.log(errorCode);
+                  console.log(errorMessage);
+          });
 
-        }
-        else
-        {
-            alert("No data found! ==> Line 69");
-        }
-    })
-    .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode);
-            console.log(errorMessage);
-    });  
+      }
+      else
+      {
+          alert("No data found! ==> Line 69");
+      }
+  })
+  .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode);
+          console.log(errorMessage);
+  });  
 
-    get(child(dref, 'exercises/' + userUid))
-    .then((snapshot)=>{
-        if(snapshot.exists()){
-            
-            // References
-            var totalExercises = snapshot.val().totalExercises;
-            document.getElementById("blockHeadThree").innerHTML = totalExercises;
+  get(child(dref, 'exercises/' + userUid))
+  .then((snapshot)=>{
+      if(snapshot.exists()){
+          
+          // alert("wada na line 454");
+          // alert(snapshot.val());
 
-        }
-        else
-        {
-            alert("No data found! ==> Line 93");
-        }
-    })
-    .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode);
-            console.log(errorMessage);
-    });
+          // References
+          var totalExercises = snapshot.val().totalExercises;
+          document.getElementById("blockHeadThree").innerHTML = totalExercises;
+
+      }
+      else
+      {
+          alert("No data found! ==> Line 93");
+      }
+  })
+  .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode);
+          console.log(errorMessage);
+  });  
 }
 
 setTimeout(getDashboardData, 1000);
@@ -250,49 +274,42 @@ $("#stopButton").click(function()
           var todayDate = new Date().getDay()
 
           if (todayDate == 0) {
-            var today = "Sunday";
             var thisTimePlayed = parseInt(min);
             if(thisTimePlayed != 0) {
               thissundayhours += thisTimePlayed;
             }
             
           } else if (todayDate == 1) {
-            var today = "Monday";
             var thisTimePlayed = parseInt(min);
             if(thisTimePlayed != 0) {
               thismondayhours += thisTimePlayed;
             }
             
           } else if (todayDate == 2) {
-            var today = "Tuesday";
             var thisTimePlayed = parseInt(min);
             if(thisTimePlayed != 0) {
               thistuesdayhours += thisTimePlayed;
             }
             
           } else if (todayDate == 3) {
-            var today = "Wednesday";
             var thisTimePlayed = parseInt(min);
             if(thisTimePlayed != 0) {
               thiswednesdayhours += thisTimePlayed;
             }
             
           } else if (todayDate == 4) {
-            var today = "Thursday";
             var thisTimePlayed = parseInt(min);
             if(thisTimePlayed != 0) {
               thisthursdayhours += thisTimePlayed;
             }
             
           } else if (todayDate == 5) {
-            var today = "Friday";
             var thisTimePlayed = parseInt(min);
             if(thisTimePlayed != 0) {
               thisfridayhours += thisTimePlayed;
             }
             
           } else if (todayDate == 6) {
-            var today = "Saturday";
             var thisTimePlayed = parseInt(min);
             if(thisTimePlayed != 0) {
               thissaturdayhours += thisTimePlayed;
@@ -387,7 +404,6 @@ const sendHttpRequest = (method, url, data) => {
 };
 
 //function to set exercises =>
-
 var exerciseQueueNo = 0;
 var exerciseQueue = [];
 
