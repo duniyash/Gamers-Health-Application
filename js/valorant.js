@@ -159,6 +159,8 @@ setTimeout(getDashboardData, 1000);
 //on-click event to start the flow and open the modal
 $("#startButton").click(function()
 {
+  video.style.display = "none";
+  canvas.style.display = "none";
   exerciseQueueNo = 0;
   click_button.style.display = "block";
   camera_button.style.display = "block";
@@ -171,6 +173,8 @@ $("#startButton").click(function()
 //on-click event to start camera input stream
 $("#start-camera").click(async function()
 {
+  video.style.display = "block";
+  canvas.style.display = "block";
   stream = await navigator.mediaDevices.getUserMedia({
     video: true,
     audio: false,
@@ -253,7 +257,7 @@ $("#close-modal").click(function()
         }
       }
 
-      if (min == 40) {
+      if (sec == 5) {
         sendExercise();
       }
     }, 1000);
@@ -275,45 +279,24 @@ $("#stopButton").click(function()
 
           if (todayDate == 0) {
             var thisTimePlayed = parseInt(min);
-            if(thisTimePlayed != 0) {
-              thissundayhours += thisTimePlayed;
-            }
             
           } else if (todayDate == 1) {
             var thisTimePlayed = parseInt(min);
-            if(thisTimePlayed != 0) {
-              thismondayhours += thisTimePlayed;
-            }
             
           } else if (todayDate == 2) {
             var thisTimePlayed = parseInt(min);
-            if(thisTimePlayed != 0) {
-              thistuesdayhours += thisTimePlayed;
-            }
             
           } else if (todayDate == 3) {
             var thisTimePlayed = parseInt(min);
-            if(thisTimePlayed != 0) {
-              thiswednesdayhours += thisTimePlayed;
-            }
             
           } else if (todayDate == 4) {
             var thisTimePlayed = parseInt(min);
-            if(thisTimePlayed != 0) {
-              thisthursdayhours += thisTimePlayed;
-            }
             
           } else if (todayDate == 5) {
             var thisTimePlayed = parseInt(min);
-            if(thisTimePlayed != 0) {
-              thisfridayhours += thisTimePlayed;
-            }
             
           } else if (todayDate == 6) {
             var thisTimePlayed = parseInt(min);
-            if(thisTimePlayed != 0) {
-              thissaturdayhours += thisTimePlayed;
-            }
             
           }
 
@@ -337,13 +320,51 @@ $("#stopButton").click(function()
             }
           }
 
-          mondayhours += thismondayhours;
-          tuesdayhours += thistuesdayhours;
-          wednesdayhours += thiswednesdayhours;
-          thursdayhours += thisthursdayhours;
-          fridayhours += thisfridayhours;
-          saturdayhours += thissaturdayhours;
-          sundayhours += thissundayhours;
+          var todayDate = new Date().getDay()
+
+          if (todayDate == 0) {
+            var thisTimePlayed = parseInt(min);
+            if(thisTimePlayed != 0) {
+              sundayhours += thisTimePlayed;
+            }
+            
+          } else if (todayDate == 1) {
+            var thisTimePlayed = parseInt(min);
+            if(thisTimePlayed != 0) {
+              mondayhours += thisTimePlayed;
+            }
+            
+          } else if (todayDate == 2) {
+            var thisTimePlayed = parseInt(min);
+            if(thisTimePlayed != 0) {
+              tuesdayhours += thisTimePlayed;
+            }
+            
+          } else if (todayDate == 3) {
+            var thisTimePlayed = parseInt(min);
+            if(thisTimePlayed != 0) {
+              wednesdayhours += thisTimePlayed;
+            }
+            
+          } else if (todayDate == 4) {
+            var thisTimePlayed = parseInt(min);
+            if(thisTimePlayed != 0) {
+              thursdayhours += thisTimePlayed;
+            }
+            
+          } else if (todayDate == 5) {
+            var thisTimePlayed = parseInt(min);
+            if(thisTimePlayed != 0) {
+              fridayhours += thisTimePlayed;
+            }
+            
+          } else if (todayDate == 6) {
+            var thisTimePlayed = parseInt(min);
+            if(thisTimePlayed != 0) {
+              saturdayhours += thisTimePlayed;
+            }
+            
+          }
 
           // send time played to firebase here
           var userUid = (getAuth().currentUser).uid;
