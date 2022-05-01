@@ -52,16 +52,35 @@ function getDashboardData(){
     get(child(dref, 'valorant/' + userUid))
     .then((snapshot)=>{
         if(snapshot.exists()){
-            
-            // alert("wada na line 454");
-            // alert(snapshot.val());
 
             // References
-            var totalHoursPlayed = snapshot.val().totalHoursPlayedValorant;
-            var todayhoursPlayed = snapshot.val().todayhoursPlayedValorant;
-
-            document.getElementById("blockHeadOne").innerHTML = totalHoursPlayed;
-            document.getElementById("blockHeadTwo").innerHTML = todayhoursPlayed;
+            var totalHoursPlayedValorant = snapshot.val().totalHoursPlayedValorant;
+            var todayhoursPlayedValorant = snapshot.val().todayhoursPlayedValorant;
+            
+            var userUid = (getAuth().currentUser).uid;
+            get(child(dref, 'apex/' + userUid))
+            .then((snapshot)=>{
+                if(snapshot.exists()){
+                    
+                    // References
+                    var totalHoursPlayedApex = snapshot.val().totalHoursPlayedApex;
+                    var todayhoursPlayedApex = snapshot.val().todayhoursPlayedApex;
+        
+                    document.getElementById("blockHeadOne").innerHTML = totalHoursPlayedValorant + totalHoursPlayedApex;
+                    document.getElementById("blockHeadTwo").innerHTML = todayhoursPlayedValorant + todayhoursPlayedApex;
+        
+                }
+                else
+                {
+                    alert("No data found! ==> Line 69");
+                }
+            })
+            .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.log(errorCode);
+                    console.log(errorMessage);
+            });
 
         }
         else
@@ -184,7 +203,7 @@ function getgamesChartData(){
             var valorantDB = snapshot.val().totalHoursPlayedValorant;
 
 
-            var test = [valorantDB, 2, 3, 4, 5, 6];
+            var test = [valorantDB, 0];
 
             // Chart 03
 
@@ -192,28 +211,18 @@ function getgamesChartData(){
             var myChart = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
-                    labels: ['Valorant', 'Apex', 'Fortnite', 'Genshin Impac', 'Elden Ring', 'League Of Legend'],
+                    labels: ['Valorant', 'Apex'],
 
                     datasets: [{
                         label: 'games',
                         data: test,
                         backgroundColor: [
                             'rgba(133, 43, 16)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(133, 43, 16)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(120, 46, 139,1)'
-
+                            'rgba(54, 162, 235, 1)'
                         ],
                         borderColor: [
                             'rgba(133, 43, 16)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(133, 43, 16)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(120, 46, 139,1)'
-
+                            'rgba(54, 162, 235, 1)'
                         ],
                         borderWidth: 1
                     }]
