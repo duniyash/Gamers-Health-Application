@@ -42,6 +42,48 @@ const database = getDatabase(app);
 const storage = getStorage();
 const dref = ref(database);
 
+
+
+const startTimerBtn = document.querySelector("#startButton");
+const stopTimerBtn = document.querySelector("#stopButton");
+// const closeModalBtn = document.querySelector("#close-modal");
+const modal = document.querySelector("#modal");
+
+var stream;
+var thisTimePlayed;
+var todayTimePlayed;
+var totalTimePlayed;
+var totalHoursPlayed;
+var todayhoursPlayed;
+let today;
+var mondayhours = 0;
+var tuesdayhours = 0;
+var wednesdayhours = 0;
+var thursdayhours = 0;
+var fridayhours = 0;
+var saturdayhours = 0;
+var sundayhours = 0;
+var armExe = 0;
+var backExe = 0;
+var eyeExe = 0;
+var otherExe = 0;
+// var timer;
+var timerSeconds;
+
+let camera_button = document.querySelector("#start-camera");
+let video = document.querySelector("#video");
+let click_button = document.querySelector("#click-photo");
+let canvas = document.querySelector("#canvas");
+
+var sec;
+var min;
+
+// var noOfExercises;
+var postureOutput;
+
+var minute = document.querySelector("#minute");
+var second = document.querySelector("#second");
+
 function getDashboardData()
 {
   var userUid = (getAuth().currentUser).uid;
@@ -49,12 +91,9 @@ function getDashboardData()
     .then((snapshot)=>{
         if(snapshot.exists()){
             
-            // alert("wada na line 454");
-            // alert(snapshot.val());
-
             // References
-            var totalHoursPlayed = snapshot.val().totalHoursPlayedValorant;
-            var todayhoursPlayed = snapshot.val().todayhoursPlayedValorant;
+            totalHoursPlayed = snapshot.val().totalHoursPlayedValorant;
+            todayhoursPlayed = snapshot.val().todayhoursPlayedValorant;
 
             document.getElementById("blockHeadOne").innerHTML = totalHoursPlayed;
             document.getElementById("blockHeadTwo").innerHTML = todayhoursPlayed;
@@ -76,9 +115,6 @@ function getDashboardData()
     .then((snapshot)=>{
         if(snapshot.exists()){
             
-            // alert("wada na line 454");
-            // alert(snapshot.val());
-
             // References
             var totalExercises = snapshot.val().totalExercises;
             document.getElementById("blockHeadThree").innerHTML = totalExercises;
@@ -98,49 +134,6 @@ function getDashboardData()
 }
 
 setTimeout(getDashboardData, 1000);
-
-const startTimerBtn = document.querySelector("#startButton");
-const stopTimerBtn = document.querySelector("#stopButton");
-// const closeModalBtn = document.querySelector("#close-modal");
-const modal = document.querySelector("#modal");
-
-var stream;
-var thisTimePlayed;
-var todayTimePlayed;
-var totalTimePlayed;
-let today;
-var mondayhours = 0;
-var tuesdayhours = 0;
-var wednesdayhours = 0;
-var thursdayhours = 0;
-var fridayhours = 0;
-var saturdayhours = 0;
-var sundayhours = 0;
-var armExe = 0;
-var backExe = 0;
-var eyeExe = 0;
-var otherExe = 0;
-// var timer;
-var timerSeconds;
-
-let camera_button = document.querySelector("#start-camera");
-let video = document.querySelector("#video");
-let click_button = document.querySelector("#click-photo");
-let canvas = document.querySelector("#canvas");
-
-var sec = 0;
-var min = 0;
-
-// var noOfExercises;
-var postureOutput;
-
-var minute = document.querySelector("#minute");
-var second = document.querySelector("#second");
-
-// var checkArm;
-// var checkEye;
-// var checkBack;
-// var checkOther;
 
 //on-click event to start the flow and open the modal
 $("#startButton").click(function()
@@ -186,11 +179,11 @@ $("#click-photo").click(function()
 });
 
 function doPostureOutput(postureOutput) {
-  if (postureOutput == "incorrect") {
+  if (postureOutput == "correct") {
     document.getElementById("resultGood").style.display = "none";
     document.getElementById("resultBad").style.display = "block";
     console.log(postureOutput)
-  } else if (postureOutput == "correct") {
+  } else if (postureOutput == "incorrect") {
     document.getElementById("resultBad").style.display = "none";
     document.getElementById("resultGood").style.display = "block";
     click_button.style.display = "none";
@@ -202,7 +195,7 @@ function doPostureOutput(postureOutput) {
 //on-click event to close the camera input stream and start the timer
 $("#close-modal").click(function()
 {
-  if (postureOutput == "correct") {
+  if (postureOutput == "incorrect") {
     // <= change incorrect to correct here
     stream.getTracks().forEach((track) => track.stop());
 
@@ -241,79 +234,108 @@ $("#close-modal").click(function()
       }
     }, 1000);
   }
+  console.log(min);
+  console.log(sec);
 });
 
 //on-click event to stop timer
 $("#stopButton").click(function()
 {
-  
-  switch (new Date().getDay()) {
-    case 0:
-      today = "Sunday";
-      thisTimePlayed = min + sec / 60;
-      sundayhours += thisTimePlayed;
-      break;
-    case 1:
-      today = "Monday";
-      thisTimePlayed = min + sec / 60;
-      mondayhours += thisTimePlayed
-      break;
-    case 2:
-      today = "Tuesday";
-      thisTimePlayed = min + sec / 60;
-      tuesdayhours += thisTimePlayed
-      break;
-    case 3:
-      today = "Wednesday";
-      thisTimePlayed = min + sec / 60;
-      wednesdayhours += thisTimePlayed
-      break;
-    case 4:
-      today = "Thursday";
-      thisTimePlayed = min + sec / 60;
-      thursdayhours += thisTimePlayed
-      break;
-    case 5:
-      today = "Friday";
-      thisTimePlayed = min + sec / 60;
-      fridayhours += thisTimePlayed
-      break;
-    case  6:
-      today = "Saturday";
-      thisTimePlayed = min + sec / 60;
-      saturdayhours += thisTimePlayed
+  clearInterval(timerSeconds);
+  console.log(min);
+  console.log(sec);
+
+  var todayDate = new Date().getDay()
+
+  if (todayDate == 0) {
+    today = "Sunday";
+    thisTimePlayed = parseInt(min);
+    sundayhours += thisTimePlayed;
+  } else if (todayDate == 1) {
+    today = "Monday";
+    thisTimePlayed = parseInt(min);
+    mondayhours += thisTimePlayed
+  } else if (todayDate == 2) {
+    today = "Tuesday";
+    thisTimePlayed = parseInt(min);
+    tuesdayhours += thisTimePlayed
+  } else if (todayDate == 3) {
+    today = "Wednesday";
+    thisTimePlayed = parseInt(min);
+    wednesdayhours += thisTimePlayed
+  } else if (todayDate == 4) {
+    today = "Thursday";
+    thisTimePlayed = parseInt(min);
+    thursdayhours += thisTimePlayed
+  } else if (todayDate == 5) {
+    today = "Friday";
+    thisTimePlayed = parseInt(min);
+    fridayhours += thisTimePlayed
+  } else if (todayDate == 6) {
+    today = "Saturday";
+    thisTimePlayed = parseInt(min);
+    saturdayhours += thisTimePlayed
   }
 
   console.log(today);
 
-  todayTimePlayed += thisTimePlayed;
-  totalTimePlayed += todayTimePlayed;
-
-  //send time played to firebase here
   var userUid = (getAuth().currentUser).uid;
-  update(ref(database, 'valorant/' + userUid),{
-    totalHoursPlayedValorant: totalTimePlayed,
-    todayhoursPlayedValorant: todayTimePlayed,
-    mondayhoursPlayedValorant: mondayhours,
-    tuesdayhoursPlayedValorant: tuesdayhours,
-    wednesdayhoursPlayedValorant: wednesdayhours,
-    thursdayhoursPlayedValorant: thursdayhours,
-    fridayhoursPlayedValorant: fridayhours,
-    saturdayhoursPlayedValorant: saturdayhours,
-    sundayhoursPlayedValorant: sundayhours
+  get(child(dref, 'valorant/' + userUid))
+  .then((snapshot)=>{
+      if(snapshot.exists()){
+
+          // References
+          var tot = snapshot.val().totalHoursPlayedValorant;
+          var to = snapshot.val().todayhoursPlayedValorant;
+
+
+          todayTimePlayed = to;
+          totalTimePlayed = tot;
+
+          console.log(todayTimePlayed);
+          console.log(totalTimePlayed);
+      }
+      else
+      {
+          alert("No data found! ==> Line 301");
+      }
   })
-  .then(()=>{
-      console.log("Data updated successfully.");
-      // showErrorMessage("Data updated successfully.");
-      // location.reload();
-  })
-  .catch((error)=>{
-      console.log(error);
+  .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode);
+          console.log(errorMessage);
   });
+
+  // todayTimePlayed += min; 
+  // totalTimePlayed += todayTimePlayed; 
+  console.log("312"+todayTimePlayed);
+  console.log("312"+totalTimePlayed);
+
+  // //send time played to firebase here
+  // var userUid = (getAuth().currentUser).uid;
+  // update(ref(database, 'valorant/' + userUid),{
+  //   totalHoursPlayedValorant: totalTimePlayed,
+  //   todayhoursPlayedValorant: todayTimePlayed,
+  //   mondayhoursPlayedValorant: mondayhours,
+  //   tuesdayhoursPlayedValorant: tuesdayhours,
+  //   wednesdayhoursPlayedValorant: wednesdayhours,
+  //   thursdayhoursPlayedValorant: thursdayhours,
+  //   fridayhoursPlayedValorant: fridayhours,
+  //   saturdayhoursPlayedValorant: saturdayhours,
+  //   sundayhoursPlayedValorant: sundayhours
+  // })
+  // .then(()=>{
+  //     console.log("Data updated successfully.");
+  //     // showErrorMessage("Data updated successfully.");
+  //     // location.reload();
+  // })
+  // .catch((error)=>{
+  //     console.log(error);
+  // });
 
   stopTimerBtn.style.display = "none";
   startTimerBtn.style.display = "block";
-  clearInterval(timerSeconds);
 });
 
 //function to connect =>
