@@ -257,7 +257,7 @@ $("#close-modal").click(function()
         }
       }
 
-      if (min == 20) {
+      if (sec == 5) {
         sendExercise();
       }
     }, 1000);
@@ -451,7 +451,12 @@ function sendExercise() {
   
             exerciseQueue = [ highPriority, "other", avgPriority, "other", lowPriority, "other" ];
   
+            if (exerciseQueueNo == 5) {
+              exerciseQueueNo = 0;
+            }
             var exerciseInQueue = exerciseQueue[exerciseQueueNo];
+            exerciseQueueNo = exerciseQueueNo + 1;
+            
             var exercise;
   
             //assign value to exercise to exercise variable using exercise in queue
@@ -506,13 +511,7 @@ function sendExercise() {
             });
   
             pushNotif(exercise);
-            //console.log("Notification"+ exercise);
-  
-            if (exerciseQueueNo == 5) {
-              exerciseQueueNo = 0;
-            } else {
-              exerciseQueueNo = exerciseQueueNo + 1;
-            };
+            console.log("Notification"+ exercise);
   
         }
         else
