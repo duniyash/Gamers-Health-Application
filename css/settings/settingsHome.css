@@ -1,336 +1,495 @@
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+/*Font Imports*/
 
-/* css of nav bar */
-.settingsNavbar{
-    justify-content: center;
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+
+/*General Rules*/
+
+* {
+  padding: 0%;
+  margin: 0%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  box-sizing: border-box;
 }
 
-.navList{
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  color: black;
+}
+
+/*body & main container*/
+
+body {
+  background-color: #24252b;
+  display: flex;
+  overflow-y: hidden;
+  height: max-content;
+}
+
+/* Nav Bar */
+
+.navbar {
+  height: 95vh;
+  width: 5rem;
+  margin: 2.5vh 1rem 2.5vh 1rem;
+  background-color: #fff;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar img {
+  width: 3rem;
+  height: 3rem;
+  margin-top: 1rem;
+}
+
+nav ul {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+nav ul li {
+  height: 3rem;
+  width: 3rem;
+  position: relative;
+  margin-top: 2rem;
+  background-color: none;
+  border-radius: 10px;
+  transition: all 0.25s ease;
+}
+
+nav ul li i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  color: #000;
+}
+
+nav ul li:hover {
+  background-color: #5d9d0b;
+}
+
+nav ul li:hover i {
+  color: #fff;
+}
+
+nav ul li:hover .tooltip {
+  visibility: visible;
+}
+
+/*Main Page*/
+
+.main {
+  width: 100%;
+  height: max-content;
+  overflow-y: visible;
+}
+
+.main .pageHead {
+  margin: 7vh 0 0 2rem;
+  font-family: "Sora", sans-serif;
+  font-size: 36px;
+  letter-spacing: 0;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+/* .main .mainContent {
     display: flex;
-    margin :auto;
-    height: fit-content;
-    width: fit-content;
-    background-color: white;
-    border-radius: 12px;
-    width: 50%;
-    height: 50%;
-    
+    height: 580px;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    width: 100%;
+} */
+
+/* .mainContent .card {
+    width: 100%;
+    margin: 2rem;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    font-family: 'Poppins', sans-serif;
+    background-color: #2e3239;
+} */
+
+/*General Settings For settings Page*/
+
+/* css of settings nav bar */
+.settingsNavbar {
+  justify-content: center;
+  margin: 10px;
 }
 
-
-.navItem{
-align-self: auto;
-margin: auto;
-padding: 0%;
+.navList {
+  display: flex;
+  margin: auto;
+  background-color: white;
+  border-radius: 10px;
+  width: 500px;
+  height: 4rem;
 }
 
+.navItem {
+  align-self: auto;
+  margin: auto;
+  padding: 0%;
+  cursor: pointer;
+}
 
 /* transsistion of nav bar items */
-.header{
+/* .header {
     display: flex;
     height: fit-content;
     width: 100%;
+    color: black;
     justify-content: space-between;
-}
+} */
 
-.avatar {
-    vertical-align: middle;
-    width: 60%;
-    height: 60%;
-    border-radius: 50%;
-  }
-
-
-h2{
-    font-family: 'Poppins';
-    font-size: 1.3rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    color : white;
-}
-
-.btn{
-    background-color: gray; 
-    color: white;
-    border: 2px solid #4CAF50;
-    border-radius: 12px;
-    padding: 16px 32px;
+.errorMessageShow {
+    color:#fff;
+    background-color: #ff3333;
     text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-
-}
-
-.inputContainer{
-    font-family: 'Poppins';
-    border-radius: 12px;
-    background-color:#2e3239;
-    border :solid white;
-    margin: 1rem;
-    padding : 1rem;
-    
-}
-
-.backPain ,.kayboard ,.distance ,.favGame{
-    border-radius: 12px;
-    background-color:#2e3239;
-    border :solid white;
-    margin: 1rem;
-    padding-top: 1rem;
-    padding-left: 1rem;
-    
-}
-
-
-
-.btn:hover{
-    background-color: #5D9D0B;
-    color: white;
-    border-radius: 12px;
-    border : solid white;
-}
-
-
-.settingsContent{
-    
-    background-color:#2e3239;
-    border-radius: 12px;
-    width: 95%;
-    height: fit-content;
-    
-    justify-content:space-around ;
-    padding : 2rem 2em;
-    color: white;
-} 
-
-.basicLayout{
-    display:flex;
-}
-/*.column{
-  
-    float: left;
-    
-    
-}*/
-
-
-.column.left{
-    width: 50%;
-    flex-direction: column;
-    height: fit-content;
-    display: flex ;
-    
-}
-
-
-.column.right{
-    
-    width: 50%;
-    flex-direction: column;
-    height: fit-content;
-}
-
-
-
-.basicInfo{
-    
-    font-family: 'Poppins';
-    font-weight: 500;
-    background-color:#2e3239;
-    border-radius: 12px;
-    padding: 1rem 1em;
-    margin: 1rem;
-    height: 44%;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
-    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-    
-}
-
-
-.emailInfo{
-    
-    font-family: 'Poppins';
-    font-weight: 500;
-    background-color:#2e3239;
-    border-radius: 12px;
-    padding: 0.5rem 1em;
-  
-    
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
-    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-    
-    }
-
-.editGameInfo{
-
-    font-family: 'Poppins';
-    background-color:#2e3239;
-    border-radius: 12px;
-    padding: 1rem 1em;
-    margin: 1rem;
-    width: 90%;
-
-    border-radius: 12px;
-  
-    
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
-    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-}
-
-.deleteAcc{
-    font-family: 'Poppins';
-    background-color:#2e3239;
-    border-radius: 12px;
-    padding: 1rem 1em;
-    margin: 1rem;
-    width: 60%;
-    height: 24%;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
-    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-    
-}
-
-
-
-
-.basicInfo:hover,.emailInfo:hover, .editGameInfo:hover {
-    transition: 0.2s;
-    background-color: #3e8e41;
-    transform: translateY(-0.5rem);
-    color: white;
+    display: none;
+    transition: all 0.5s ease;
+    text-transform: capitalize;
+    font-family: 'Open Sans ', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border: none;
+  padding: 1rem;
   }
 
-.deleteAcc:hover{
+#avatarDiv {
+  vertical-align: middle;
+  width: 60%;
+  height: 60%;
+  background-color: white;
+  border-radius: 10px;
+  margin-top: 1rem;
+  padding: 1rem 1em;
+}
+
+.right .avatar {
+  vertical-align: middle;
+  width: 60%;
+  height: 60%;
+  padding-left: 90px;
+}
+
+#myfile {
+  width: 50%;
+}
+
+h2 {
+  font-family: "Poppins";
+  font-size: 1.3rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: rgb(0, 0, 0);
+}
+
+.editBtn {
+  height: 65px;
+  margin: 0 1rem;
+}
+
+.btn {
+  background-color: #5d9d0b;
+  color: white;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  float: right;
+}
+
+.btn:hover {
+  background-color: #5d9d0b;
+  color: white;
+  border-radius: 10px;
+  border: solid white;
+}
+
+.inputContainer {
+  font-family: "Poppins";
+  border-radius: 10px;
+  background-color: #fff;
+  border: solid #5d9d0b;
+  margin: 1rem;
+  color: black;
+  font-size: 20px;
+  padding: 1rem;
+  display: flex;
+}
+
+.backPain,
+.kayboard,
+.distance {
+  border-radius: 10px;
+  background-color: #fff;
+  border: solid #5d9d0b;
+  margin: 1rem;
+  padding: 1rem 0 1rem 1rem;
+  font-size: 20px;
+  display: flex;
+}
+
+.settingsContent {
+  width: 95%;
+  height: max-content;
+  margin: 2rem;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  font-family: "Poppins", sans-serif;
+  background-color: #2e3239;
+}
+
+.content {
+  width: 450px;
+  height: max-content;
+}
+
+.editGameInfo .editBtn {
+  width: 700px;
+}
+
+.basicLayout {
+  display: flex;
+  width: 900px;
+  margin: 0 250px;
+}
+
+.column.left {
+  width: 50%;
+  flex-direction: column;
+  height: fit-content;
+  display: flex;
+}
+
+.column.right {
+  width: 50%;
+  flex-direction: column;
+  height: fit-content;
+}
+
+.basicInfo {
+  font-family: "Poppins";
+  font-weight: 500;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 1rem 1em;
+  margin: 1rem;
+  margin-top: 1rem;
+  height: 400px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+
+.emailInfo {
+  font-family: "Poppins";
+  font-weight: 500;
+  background-color: #2e3239;
+  border-radius: 10px;
+  padding: 0.5rem 1em;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+
+.editGameInfo {
+  font-family: Poppins;
+  font-weight: 500;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 12px;
+  background-color: white;
+  height: max-content;
+  box-shadow: rgb(0 0 0 / 10%) 0px 4px 6px -1px,
+    rgb(0 0 0 / 6%) 0px 2px 4px -1px;
+}
+
+.deleteAcc {
+  font-family: "Poppins";
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 15px;
+  width: 60%;
+  height: 125px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+
+/* .basicInfo:hover,.emailInfo:hover, .editGameInfo:hover {
+    transition: 0.9s;
+    background-color: #ffffff;
+    transform: translateY(-0.5rem);
+    color: rgb(0, 0, 0);
+} */
+
+/* .deleteAcc:hover {
     transition: 0.7s ;
-    background-color: #3e8e41;
+    background-color: white;
     color: white;
     transform: translateY(-0.5rem);
-   
+    animation: fadeIn 5s;
+    -webkit-animation: fadeIn 5s;
+    -moz-animation: fadeIn 5s;
+    -o-animation: fadeIn 5s;
+    -ms-animation: fadeIn 5s;
+      
+} */
 
-        animation: fadeIn 5s;
-        -webkit-animation: fadeIn 5s;
-        -moz-animation: fadeIn 5s;
-        -o-animation: fadeIn 5s;
-        -ms-animation: fadeIn 5s;
-      
-      @keyframes fadeIn {
-        0% {opacity:0;}
-        100% {opacity:1;}
-      }
-      
-      @-moz-keyframes fadeIn {
-        0% {opacity:0;}
-        100% {opacity:1;}
-      }
-      
-      @-webkit-keyframes fadeIn {
-        0% {opacity:0;}
-        100% {opacity:1;}
-      }
-      
-      @-o-keyframes fadeIn {
-        0% {opacity:0;}
-        100% {opacity:1;}
-      }
-      
-      @-ms-keyframes fadeIn {
-        0% {opacity:0;}
-        100% {opacity:1;}
-      }
-}
-.deleteAcc:not(hover),.basicInfo:not(hover),.editGameInfo:not(hover),.emailInfo:not(hover){
+/* .deleteAcc:not(hover),
+.basicInfo:not(hover),
+.editGameInfo:not(hover),
+.emailInfo:not(hover) {
     transition: 0.7s ;
     transform: translateY(+0.7rem);
-}
+} */
 
-
+/* fade animation start css */
 #settingspage {
-    animation: fadeInAnimation ease 3s
-    
+  animation: fadeInAnimation ease 3s;
 }
-  
+
 @keyframes fadeInAnimation {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-     }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
+/* fade animation end css */
 
-.inputField{
-    height: 1.5rem;
-    width: 100%;
-   
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box; 
+#displayNameLabel {
+  width: 35%;
 }
 
-
-#nameField:hover{
-    
-        opacity: 50%;   
+#genderLabel {
+  padding-right: 10px;
 }
 
-#nameField{
-    
-        opacity:100%;
-        transition:opacity 0.8s
+.inputField {
+  font-family: "Poppins";
+  padding: 10px;
+  height: 1.8rem;
+  width: 100%;
+  font-size: 20px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
 }
 
-
-#genderField:hover{
-    
-    opacity: 50%;   
+.inputGenderField {
+  font-family: "Poppins";
+  width: 100%;
+  font-size: 20px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
 }
 
-#genderField{
-
-    opacity:100%;
-    transition:opacity 0.8s
-
+#dltBtns {
+  display: flex;
 }
 
-
-
-#genderField:hover{
-    
-    opacity: 50%;   
+#deleteAccount {
+  background-color: #d0342c;
 }
 
-#genderField{
-
-    opacity:100%;
-    transition:opacity 0.8s
-
+#onDeleteYes {
+  background-color: #d0342c;
 }
 
-
-#genderField:hover ,
-#emailField:hover ,
-#passwordField:hover{
-    
-    opacity: 50%;   
+#basicEmailInfo {
+  font-family: "Poppins";
+  font-weight: 500;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 12px;
+  background-color: white;
+  margin-top: 1rem;
+  height: 400px;
+  box-shadow: rgb(0 0 0 / 10%) 0px 4px 6px -1px,
+    rgb(0 0 0 / 6%) 0px 2px 4px -1px;
 }
 
-#genderField,#emailField,#passwordField{
-
-    opacity:100%;
-    transition:opacity 0.8s
-
+.displayEmail {
+  width: 100%;
+  display: flex;
 }
 
+#emailLabel {
+  width: 73px;
+  padding-right: 10px;
+}
 
+#passwordLabel {
+  width: 117px;
+  padding-right: 10px;
+}
 
+#backPainSelect,
+#kayboardSelect,
+#distanceSelect {
+  font-family: "Poppins";
+  font-size: 20px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+  height: 35px;
+}
 
+#backPainSaveBtn,
+#backPainEditBtn,
+#kayboardSaveBtn,
+#kayboardEditBtn,
+#distanceSaveBtn,
+#distanceEditBtn {
+  height: 50px;
+}
 
+.upload {
+  width: 140px;
+  position: relative;
+  margin: auto;
+}
 
+.upload img {
+  border-radius: 50%;
+  border: 6px solid #eaeaea;
+}
 
+.upload .round {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: black;
+  width: 35px;
+  height: 35px;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
