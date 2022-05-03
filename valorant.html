@@ -60,15 +60,20 @@
             <button type="button" class="defaultBtn" id="startButton">
               START TIMER
             </button>
+            <button type="button" class="defaultBtn" id="stopButton">
+              STOP TIMER
+            </button>
           </div>
         </div>
 
         <dialog class="modal" id="modal">
-            <video id="video" width="320" height="240" autoplay></video>
-            <canvas id="canvas" width="320" height="240"></canvas><br>
+            <video id="video" width="320" height="180" autoplay></video>
+            <canvas id="canvas" width="320" height="180"></canvas><br>
+            <span class="result" id="resultGood">Good Posture</span><br>
+            <span class="result" id="resultBad">Bad Posture, Try again.</span><br>
             <button class="defaultBtn"  id="start-camera">Start Camera</button> <br>
-            <button class="defaultBtn"  id="click-photo">Click Photo</button><br>
-            <button class="defaultBtn"  id="close-modal">Close modal</button>
+            <button class="defaultBtn"  id="click-photo">Capture Photo</button><br>
+            <button class="defaultBtn"  id="close-modal">Close</button>
         </dialog>
       </section>
     </div>
@@ -104,5 +109,7 @@
           }
       }
 </script>
+
+
 
 </html>
