@@ -16,10 +16,9 @@ app = Flask(__name__)
 
 model = load_model('psycho_model')
 
-im_w = 256
-im_h = 256
 
-psychoDict = {0: "correct", 1: "incorrect"}
+
+
 
 def convert_to_array(img):
     im = cv2.imread(img)
