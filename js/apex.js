@@ -1,28 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
-import {
-  getAuth,
-  sendPasswordResetEmail,
-  onAuthStateChanged,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
-import {
-  getDatabase,
-  set,
-  get,
-  ref,
-  child,
-  update,
-  remove,
-} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
-import {
-  getStorage,
-  ref as sRef,
-  uploadBytesResumable,
-  getDownloadURL,
-} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-storage.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+import { getDatabase, get, ref, child, update } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBJhkQhDdkTbB-Uhhqiytfx6Fm5tVjb1Cs",
@@ -37,16 +16,11 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth();
 const database = getDatabase(app);
-const storage = getStorage();
 const dref = ref(database);
-
-
 
 const startTimerBtn = document.querySelector("#startButton");
 const stopTimerBtn = document.querySelector("#stopButton");
-// const closeModalBtn = document.querySelector("#close-modal");
 const modal = document.querySelector("#modal");
 let camera_button = document.querySelector("#start-camera");
 let video = document.querySelector("#video");
@@ -57,15 +31,6 @@ var second = document.querySelector("#second");
 
 var stream;
 
-
-var thismondayhours = 0;
-var thistuesdayhours = 0;
-var thiswednesdayhours = 0;
-var thisthursdayhours = 0;
-var thisfridayhours = 0;
-var thissaturdayhours = 0;
-var thissundayhours = 0;
-
 var armExe = 0;
 var backExe = 0;
 var eyeExe = 0;
@@ -75,14 +40,9 @@ var min;
 var timerSeconds;
 var postureOutput;
 
-
-
 function getDashboardData(){
 
-  // console.log("userUid", getAuth().currentUser);
   var userUid = (getAuth().currentUser).uid;
-  // alert(userUid);
-
   get(child(dref, 'valorant/' + userUid))
   .then((snapshot)=>{
       if(snapshot.exists()){
@@ -132,9 +92,6 @@ function getDashboardData(){
   get(child(dref, 'exercises/' + userUid))
   .then((snapshot)=>{
       if(snapshot.exists()){
-          
-          // alert("wada na line 454");
-          // alert(snapshot.val());
 
           // References
           var totalExercises = snapshot.val().totalExercises;
@@ -197,13 +154,6 @@ $("#click-photo").click(function()
     doPostureOutput(postureOutput);
   });
 
-  //console.log(postureOutput);
-
-  
-  // data url of the image
-  //console.log(image_data_url);
-
-  //pushNotif();
 });
 
 function doPostureOutput(postureOutput) {
@@ -224,7 +174,6 @@ function doPostureOutput(postureOutput) {
 $("#close-modal").click(function()
 {
   if (postureOutput == "incorrect") {
-    // <= change incorrect to correct here
     stream.getTracks().forEach((track) => track.stop());
 
     startTimerBtn.style.display = "none";
@@ -303,7 +252,6 @@ $("#stopButton").click(function()
           // References
           var totalTimePlayed = snapshot.val().totalHoursPlayedApex;
           var todayTimePlayed = snapshot.val().todayhoursPlayedApex;
-
           var mondayhours = snapshot.val().mondayhoursPlayedApex;
           var tuesdayhours = snapshot.val().tuesdayhoursPlayedApex;
           var wednesdayhours = snapshot.val().wednesdayhoursPlayedApex;
@@ -424,7 +372,7 @@ const sendHttpRequest = (method, url, data) => {
   return promise;
 };
 
-//function to set exercises =>
+//function to set exercises
 var exerciseQueueNo = 0;
 var exerciseQueue = [];
 
@@ -503,8 +451,6 @@ function sendExercise() {
             })
             .then(()=>{
                 console.log("Exercises count data updated successfully.");
-                // showErrorMessage("Data updated successfully.");
-                // location.reload();
             })
             .catch((error)=>{
                 console.log(error);
@@ -535,9 +481,7 @@ function sendExercise() {
       body: exercise,
       icon: "imglogo.png",
     }).show();
-  
-    //increment noOfExercises in DB
-  
+
     console.log("XYZ");
   }
   
