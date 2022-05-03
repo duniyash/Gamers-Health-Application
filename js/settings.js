@@ -1,9 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
-import { getAuth, updateEmail, updatePassword, sendPasswordResetEmail, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, deleteUser } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
-import { getDatabase, set, get, ref, child, update, remove } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
+import { getAuth, updateEmail, updatePassword, onAuthStateChanged, signOut, deleteUser } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+import { getDatabase, get, ref, child, update } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
 import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-storage.js";
-
 
 const firebaseConfig = {
     apiKey: "AIzaSyBJhkQhDdkTbB-Uhhqiytfx6Fm5tVjb1Cs",
@@ -26,10 +25,7 @@ const dref = ref(database);
 function getProfileData()
 {
 
-    // console.log("userUid", getAuth().currentUser);
     var userUid = (getAuth().currentUser).uid;
-    // alert(userUid);
-
     get(child(dref, 'users/' + userUid))
     .then((snapshot)=>{
         if(snapshot.exists()){
@@ -51,7 +47,6 @@ function getProfileData()
             document.getElementById("kayboardSpan").innerHTML = distDB;
             document.getElementById("distanceSpan").innerHTML = rotaDB;
             myimg.src = imageDB
-
         }
         else
         {
@@ -63,8 +58,6 @@ function getProfileData()
             const errorMessage = error.message;
             console.log(errorCode);
             console.log(errorMessage);
-            // window.alert(errorCode);
-            // window.alert(errorMessage);
     });
 }
 
@@ -247,8 +240,6 @@ $("#backPainSaveBtn").click(function()
                         })
                         .then(()=>{
                             console.log("Priority Data updated Successfully!");
-                            // showErrorMessage("Data updated successfully.");
-                            // location.reload();
                         })
                         .catch((error)=>{
                             console.log(error);
@@ -409,8 +400,6 @@ $("#kayboardSaveBtn").click(function()
                         })
                         .then(()=>{
                             console.log("Priority Data updated Successfully!");
-                            // showErrorMessage("Data updated successfully.");
-                            // location.reload();
                         })
                         .catch((error)=>{
                             console.log(error);
@@ -571,8 +560,6 @@ $("#distanceSaveBtn").click(function()
                         })
                         .then(()=>{
                             console.log("Priority Data updated Successfully!");
-                            // showErrorMessage("Data updated successfully.");
-                            // location.reload();
                         })
                         .catch((error)=>{
                             console.log(error);
@@ -628,20 +615,15 @@ $("#emailSaveBtn").click(function()
                 
                 signOut(auth)
                 .then(() => {
-                    // Sign-out successful.
-                    // ...
+
                     console.log('User logged out successfully!');
-                    // alert('User logged out successfully!');
 
                     onAuthStateChanged(auth, (user) => {
                         if (!user) {
-                            // User is signed in, see docs for a list of available properties
-                            // https://firebase.google.com/docs/reference/js/firebase.User
                             sessionStorage.removeItem('user');
                             localStorage.removeItem('user');
                             localStorage.removeItem('keepLoggedIn');
                             window.location.replace("login.html");
-                            // ...
                         }
                     });  
 
@@ -653,7 +635,6 @@ $("#emailSaveBtn").click(function()
             });
 
           }).catch((error) => {
-            // An error occurred
             showErrorMessage(error);
           });
     }
@@ -700,8 +681,6 @@ $("#PasswordSaveBtn").click(function()
     }
 });
 
-// User profile picture
-// variables & references
 var files = [];
 var reader = new FileReader();
 var input = document.createElement('input');
@@ -722,16 +701,6 @@ input.onchange = e =>
         showErrorMessage('Only support jpg formats');
         return;
     }
-
-    // if((extention !== ".png")){
-    //     showErrorMessage('Only support png formats');
-    //     return;
-    // }
-    
-    // if((extention !== ".jpeg")){
-    //     showErrorMessage('Only support jpeg formats');
-    //     return;
-    // }
 
     reader.readAsDataURL(files[0]);
 }
@@ -860,7 +829,6 @@ $("#onDeleteYes").click(function()
     
 });
 
-
 //error code function 
 var errorMessageSpan = document.getElementById('errorMessageShow');
 var loginCont = document.getElementById('loginContainer');
@@ -870,7 +838,6 @@ function showErrorMessage(p) {
     errorMessageSpan.style.display = "block";
     // loginCont.style.padding = "24px";
 }
-
 
 
 setTimeout(getProfileData, 1000);
