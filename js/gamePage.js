@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
-import { getAuth, sendPasswordResetEmail, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+import { getAuth, updateEmail, updatePassword, sendPasswordResetEmail, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, deleteUser } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 import { getDatabase, set, get, ref, child, update, remove } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
 import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-storage.js";
 
@@ -22,7 +22,6 @@ const auth = getAuth();
 const database = getDatabase(app);
 const storage = getStorage();
 const dref = ref(database);
-
 
 const startTimerBtn = document.querySelector("#startButton");
 const stopTimerBtn = document.querySelector("#stopButton");
@@ -149,6 +148,18 @@ stopTimerBtn.addEventListener('click', () => {
   var timePlayed = min + (sec/60);
 
   //send time played to firebase here
+  var userUid = (getAuth().currentUser).uid;
+  update(ref(database, 'dashboard/' + userUid),{
+    totalHoursPlayed: timePlayed,
+  })
+  .then(()=>{
+      console.log("Data updated successfully.");
+      // showErrorMessage("Data updated successfully.");
+      // location.reload();
+  })
+  .catch((error)=>{
+      console.log(error);
+  });
 
   stopTimerBtn.style.display = 'none';
   startTimerBtn.style.display = 'block';
