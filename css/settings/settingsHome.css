@@ -102,23 +102,6 @@ nav ul li:hover .tooltip {
   margin-bottom: 10px;
 }
 
-/* .main .mainContent {
-    display: flex;
-    height: 580px;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    width: 100%;
-} */
-
-/* .mainContent .card {
-    width: 100%;
-    margin: 2rem;
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-    font-family: 'Poppins', sans-serif;
-    background-color: #2e3239;
-} */
-
 /*General Settings For settings Page*/
 
 /* css of settings nav bar */
@@ -143,28 +126,19 @@ nav ul li:hover .tooltip {
   cursor: pointer;
 }
 
-/* transsistion of nav bar items */
-/* .header {
-    display: flex;
-    height: fit-content;
-    width: 100%;
-    color: black;
-    justify-content: space-between;
-} */
-
 .errorMessageShow {
-    color:#fff;
-    background-color: #ff3333;
-    text-align: center;
-    display: none;
-    transition: all 0.5s ease;
-    text-transform: capitalize;
-    font-family: 'Open Sans ', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 600;
-    border: none;
+  color:#fff;
+  background-color: #ff3333;
+  text-align: center;
+  display: none;
+  transition: all 0.5s ease;
+  text-transform: capitalize;
+  font-family: 'Open Sans ', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: none;
   padding: 1rem;
-  }
+}
 
 #avatarDiv {
   vertical-align: middle;
@@ -333,34 +307,6 @@ h2 {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
-
-/* .basicInfo:hover,.emailInfo:hover, .editGameInfo:hover {
-    transition: 0.9s;
-    background-color: #ffffff;
-    transform: translateY(-0.5rem);
-    color: rgb(0, 0, 0);
-} */
-
-/* .deleteAcc:hover {
-    transition: 0.7s ;
-    background-color: white;
-    color: white;
-    transform: translateY(-0.5rem);
-    animation: fadeIn 5s;
-    -webkit-animation: fadeIn 5s;
-    -moz-animation: fadeIn 5s;
-    -o-animation: fadeIn 5s;
-    -ms-animation: fadeIn 5s;
-      
-} */
-
-/* .deleteAcc:not(hover),
-.basicInfo:not(hover),
-.editGameInfo:not(hover),
-.emailInfo:not(hover) {
-    transition: 0.7s ;
-    transform: translateY(+0.7rem);
-} */
 
 /* fade animation start css */
 #settingspage {
