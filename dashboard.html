@@ -52,29 +52,31 @@
                     </li>
                 </ul>
             </div>
-            <div class="graph card">
+            <div class="graph">
                 <h3 class="cardTitle">Player Graph</h3>
-                <!-- <script src="path/to/chartjs/dist/chart.js"></script> -->
-                <!--<script>
-                    const myChart = new Chart(ctx, {...
-                    });
-                </script>-->
+           <div class="lineChartCont">
+                        <canvas id = "lineChart"></canvas>
+                    </div>
+                </div>
 
-            </div>
+                // Have to add after changing CSS
+                <div class="games">
+                    <h3 class="cardTitle">Games Chart</h3>
+                </div>
 
-            <div class="exercises alt-card">
-                <h3 class="cardTitle">Exercises Chart</h3>
-            </div>
-            <div class="games alt-card">
-                <h3 class="cardTitle">Games Chart</h3>
-            </div>
-        </section>
-    </div>
+            </section>
+        </div>
 
 </body>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
 <script src="js/player.js"></script>
 <script type="module" src="js/index.js"></script>
-
+<script src="js\chart1.js"></script>
+<script src="js\chart2.js"></script>
+<script src="js\chart3.js"></script>
+    
 <!-- Testing -->
 <script>
     // Functions
