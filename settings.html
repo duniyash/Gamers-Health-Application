@@ -1,25 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings</title>
-    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/settings/settingsHome.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--Jquery-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
     <!-- JavaScript Bundle with Popper -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    
 </head>
-
-
-<body  >
+<body>
     <div class="navbar">
         <nav>
-            <img src="img/logo2.png" alt="logo">
+            <a href="settings.html"><img src="img/logo2.png" alt="logo" /></a>
             <ul>
                 <li><a href="dashboard.html"><i class='bx bxs-home'></i></a></li>
                 <li><a href="games.html"><i class='bx bxs-game'></i></a></li>
@@ -29,151 +26,207 @@
             </ul>
         </nav>
     </div>
-    <div class="main"id="settingspage" >
+    <div class="main" id="settingspage" >
         <h1 class="pageHead">Settings</h1>
         <nav class="settingsNavbar" id="sNav">
-            
             <ul class="navList">
-
-                <li class="navItem" onClick="displayBasic()"><a ><i class='bx bxs-face-mask'></i></a></li>
-                <li class="navItem" onClick="displayEmail()"><a ><i class='bx bxs-envelope'></i></a></li>
-
-                <li class="navItem"id="AgameSettings"onClick="displayGame()"><a > <i class='bx bx-game' ></i></a></li>
-            
-
-                
-
+                <li class="navItem" onClick="displayBasic()"><a><i class='bx bxs-face-mask'></i></a></li>
+                <li class="navItem" onClick="displayEmail()"><a><i class='bx bxs-envelope'></i></a></li>
+                <li class="navItem" onClick="displayGame()"><a><i class='bx bxs-game'></i></a></li>
             </ul>
-        
-    
-    
-    </nav>
-        <section class="mainContent" >
+        </nav>
+        <section class="mainContent">
+            <div class="settingsContent">
+                <span class="errorMessageShow " id="errorMessageShow"></span>
+                <div class="basicLayout">
+                    <div class="column left" id="basicInfo">
+                        <div class="basicInfo" >
+                            
+                            <div class="header">
+                                <h2>Basic Information</h2>
+                            </div>
 
-            
- <!-- Testing -->
-            <div>
-                <div class="labels">
+                            <div class="inputContainer">
+                                <label for="name" id="displayNameLabel">Name :</label>
+                                <span name="name"id="displayName"> </span>
+                                <div id="nameField">
+                                    <input type="text" id="newName" class="inputField">
+                                </div>
+                            </div>
+                            <div class ='editBtn'id="editBtnName" >
+                                <button class="btn" onclick="editNameBtn()" id="editNameBtn">Edit</button>
+                                <button class="btn" id="saveNameBtn" onClick="onSave('name1')">Save</button>
+                            </div>
 
-                    <p id="usernamebox"></p> <br><br>
-                    <p id="emailbox"></p> <br><br>
-                    <p id="passwordbox"></p> <br><br>
-                    <p id="genderbox"></p> <br><br>
-                    <p id="distbox"></p> <br><br>
-                    <p id="rotabox"></p> <br><br>
-                    <p id="painbox"></p> <br><br>
-
-
-
-                    <!-- <label for="">Usre Name: </label> <p id="usernamebox"></p> <br><br>
-                    <label for="">Email</label> <input type="text" id="emailbox"> <br><br>
-                    <label for="">Password</label> <input type="text" id="passwordbox"> <br><br>
-                    <label for="">Gender</label> <input type="text" id="genderbox"> <br><br>
-                    <label for="">Distance to Monitor</label> <input type="text" id="distbox"> <br><br>
-                    <label for="">Keyboard Rotation</label> <input type="text" id="rotabox"> <br><br>
-                    <label for="">BackPain</label> <input type="text" id="painbox"> <br><br> -->
-                    
+                            <div class="inputContainer">
+                                <label for="gendar" id="genderLabel">Gender :</label>
+                                <span name="gendar"id="gendarName"> </span>
+                                <div id="genderField">
+                                    <select name="gendar" class="inputGenderField" id="newGendar">
+                                        <option value="" disabled selected>Select Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>   
+                            </div> 
+                            <div class ='editBtn'id="editBtnGender" >
+                                <button class="btn" onclick="editGenderBtn()" id="editGenderBtn">Edit</button>
+                                <button class="btn" id="saveGenderBtn" onClick="onSave('name2')">Save</button>
+                            </div> 
+                            
+                        </div>
                     </div>
                     <div class="column right">
                         <div class="avatar" id="avatarDiv">
-                            <img src="https://cdn-icons-png.flaticon.com/512/147/147142.png" alt="Avatar" class="avatar">
+                            <div class="header">
+                                <h2>Profile Picture</h2>
+                            </div>
+                            <div class="upload">
+                                <img src="img/noprofil.jpg" id="myimg" width = 140 height = 135 alt="">
+                                <div class="round" id="selectImg">
+                                  <i class = "fa fa-camera" style = "color: #fff;"></i>
+                                </div>
+                            </div>
+                            <!-- <img src="https://cdn-icons-png.flaticon.com/512/147/147142.png" alt="Avatar" class="avatar"> -->
+                            <!-- <span name="imageName"id="imageName"> </span> -->
+                            
+                            <!-- <input type="file" id="myPhoto" > -->
+                            <button class="btn" id="savePhotoBtn">Save</button> 
+
                         </div>
-
-
                         <div class="deleteAcc" id="deleteInfo">
                             <div class="header">
                                 <h2>Delete Account</h2>
-                                
+                                <p>Are you sure?</p>
                             </div>
-                            <button class="btn" id="deleteAccount">Delete Account</button>
-            
-                        
+                            <div id="dltBtns">
+                                <button class="btn" id="deleteAccount" onClick="onDelete()">Delete Account</button>
+                                <button class="btn" id="onDeleteNo" onClick="onDeleteNo()">No</button>
+                                <button class="btn" id="onDeleteYes" onClick="onDeleteYes()">Yes</button>
+                            </div>
                         </div>
-                     </div>
+                    </div>
                 </div>
-   <hr>
-                <!-- <div class="labels">
-                    <label for="">Usre Name</label> <input type="text" id="usernamebox"> <br><br>
-                    <label for="">Email</label> <input type="text" id="emailbox"> <br><br>
-                    <label for="">Password</label> <input type="text" id="passwordbox"> <br><br>
-                    <label for="">Distance to Monitor</label> <input type="text" id="distbox"> <br><br>
-                    <label for="">Keyboard Rotation</label> <input type="text" id="rotabox"> <br><br>
-                    <label for="">BackPain</label> <input type="text" id="painbox"> <br><br>
-                    <label for="">Gender</label>
-                    <select id="genderbox"> <br><br>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                    </select> -->
-                    
-                    <!-- <button id="instbtn">Insert</button> -->
-                    <!-- <button id="updbtn">Update</button>
-                    <button id="delbtn">Delete</button> -->
-                <!-- </div> -->
 
 
                 <div id="emailInfo">
-                    <h2>Email Infromation</h2>
-                    <div class="inputContainer">
-                        
-
-                        <span ></span>
-                        <div class="displayEmail">
-                            <label for="email">Email :</label>  
-                            <span name="email" id="diplayEmail">tharuka@gmail.com</span>
-                            <div id="emailField" ></div>  
-                        </div>
-                    </div>
-
-                    
-                    
-                    
-                         <div id ='editBtnEmail'>
-                        
-                            <button class="btn" id="editEmail" onclick="editEmailBtn()">Edit Email</button>
-                        </div>
-
-                  
-
-
-                    
-                    
+                    <div id="basicEmailInfo">
+                        <h2>Email Infromation</h2>
                         <div class="inputContainer">
-                            <label for="password">password :</label>
-                            <span type ="password" name="password" id="displayPassword" >********</span>  
-                            <div id="passwordField"></div>
-                        </div>
-
-                        <!-- <div class="displayPassword">
-                            <label for="password">password :</label>
-                             <span type ="password" name="password" id="passwordField">112233</span> 
-                        </div> -->
-                            <div id ='editBtnPassword'>
-                        
-                                <button class="btn" id="editPassword" onclick="editPasswordBtn()">Reset password</button>
+                            <div class="displayEmail">
+                                <label for="email" id="emailLabel">Email :</label>  
+                                <span name="email" id="diplayEmail"></span>
+                                <div id="emailField">
+                                    <input type="email"class="inputField" id="newEmail">
+                                </div>  
                             </div>
-                                
-                         <!-- <div id ='editBtnEmail'>
-                        
-                            <button class="btn" id="editEmail" onclick="editEmailBtn()">Edit Email</button>
-                        </div> -->
-
-                  
-                        
-                    
-                   
+                        </div>
+                        <div class ='editBtn' id ='editBtnEmail'>
+                            <button class="btn" id="editEmailBtn" onclick="editEmailBtn()">Edit Email</button>
+                            <button  class="btn" id="emailSaveBtn" onClick="onSave('email')" >Save Email</button>
+                        </div>
+    
+                        <div class="inputContainer">
+                            <div class="displayEmail">
+                                <label for="password" id="passwordLabel">password :</label>
+                                <span type ="password" name="password" id="displayPassword" >********</span>  
+                                <div id="passwordField">
+                                    <input type="password"class="inputField" id="newPassword"> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class ='editBtn' id ='editBtnPassword'>
+                            <button class="btn" id="editPassword" onclick="editPasswordBtn()">Reset password</button>
+                            <button  class="btn" id="PasswordSaveBtn"onClick="onSave('password')">Save Password</button>
+                        </div> 
+                    </div> 
                 </div>
-               
-            </div>
-           
-            
-            
-        </section>
-       
-    </div>
 
+
+                <div class="editGameInfo" id="gameInfo">
+                    <h2>Game Settings</h2>
+
+                    <div class="backPain" id="backPain">  
+                        <span class="content">
+                            <label for="backPain">Back Pain :</label>
+                            <span name="backPainSpan"id="backPainSpan"> </span>
+                            <select name="backPainSelect" id="backPainSelect">
+                                <option value="" disabled selected>back pain</option>
+                                <option value="often">often</option>
+                                <option value="rarely">rarely</option>
+                                <option value="never">never</option>
+                            </select>
+                        </span>                      
+                        
+                        <div class ='editBtn'>
+                            <button class="btn" onclick="editbackPainBtn()" id="backPainEditBtn">Update</button>
+                            <button class="btn" onclick="onSave('backPain')" id="backPainSaveBtn">Save</button>
+                        </div>
+                        
+                    </div>  
+
+                    <div class="kayboard" id="kayboard">  
+                        <div class="content">
+                            <label for="kayboard">kayboard :</label>
+                            <span name="kayboardSpan"id="kayboardSpan"> </span>
+                            <select name="kayboardSelect" id="kayboardSelect">
+                                <option value="" disabled selected>keyboard Rotation</option>
+                                <option value="0">0</option>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="30">30</option>
+                                <option value="40">40</option>
+                                <option value="50">50</option>
+                                <option value="60">60</option>
+                                <option value="70">70</option>
+                                <option value="80">80</option>
+                                <option value="90">90</option>
+                            </select>
+                        </div>                      
+                        <div class ='editBtn'>
+                            <button class="btn" onclick="editkayboardBtn()" id="kayboardEditBtn">Update</button>
+                            <button class="btn" onclick="onSave('kayboard')" id="kayboardSaveBtn">Save</button>
+                        </div>
+                        
+                    </div>           
+
+                    <div class="distance" id="distance">     
+                        <div class="content">
+                            <label for="distance">Distance :</label>
+                            <span name="distanceSpan"id="distanceSpan"> </span>
+                            <select name="distanceSelect" id="distanceSelect">
+                                <option value="" disabled selected>distance from eyes to monitor</option>
+                                <option value="10cm">10cm</option>
+                                <option value="20cm">20cm</option>
+                                <option value="30cm">30cm</option>
+                                <option value="40cm">40cm</option>
+                                <option value="50cm">50cm</option>
+                                <option value="60cm">60cm</option>
+                                <option value="70cm">70cm</option>
+                                <option value="80cm">80cm</option>
+                                <option value="90cm">90cm</option>
+                            </select>
+                        </div>                   
+                        
+                        <div class ='editBtn'>
+                            <button class="btn" onclick="editdistanceBtn()" id="distanceEditBtn">Update</button>
+                            <button class="btn" onclick="onSave('distance')" id="distanceSaveBtn">Save</button>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+
+            </div>
+        </section>
+    </div>
 </body>
-<!-- <script type="module" src="js/index.js"></script> -->
+
+
+<script type="module" src="js/index.js"></script>
 <script type="module" src="js/settings.js"></script>
+<script src="js/settings/settingsHome.js"></script>
+
 <!-- Testing -->
 <script>
     // Functions
@@ -193,22 +246,24 @@
 
     // Window loads
     window.onload = function(){
-            getUsername();
-            
+        getUsername();
+        if(currentUser == null){
+            window.location.href = "login.html";
+        }
+        else
+        {
+            // window.location.href = "dashboard.html";
             document.getElementById("gameInfo").style.display = "none";
             document.getElementById("emailInfo").style.display = "none";
-            document.getElementById("info").style.display = "none";
-           
-            if(currentUser == null){
-                window.location.href = "login.html";
-                
-            }
-            else
-            {
-                // window.location.href = "dashboard.html";
-            }
-          
+            
+            document.getElementById("nameField").style.display = "none";
+            document.getElementById("genderField").style.display = "none";
+            document.getElementById("saveNameBtn").style.display = "none";
+            document.getElementById("saveGenderBtn").style.display = "none";
+            document.getElementById("onDeleteYes").style.display = "none";
+            document.getElementById("onDeleteNo").style.display = "none";
         }
-</script>
+    }
 
+</script>
 </html>
