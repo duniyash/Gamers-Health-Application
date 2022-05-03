@@ -207,11 +207,11 @@ $("#click-photo").click(function()
 });
 
 function doPostureOutput(postureOutput) {
-  if (postureOutput == "incorrect") {
+  if (postureOutput == "correct") {
     document.getElementById("resultGood").style.display = "none";
     document.getElementById("resultBad").style.display = "block";
     console.log(postureOutput)
-  } else if (postureOutput == "correct") {
+  } else if (postureOutput == "incorrect") {
     document.getElementById("resultBad").style.display = "none";
     document.getElementById("resultGood").style.display = "block";
     click_button.style.display = "none";
@@ -223,7 +223,7 @@ function doPostureOutput(postureOutput) {
 //on-click event to close the camera input stream and start the timer
 $("#close-modal").click(function()
 {
-  if (postureOutput == "correct") {
+  if (postureOutput == "incorrect") {
     // <= change incorrect to correct here
     stream.getTracks().forEach((track) => track.stop());
 
@@ -257,7 +257,7 @@ $("#close-modal").click(function()
         }
       }
 
-      if (min == 35) {
+      if (sec == 5) {
         sendExercise();
       }
     }, 1000);
@@ -450,8 +450,13 @@ function sendExercise() {
           console.log(lowPriority);
 
           exerciseQueue = [ highPriority, "other", avgPriority, "other", lowPriority, "other" ];
-
+  
+          if (exerciseQueueNo == 5) {
+            exerciseQueueNo = 0;
+          }
           var exerciseInQueue = exerciseQueue[exerciseQueueNo];
+          exerciseQueueNo = exerciseQueueNo + 1;
+          
           var exercise;
 
           //assign value to exercise to exercise variable using exercise in queue
@@ -506,13 +511,7 @@ function sendExercise() {
           });
 
           pushNotif(exercise);
-          //console.log("Notification"+ exercise);
-
-          if (exerciseQueueNo == 5) {
-            exerciseQueueNo = 0;
-          } else {
-            exerciseQueueNo = exerciseQueueNo + 1;
-          };
+          console.log("Notification"+ exercise);
 
       }
       else
