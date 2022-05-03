@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games | Valorant</title>
+    <link rel="stylesheet" href="css\main.css" />
+    <link rel="stylesheet" href="css\player.css" />
+    <link rel="stylesheet" href="css\games.css" />
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+    <div class="navbar">
+      <nav>
+        <a href="valorant.html"><img src="img/logo2.png" alt="logo" /></a>
+        
+        <ul>
+            <li><a href="dashboard.html"><i class='bx bxs-home'></i></a></li>
+            <li><a href="games.html"><i class='bx bxs-game'></i></a></li>
+            <li><a href="blog.html"><i class='bx bxl-blogger'></i></a></li>
+            <li><a href="settings.html"><i class='bx bxs-cog'></i></a></li>
+            <li><a href="#" id="btn-logout"><i class='bx bxs-log-out'></i></a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="main">
+      <h1 class="pageHead">Valorant</h1>
+      <section class="mainContent">
+
+        <div class="overview card">
+          <ul>
+              <li>
+                  <div class="contentBlock">
+                    <h3 class="blockHead" id="blockHeadOne">0</h3>
+                      <p class="blockDet">Total Hours Played</p>
+                  </div>
+              </li>
+              <li>
+                  <div class="contentBlock">
+                    <h3 class="blockHead"  id="blockHeadTwo">0</h3>
+                      <p class="blockDet">Today</p>
+                  </div>
+              </li>
+              <li>
+                  <div class="contentBlock">
+                    <h3 class="blockHead"  id="blockHeadThree">0</h3>
+                      <p class="blockDet">Exercises Completed</p>
+                  </div>
+              </li>
+          </ul>
+      </div>
+
+        <div class="timerContainer">
+          <div class="timer">
+            <span class="timerText" id="minute">00</span>
+            <span class="timerText">:</span>
+            <span class="timerText" id="second">00</span><br />
+            <button type="button" class="defaultBtn" id="startButton">
+              START TIMER
+            </button>
+            <button type="button" class="defaultBtn" id="stopButton">
+              STOP TIMER
+            </button>
+          </div>
+        </div>
+
+        <dialog class="modal" id="modal">
+            <video id="video" width="320" height="180" autoplay></video>
+            <canvas id="canvas" width="320" height="180"></canvas><br>
+            <span class="result" id="resultGood">Good Posture</span><br>
+            <span class="result" id="resultBad">Bad Posture, Try again.</span><br>
+            <button class="defaultBtn"  id="start-camera">Start Camera</button> <br>
+            <button class="defaultBtn"  id="click-photo">Capture Photo</button><br>
+            <button class="defaultBtn"  id="close-modal">Close</button>
+        </dialog>
+      </section>
+    </div>
+
+  </body>
+  <script type="module" src="js/index.js"></script>
+  <script type="module" src="js/valorant.js"></script>
+  <!-- Testing -->
+<script>
+  // Functions
+  function getUsername(){
+          let keepLoggedIn = localStorage.getItem("keepLoggedIn");
+
+          if(keepLoggedIn == "yes"){
+              currentUser = JSON.parse(localStorage.getItem('user'));
+          }
+          else
+          {
+              currentUser = JSON.parse(sessionStorage.getItem('user'));
+          }
+  }
+
+  var currentUser = null;
+
+  // Window loads
+  window.onload = function(){
+          getUsername();
+          if(currentUser == null){
+              window.location.href = "login.html";
+          }
+          else
+          {
+              // window.location.href = "dashboard.html";
+          }
+      }
+</script>
+
+
+
+</html>
