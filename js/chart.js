@@ -1,9 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
-import { getAuth, sendPasswordResetEmail, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
-import { getDatabase, set, get, ref, child, update, remove } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
-import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-storage.js";
-
+import { getAuth } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+import { getDatabase, get, ref, child } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBJhkQhDdkTbB-Uhhqiytfx6Fm5tVjb1Cs",
@@ -18,18 +16,12 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth();
 const database = getDatabase(app);
-const storage = getStorage();
 const dref = ref(database);
-
 
 function getDashboardData(){
 
-    // console.log("userUid", getAuth().currentUser);
     var userUid = (getAuth().currentUser).uid;
-    // alert(userUid);
-
     get(child(dref, 'users/' + userUid))
     .then((snapshot)=>{
         if(snapshot.exists()){
@@ -99,9 +91,6 @@ function getDashboardData(){
     .then((snapshot)=>{
         if(snapshot.exists()){
             
-            // alert("wada na line 454");
-            // alert(snapshot.val());
-
             // References
             var totalExercises = snapshot.val().totalExercises;
             document.getElementById("blockHeadThree").innerHTML = totalExercises;
@@ -123,17 +112,12 @@ function getDashboardData(){
 
 function getplayerWeekData(){
 
-    // console.log("userUid", getAuth().currentUser);
     var userUid = (getAuth().currentUser).uid;
-    // alert(userUid);
-
     // chart1 DB
     get(child(dref, 'valorant/' + userUid))
     .then((snapshot)=>{
         if(snapshot.exists()){
             
-            // alert(snapshot.val());
-
             // References
             var mondayValorantDB = snapshot.val().mondayhoursPlayedValorant;
             var tuesdayValorantDB = snapshot.val().tuesdayhoursPlayedValorant;
@@ -202,11 +186,6 @@ function getplayerWeekData(){
                     console.log(errorMessage);
             });
 
-            
-            
-
-            
-
         }
         else
         {
@@ -224,10 +203,7 @@ function getplayerWeekData(){
 
 function getgamesChartData(){
 
-    // console.log("userUid", getAuth().currentUser);
     var userUid = (getAuth().currentUser).uid;
-    // alert(userUid);
-
     // chart2 DB
     get(child(dref, 'valorant/' + userUid))
     .then((snapshot)=>{
@@ -288,11 +264,6 @@ function getgamesChartData(){
                     console.log(errorMessage);
             });
 
-            
-
-
-            
-
         }
         else
         {
@@ -311,29 +282,21 @@ function getgamesChartData(){
 
 function exercisesChart(){
 
-    // console.log("userUid", getAuth().currentUser);
     var userUid = (getAuth().currentUser).uid;
-    // alert(userUid);
-
     // chart3 DB
     get(child(dref, 'exercises/' + userUid))
     .then((snapshot)=>{
         if(snapshot.exists()){
             
-            // alert("wada na line 454");
-            // alert(snapshot.val());
-
             // References
             var totalArmDB = snapshot.val().totalArm;
             var totalBackDB = snapshot.val().totalBack;
             var totalEyeDB = snapshot.val().totalEye;
             var totalOtherDB = snapshot.val().totalOther;
-            
 
             var test = [totalEyeDB, totalArmDB, totalBackDB, totalOtherDB];
 
             // Chart 02
-
             var ctx = document.getElementById('doughnut2').getContext('2d');
 
             var myChart = new Chart(ctx, {
