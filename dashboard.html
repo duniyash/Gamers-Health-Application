@@ -17,7 +17,7 @@
 <body>
     <div class="navbar">
         <nav>
-            <img src="img/logo2.png" alt="logo">
+            <a href="dashboard.html"><img src="img/logo2.png" alt="logo" /></a>
             <ul>
                 <li><a href="dashboard.html"><i class='bx bxs-home'></i></a></li>
                 <li><a href="games.html"><i class='bx bxs-game'></i></a></li>
@@ -28,54 +28,57 @@
         </nav>
     </div>
     <div class="main">
-        <h1 class="pageHead">Welcome to Physico</h1>
+        <h1 class="pageHead" id="welcomeMsg">Welcome to Physico</h1>
         <section class="mainContent">
             <div class="overview card">
                 <ul>
                     <li>
                         <div class="contentBlock">
-                            <h3 class="blockHead">4</h3>
+                            <h3 class="blockHead" id="blockHeadOne">0</h3>
                             <p class="blockDet">Total Hours Played</p>
                         </div>
                     </li>
                     <li>
                         <div class="contentBlock">
-                            <h3 class="blockHead">1</h3>
+                            <h3 class="blockHead"  id="blockHeadTwo">0</h3>
                             <p class="blockDet">Today</p>
                         </div>
                     </li>
                     <li>
                         <div class="contentBlock">
-                            <h3 class="blockHead">5</h3>
+                            <h3 class="blockHead"  id="blockHeadThree">0</h3>
                             <p class="blockDet">Exercises Completed</p>
                         </div>
                     </li>
                 </ul>
             </div>
-            <div class="graph">
+            <div class="graph card">
                 <h3 class="cardTitle">Player Graph</h3>
-           <div class="lineChartCont">
-                        <canvas id = "lineChart"></canvas>
-                    </div>
+                <div class="lineChartCont">
+                    <canvas id = "lineChart"></canvas>
+                </div>                
+            </div>
+            <div class="gamesChart alt-card">
+                <h3 class="cardTitle">Games Chart</h3>
+                <div class="doughnutChartCont">
+                    <canvas id="doughnut1"></canvas>
                 </div>
-
-                // Have to add after changing CSS
-                <div class="games">
-                    <h3 class="cardTitle">Games Chart</h3>
+            </div>
+            <div class="exercises alt-card">
+                <h3 class="cardTitle">Exercises Chart</h3>
+                <div class="doughnutChartCont">
+                    <canvas id="doughnut2"></canvas>
                 </div>
-
-            </section>
-        </div>
+            </div>
+            
+        </section>
+    </div>
 
 </body>
 
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
-<script src="js/player.js"></script>
 <script type="module" src="js/index.js"></script>
-<script src="js\chart1.js"></script>
-<script src="js\chart2.js"></script>
-<script src="js\chart3.js"></script>
+<script type="module" src="js\chart.js"></script>
     
 <!-- Testing -->
 <script>
