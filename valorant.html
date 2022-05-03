@@ -1,27 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Games | Valorant</title>
     <link rel="stylesheet" href="css\main.css" />
     <link rel="stylesheet" href="css\player.css" />
     <link rel="stylesheet" href="css\games.css" />
-    <link
-      href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
-      rel="stylesheet"
-    />
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </head>
 
   <body>
     <div class="navbar">
       <nav>
-        <img src="img/logo2.png" alt="logo" />
+        <a href="valorant.html"><img src="img/logo2.png" alt="logo" /></a>
+        
         <ul>
-          <li><a href="dashboard.html"><i class='bx bxs-home'></i></a></li>
-          <li><a href="games.html"><i class='bx bxs-game'></i></a></li>
-          <li><a href="blog.html"><i class='bx bxl-blogger'></i></a></li>
-          <li><a href="settings.html"><i class='bx bxs-cog'></i></a></li>
-          <li><a href="#" id="btn-logout"><i class='bx bxs-log-out'></i></a></li>
-      </ul>
+            <li><a href="dashboard.html"><i class='bx bxs-home'></i></a></li>
+            <li><a href="games.html"><i class='bx bxs-game'></i></a></li>
+            <li><a href="blog.html"><i class='bx bxl-blogger'></i></a></li>
+            <li><a href="settings.html"><i class='bx bxs-cog'></i></a></li>
+            <li><a href="#" id="btn-logout"><i class='bx bxs-log-out'></i></a></li>
+        </ul>
       </nav>
     </div>
 
@@ -33,19 +37,19 @@
           <ul>
               <li>
                   <div class="contentBlock">
-                      <h3 class="blockHead">4</h3>
+                    <h3 class="blockHead" id="blockHeadOne">0</h3>
                       <p class="blockDet">Total Hours Played</p>
                   </div>
               </li>
               <li>
                   <div class="contentBlock">
-                      <h3 class="blockHead">1</h3>
+                    <h3 class="blockHead"  id="blockHeadTwo">0</h3>
                       <p class="blockDet">Today</p>
                   </div>
               </li>
               <li>
                   <div class="contentBlock">
-                      <h3 class="blockHead">5</h3>
+                    <h3 class="blockHead"  id="blockHeadThree">0</h3>
                       <p class="blockDet">Exercises Completed</p>
                   </div>
               </li>
@@ -79,7 +83,8 @@
     </div>
 
   </body>
-  <script type="module" src="js/gamePage.js"></script>
+  <script type="module" src="js/index.js"></script>
+  <script type="module" src="js/valorant.js"></script>
   <!-- Testing -->
 <script>
   // Functions
