@@ -1,9 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
 import { getAuth, sendPasswordResetEmail, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
-import { getDatabase, set, get, ref, child, update, remove } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
-import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-storage.js";
-
+import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBJhkQhDdkTbB-Uhhqiytfx6Fm5tVjb1Cs",
@@ -20,32 +18,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const database = getDatabase(app);
-const storage = getStorage();
-const dref = ref(database);
-
-
-
 
 //modal for forgor password confirmation email
 var FPconfirmation = document.getElementById('FPconfirmation');
-// var userUid = null;
-
-
-//error 
-//const errorMessage = document.getElementById("errorMessage");
-
-// onAuthStateChanged(auth, (user) => {
-//     if (!user) {
-//         // No user is signed in.
-//         // User is signed in, see docs for a list of available properties
-//         // https://firebase.google.com/docs/reference/js/firebase.User
-//         window.location.replace("login.html");
-//     } else {
-//         // User is signed in.
-//         console.log("stay");
-//     }
-// });  
-
 
 // KeepLoggedIn function
 function login(user){
@@ -62,8 +37,6 @@ function login(user){
         window.location="dashboard.html";
     }
 }
-
-
 
 // Create a New User
 $("#btnsignup").click(function()
@@ -83,15 +56,10 @@ $("#btnsignup").click(function()
         {
             createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                // Signed in 
                 const user = userCredential.user;
                 
-                // ... user.uid  
-                // userUid = user.uid; 
-                // alert(userUid);
-                
-               // Store User details to db user branch
-               set(ref(database, 'users/' + user.uid), {
+                // Store User details to db user branch
+                set(ref(database, 'users/' + user.uid), {
                     username: name,
                     email: email,
                     password: password,
@@ -104,9 +72,6 @@ $("#btnsignup").click(function()
                 .then(() => {
                     // Data saved successfully!
                     console.log('New user data created successfully!');
-                    // call login function
-                    // login(user);
-                    // window.location.href = "dashboard.html";
                 })
                 .catch((error) => {
                     // The write failed...
@@ -127,9 +92,6 @@ $("#btnsignup").click(function()
                 .then(() => {
                     // Data saved successfully!
                     console.log('New exercises data created successfully!');
-                    // call login function
-                    // login(user);
-                    // window.location.href = "dashboard.html";
                 })
                 .catch((error) => {
                     // The write failed...
@@ -147,13 +109,10 @@ $("#btnsignup").click(function()
                     fridayhoursPlayedValorant: 0,
                     saturdayhoursPlayedValorant: 0,
                     sundayhoursPlayedValorant: 0,
-
                 })
                 .then(() => {
                     // Data saved successfully!
                     console.log('New valorant data created successfully!');
-                    // call login function
-                    // login(user);
                 })
                 .catch((error) => {
                     // The write failed...
@@ -171,13 +130,10 @@ $("#btnsignup").click(function()
                     fridayhoursPlayedApex: 0,
                     saturdayhoursPlayedApex: 0,
                     sundayhoursPlayedApex: 0,
-
                 })
                 .then(() => {
                     // Data saved successfully!
                     console.log('New valorant data created successfully!');
-                    // call login function
-                    // login(user);
                     assignPriority(keyboardRotation, distanceMonitor, backPain);
                     window.location.href = "dashboard.html";
                 })
@@ -186,59 +142,8 @@ $("#btnsignup").click(function()
                     console.log(error);
                 });
 
+                console.log('New user signup successfully!');  
 
-
-
-
-
-
-
-
-
-
-                // // Store User exercisesChart to db exercisesChart branch
-                // set(ref(database, 'exercisesChart/' + user.uid), {
-                //     totalEye: 0,
-                //     totalArm: 0,
-                //     totalBack: 0,
-                //     totalOther: 0
-                // })
-                // .then(() => {
-                //     // Data saved successfully!
-                //     console.log('New exercisesChart Data Saved Successfully!');
-                //     // call login function
-                //     // login(user);
-                //     // window.location.href = "dashboard.html";
-                // })
-                // .catch((error) => {
-                //     // The write failed...
-                //     console.log(error);
-                // });
-
-                // // Store User gamesChart to db gamesChart branch
-                // set(ref(database, 'gamesChart/' + user.uid), {
-                //     apex: 0,
-                //     fortnite: 0,
-                //     valorant: 0,
-                //     genshinImpact: 0,
-                //     eldenRing: 0,
-                //     leagueOfLegends: 0
-                // })
-                // .then(() => {
-                //     // Data saved successfully!
-                //     console.log('New gamesChart Data Saved Successfully!');
-                //     // call login function
-                //     // login(user);
-                //     window.location.href = "dashboard.html";
-                // })
-                // .catch((error) => {
-                //     // The write failed...
-                //     console.log(error);
-                // });
-
-                console.log('New user signup successfully!');
-                // alert('User Signup Successfully!');
-                                            
             })
             .catch(function(error)
             {
@@ -282,37 +187,9 @@ $("#btnlogin").click(function()
     {
         signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-            // Signed in 
             const user = userCredential.user;
-            
-            // ... user.uid  
-            // userUid = user.uid; 
-            // alert(userUid);
-
-            // Show user profile
-            // if (user !== null) {
-            //     // The user object has basic properties such as display name, email, etc.
-            //     // The user's ID, unique to the Firebase project. Do NOT use
-            //     // this value to authenticate with your backend server, if
-            //     // you have one. Use User.getToken() instead.
-                  
-            //     // console.log(user);
-            //     // console.log(uid);
-            //     // window.alert(user);
-            //     // window.alert(uid);
-            //     // window.alert("wada na");
-
-            // }else{
-            //     alert("No user!");
-            // }
-
             console.log('User login successfully!');
-            // alert('User login successfully!');
-            // call login function
             login(user);
-           
-            // window.location.href = "dashboard.html";
-
         })
         .catch(function(error)
         {
@@ -345,30 +222,22 @@ $("#btn-logout").click(function()
 {
     signOut(auth)
     .then(() => {
-        // Sign-out successful.
-        // ...
         console.log('User logged out successfully!');
-        // alert('User logged out successfully!');
 
         onAuthStateChanged(auth, (user) => {
             if (!user) {
-                // User is signed in, see docs for a list of available properties
-                // https://firebase.google.com/docs/reference/js/firebase.User
                 sessionStorage.removeItem('user');
                 localStorage.removeItem('user');
                 localStorage.removeItem('keepLoggedIn');
                 window.location.replace("login.html");
-                // ...
             }
         });  
 
     })
     .catch((error) => {
-        // An error happened.
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode);
-        // showErrorMessage(errorMessage)
     });
 
 });
@@ -383,18 +252,13 @@ $("#btnresetPassword").click(function()
     {
         sendPasswordResetEmail(auth, email)
         .then(() => {
-            // Password reset email sent!
-            // ..
-            //window.alert("Password reset email sent!");
             errorMessageSpan.style.display = "none";
             FPconfirmation.style.display = "block";
             setTimeout(main_page, 5000);
 			function main_page() 
 			{
 				location.replace("login.html")
-                // window.location.href = "login.html";
 			}
-            
             
         }).catch((error) => {
             var errorCode = error.code;
@@ -419,24 +283,6 @@ $("#btnresetPassword").click(function()
 
 });
 
-
-
-
-// References
-var usernamebox = document.getElementById("usernamebox");
-var emailbox = document.getElementById("emailbox");
-var passwordbox = document.getElementById("passwordbox");
-var genderbox = document.getElementById("genderbox");
-var distbox = document.getElementById("distbox");
-var rotabox = document.getElementById("rotabox");
-var painbox = document.getElementById("painbox");
-
-// var instbtn = document.getElementById("instbtn");
-var selbtn = document.getElementById("selbtn");
-var updbtn = document.getElementById("updbtn");
-var delbtn = document.getElementById("delbtn");
-
-
 //error code function 
 var errorMessageSpan = document.getElementById('errorMessageShow');
 var loginCont = document.getElementById('loginContainer');
@@ -444,7 +290,6 @@ function showErrorMessage(p) {
     errorMessageSpan.style.display = "none";
     errorMessageSpan.innerHTML ="*" + p;
     errorMessageSpan.style.display = "block";
-    // loginCont.style.padding = "24px";
 }
 
 
@@ -549,18 +394,9 @@ function assignPriority(keyboardRotation, distanceMonitor, backPain) {
     })
     .then(()=>{
         console.log("Priority Data updated Successfully!");
-        // showErrorMessage("Data updated successfully.");
-        // location.reload();
     })
     .catch((error)=>{
         console.log(error);
     });
 
 };
-
-
-
-
-
-// updbtn.addEventListener('click', UpdateData);
-// delbtn.addEventListener('click', DeleteData);
